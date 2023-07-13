@@ -8,6 +8,9 @@
     "build": "cd server && npm i && cd ../client && npm i && npm run build",
     "start": "node server/server.js"
   },
+  "engines": {
+    "node": "16.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JordanOfTroy/mtecCapstone.git"
