@@ -1,5 +1,4 @@
 import'../styles/main.css';
-import Base from './landing.jsx'
 
 
 export default function Welcome({title}) {

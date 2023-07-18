@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
 import './styles/main.css'
-import Base from './componenets/landing.jsx';
+import Base from './componenets/Base.jsx';
+// import WelcomeBase from './componenets/WelcomeBase'
 // import Header from './componenets/header.jsx';
 
 function App() {
@@ -15,9 +16,8 @@ function App() {
   }, []);
 
   return (
-    <Base></Base>
-    // <Admin></Admin>
-
+    // <WelcomeBase/>
+    <Base/>
   )
 }
 

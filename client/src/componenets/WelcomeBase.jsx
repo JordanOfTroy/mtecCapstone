@@ -2,7 +2,7 @@
 import'../styles/main.css';
 import Welcome from './Welcome.jsx';
 
-export default function Base() {
+export default function WelcomeBase() {
     return (
 <>
     <basePage class="container">
