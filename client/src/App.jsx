@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
 import './styles/main.css'
-import Landing from './componenets/landing.jsx';
+import Base from './componenets/landing.jsx';
+// import Header from './componenets/header.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,9 +15,8 @@ function App() {
   }, []);
 
   return (
-
-    <Landing></Landing>
-
+    <Base></Base>
+    // <Admin></Admin>
 
   )
 }

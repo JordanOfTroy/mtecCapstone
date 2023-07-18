@@ -1,10 +1,4 @@
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.body {
+body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,10 +15,8 @@
 
 .sideBar {
   background-color: #387B5C;
-  /* width: 10%; */
+  width: 10%;
   height: 800px;
-  /* border: 10px solid #ffffff; */
-  /* border-radius: 50px 0 0 50px; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -38,7 +30,6 @@
   padding: 20px 20px;
   border-radius: 35px;
   border: none;
-  /* margin: 0 20px 0 20px; */
 }
 
 .main {
@@ -56,6 +47,7 @@
   /* padding: 0px 50px 0px 30px; */
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 460px;
   height: 68px;
 }
