@@ -14,6 +14,13 @@ const logger = winston.createLogger({
     })
   ]
 })
+const {
+  DB_URL,
+  EXT_DB_URL,
+  DB_PW
+} = process.env
+const courseCTRL = require('./Controllers/courseController')
+const teacherCTRL = require('./Controllers/teacherController')
 
 
 
@@ -35,6 +42,11 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
+//ENDMPOINTS
+app.get('/courses', courseCTRL.getAllCourses)
+app.get('/teachers', teacherCTRL.getAllTeachers)
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
