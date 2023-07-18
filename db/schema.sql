@@ -1,51 +1,56 @@
-drop table if exists teacher;
-drop table if exists students;
-drop table if exists courses;
-drop table if exists teacher_courses;
-drip table if exists student_courses;
+DROP TABLE IF EXISTS teachers;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS teachers_courses;
+DROP TABLE IF EXISTS students_courses;
 
-
-create table teachers (
+CREATE TABLE teachers (
     id serial primary key,
-    is_admin boolean default 1,
-    first_name varchar (60),
-    last_name varchar (60),
-    email varchar(250) unique not null
+    is_admin boolean default 'true',
+    first_name varchar(60),
+    last_name varchar(60),
+    email varchar(250) unique not null,
+    password varchar(250) not null
 );
 
-create table students (
+CREATE TABLE students (
     id serial primary key,
-    is_admin boolean default 0,
-    first_name varchar (60),
-    last_name varchar (60),
-    email varchar(250) unique not null
+    is_admin boolean default 'false',
+    first_name varchar(60),
+    last_name varchar(60),
+    email varchar(250) unique not null,
+    password varchar(250) not null
 );
 
-create table courses (
+CREATE TABLE courses (
     id serial primary key,
-    title varchar (60),
-    course_code varchar (60),
+    teacher_id integer,
+    title varchar(60),
+    course_code varchar(60),
     credit_hours integer,
-    tuition_cost integer,
+    tuition integer,
     description text,
-    foreign key (teacher_id) references teachers(id),
     capacity integer,
     enrolled integer,
-    days_of_week varchar (7),
+    days_of_week varchar(7),
     start_time time,
     end_time time,
-    room_number varchar (30),
-
+    room_number varchar(30),
+    foreign key (teacher_id) references teachers(id)
 );
 
-create table teacher_courses (
+CREATE TABLE teachers_courses (
     id serial primary key,
+    teacher_id integer,
+    course_id integer,
     foreign key (teacher_id) references teachers(id),
     foreign key (course_id) references courses(id)
 );
 
-create table student_courses (
+CREATE TABLE students_courses (
     id serial primary key,
+    student_id integer,
+    course_id integer,
     foreign key (student_id) references students(id),
     foreign key (course_id) references courses(id)
 );
