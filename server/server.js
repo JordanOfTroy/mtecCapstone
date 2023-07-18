@@ -44,7 +44,11 @@ app.get("/api", (req, res) => {
 
 //ENDMPOINTS
 app.get('/courses', courseCTRL.getAllCourses)
+app.get('/courses/:id', courseCTRL.getCourseById)
+app.get('/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
+
 app.get('/teachers', teacherCTRL.getAllTeachers)
+app.get('/teachers/:id', teacherCTRL.getTeacherById)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

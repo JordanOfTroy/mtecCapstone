@@ -13,5 +13,13 @@ module.exports = {
             }
             res.status(200).json(results.rows)
         })
+    },
+
+    getTeacherById: (req, res) => {
+        let {id} = req.params
+        pool.query(`select * from teachers where id = ${id}`, (err, results) => {
+            if (err) throw err
+            res.status(200).json(results.rows)
+        })
     }
 }

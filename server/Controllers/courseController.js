@@ -13,5 +13,24 @@ module.exports = {
             }
             res.status(200).json(results.rows)
         })
+    },
+
+    getCourseById: (req, res) => {
+        let {id} = req.params
+        pool.query(`select * from courses where id = ${id}`, (err, results) => {
+            if (err)throw err
+            res.status(200).json(results.rows)
+        })
+    },
+
+    getCoursesByTeacher: (req, res) => {
+        let {id} = req.params
+        pool.query(`select * from courses where teacher_id = ${id}`, (err, results) => {
+            if (err) throw err
+            for (let row of results.rows) {
+                console.log(JSON.stringify(row))
+            }
+            res.status(200).json(results.rows)
+        })
     }
 }
