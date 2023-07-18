@@ -1,7 +1,13 @@
-
-.root {
+#root {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -11,6 +17,7 @@
   background-color: #DEDFDA;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .sideBar {

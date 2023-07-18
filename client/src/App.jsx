@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
-import './App.css'
-import LeftBar from './componenets/landing.jsx';
+import './styles/main.css'
+import Landing from './componenets/landing.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,9 +14,9 @@ function App() {
   }, []);
 
   return (
-    <>
-    <LeftBar></LeftBar>
-    </>
+
+    <Landing></Landing>
+
 
   )
 }
