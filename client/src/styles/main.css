@@ -72,10 +72,10 @@ body {
   padding-right: 30px;
   display: flex;
   flex-direction: column;
-  align-content: baseline;
+  justify-content: center;
   position: absolute;
   bottom: 0;
-  width: 1093px;
+  width: 1000px;
   height: 343px;
 }
 

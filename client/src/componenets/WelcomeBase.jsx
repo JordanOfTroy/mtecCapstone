@@ -1,6 +1,8 @@
 // import './mtecCapstone/client/src/App.css';
 import'../styles/main.css';
 import Welcome from './Welcome.jsx';
+import Info from './Info.jsx';
+import LargeInfo from './LargerInfo';
 
 export default function WelcomeBase() {
     return (
@@ -17,9 +19,11 @@ export default function WelcomeBase() {
         </sideBar>
         <mainArea className="main">
             <Welcome title="Welcome to Blah™"/>
+            <Info special="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid incidunt alias adipisci debitis est, amet quas aut quasi, nostrum enim odio quibusdam saepe ad magni-"/>
+            <LargeInfo more="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, eligendi accusantium. Voluptatum minima sapiente sed, earum iure quam velit vero. Ipsum nostrum rem at minus, dignissimos architecto maiores perspiciatis vel!"/>
         </mainArea>
     </basePage>
-</>
+</> 
 
     )
 };
