@@ -21,7 +21,7 @@ const {
 } = process.env
 const courseCTRL = require('./Controllers/courseController')
 const teacherCTRL = require('./Controllers/teacherController')
-const studentCTRL = require('./Controllers/studentController')
+const userCTRL = require('./Controllers/userController')
 
 
 
@@ -54,7 +54,8 @@ app.get('/teachers', teacherCTRL.getAllTeachers)
 app.get('/teachers/:id', teacherCTRL.getTeacherById)
 app.put('/teachers/:id', teacherCTRL.updateTeacher)
 
-app.post('/newStudent', studentCTRL.addNewStudent)
+app.post('/newStudent', userCTRL.addNewStudent)
+app.post('/login') //CRAP  I need to refactore the DB and combine students and teachers into a single Users table. FML
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
