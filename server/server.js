@@ -20,8 +20,8 @@ const {
   DB_PW
 } = process.env
 const courseCTRL = require('./Controllers/courseController')
-const teacherCTRL = require('./Controllers/teacherController')
 const userCTRL = require('./Controllers/userController')
+const loginCTRL = require('./Controllers/loginController')
 
 
 
@@ -50,12 +50,17 @@ app.get('/courses/:id', courseCTRL.getCourseById)
 app.get('/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
 app.put('/courses/:id', courseCTRL.updateCourse) 
 
-app.get('/teachers', teacherCTRL.getAllTeachers)
-app.get('/teachers/:id', teacherCTRL.getTeacherById)
-app.put('/teachers/:id', teacherCTRL.updateTeacher)
-
-app.post('/newStudent', userCTRL.addNewStudent)
+app.get('/admins', userCTRL.getAllAdmins)
+app.get('/admins/:id', userCTRL.getAdminById)
 app.post('/newAdmin', userCTRL.addNewAdmin)
+app.put('/admins/:id', userCTRL.updateAdmin)
+
+app.get('/students', userCTRL.getAllStudents)
+app.post('/newStudent', userCTRL.addNewStudent)
+app.put('/students/:id', userCTRL.updateStudent)
+
+app.post('/login', loginCTRL.handleLogin)
+
 // app.post('/login') 
 //CRAP  I need to refactore the DB and combine students and teachers into a single Users table. FML
 
