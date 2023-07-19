@@ -40,7 +40,7 @@ body{
 .main {
   display: flex;
   flex-direction: column;
-  position: relative
+  position: relative;
 }
 .welcomeMessage{
   /* margin-top: 20px; */
@@ -89,11 +89,36 @@ body{
     background-color: #B0BB9B;
     color: #013832;
     font-size: 20px;
-    margin: 30px 0px 0px 130%;
+    margin: 30px 0px 0px 75%;
     /* padding: 0px 50px 0px 30px; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 460px;
     height: 68px;
+}
+.studentMain {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.courseTable {
+  color: #013832;
+  font-size: 16px;
+  display: flex;
+  // margin: 30px 0px 0px 130%;
+  tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  th {
+    margin: 10px;
+    p{
+      margin-right: 100px;
+      margin-left: 20px;
+    }
+  }
+  // justify-content: space-around;
 }
