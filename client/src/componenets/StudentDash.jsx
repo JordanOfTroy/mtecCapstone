@@ -22,15 +22,29 @@ export default function StudentDash() {
                     <tr>
                         <th>
                             <p>Course Title</p>
+                            <span/>
+                            <td>This is a course what if i continue to type mother fucker</td>
+                            <span/>
+                            <td>this is another example</td>
+
                         </th>
+                        <span/>
                         <th>
                             <p>Description</p>
+                            <span/>
+                            <td>This is a description</td>
                         </th>
+                        <span/>
                         <th>
                             <p>Time</p>
+                            <span/>
+                            <td>When it's held</td>
                         </th>
+                        <span/>
                         <th>
                             <p>Credit Hours</p>
+                            <span/>
+                            <td>Eleventy-Billion</td>
                         </th>
                         
                     </tr>
