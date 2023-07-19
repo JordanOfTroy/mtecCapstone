@@ -7,13 +7,13 @@ export default function StudentDash() {
 <>
     <basePage class="container">
         <sideBar className="sideBar">
-            <button className="button">Button 1</button>
-            <button className="button">Button 2</button>
-            <button className="button">Button 3</button>
-            <button className="button">Button 4</button>
+            <button className="button glow-button">Button 1</button>
+            <button className="button glow-button">Button 2</button>
+            <button className="button glow-button">Button 3</button>
+            <button className="button glow-button">Button 4</button>
             <span></span>
             <span></span>
-            <button className="button">Button 5</button>
+            <button className="button glow-button">Button 5</button>
         </sideBar>
         <div className="studentMain">
             <Header title="Dashboard" className="studentDashboard"/>
@@ -23,9 +23,7 @@ export default function StudentDash() {
                         <th>
                             <p>Course Title</p>
                             <span/>
-                            <td>This is a course what if i continue to type mother fucker</td>
-                            <span/>
-                            <td>this is another example</td>
+                            <td>this is another </td>
 
                         </th>
                         <span/>

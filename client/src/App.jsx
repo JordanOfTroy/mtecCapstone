@@ -4,6 +4,7 @@ import './styles/main.css'
 // import Base from './componenets/Base.jsx';
 // import WelcomeBase from './componenets/WelcomeBase'
 import StudentDash from './componenets/StudentDash.jsx';
+import AdminDash from './componenets/AdminDash.jsx';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,6 +20,7 @@ function App() {
     // <WelcomeBase/>
     // <Base/>
     <StudentDash/>
+    // <AdminDash/>
   )
 }
 

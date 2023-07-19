@@ -2,7 +2,7 @@
 import'../styles/main.css';
 import Header from './Header.jsx';
 
-export default function Base() {
+export default function AdminDash() {
     return (
 <>
     <basePage class="container">
@@ -15,9 +15,27 @@ export default function Base() {
             <span></span>
             <button className="button glow-button">Button 5</button>
         </sideBar>
-        <mainArea className="main">
-            <Header title="Dashboard"/>
-        </mainArea>
+        <Header title="Dashboard" className="studentDashboard"/>
+        <div className="adminMain">
+
+            <h3>Students</h3>
+            <div className="courseTable">
+                <table>
+                    <tr>
+
+                    </tr>
+                </table>
+            </div>
+            
+            <h3>Courses</h3>
+            <div className="courseTable">    
+                <table>
+                    <tr>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
     </basePage>
 </>
 
