@@ -40,9 +40,9 @@ app.use(morgan('dev', {
 }))
 
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
+// app.get("/api", (req, res) => {
+//   res.json({ message: "Hello from server!" });
+// });
 
 //ENDMPOINTS
 app.get('/courses', courseCTRL.getAllCourses)
@@ -55,7 +55,9 @@ app.get('/teachers/:id', teacherCTRL.getTeacherById)
 app.put('/teachers/:id', teacherCTRL.updateTeacher)
 
 app.post('/newStudent', userCTRL.addNewStudent)
-app.post('/login') //CRAP  I need to refactore the DB and combine students and teachers into a single Users table. FML
+app.post('/newAdmin', userCTRL.addNewAdmin)
+// app.post('/login') 
+//CRAP  I need to refactore the DB and combine students and teachers into a single Users table. FML
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

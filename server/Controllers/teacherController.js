@@ -6,7 +6,7 @@ const pool = new Pool({
 
 module.exports = {
     getAllTeachers: (req, res) => {
-        pool.query('select * from teachers;', (err, results) => {
+        pool.query('select * from users;', (err, results) => {
             if (err) throw err
             for (let row of results.rows) {
                 console.log(JSON.stringify(row))
@@ -17,7 +17,7 @@ module.exports = {
 
     getTeacherById: (req, res) => {
         let {id} = req.params
-        pool.query(`select * from teachers where id = ${id}`, (err, results) => {
+        pool.query(`select * from users where id = ${id}`, (err, results) => {
             if (err) throw err
             res.status(200).json(results.rows)
         })
@@ -27,10 +27,10 @@ module.exports = {
         let {firstName, lastName, email} = req.body
         let {id} = req.params
         let updatedTeacher = await pool.query(`
-            update teachers
+            update users
             set first_name = ${firstName}, last_name = ${lastName}, email=${email}
             where id = ${id}
-            returning teachers.*;
+            returning users.*;
         `)
         res.status(200).json(updatedTeacher.rows)
     }
