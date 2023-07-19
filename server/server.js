@@ -21,7 +21,7 @@ const {
 } = process.env
 const courseCTRL = require('./Controllers/courseController')
 const teacherCTRL = require('./Controllers/teacherController')
-
+const studentCTRL = require('./Controllers/studentController')
 
 
 
@@ -48,10 +48,13 @@ app.get("/api", (req, res) => {
 app.get('/courses', courseCTRL.getAllCourses)
 app.get('/courses/:id', courseCTRL.getCourseById)
 app.get('/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
+app.put('/courses/:id', courseCTRL.updateCourse) 
 
 app.get('/teachers', teacherCTRL.getAllTeachers)
 app.get('/teachers/:id', teacherCTRL.getTeacherById)
 app.put('/teachers/:id', teacherCTRL.updateTeacher)
+
+app.post('/newStudent', studentCTRL.addNewStudent)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

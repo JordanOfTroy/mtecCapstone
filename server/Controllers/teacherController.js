@@ -24,16 +24,14 @@ module.exports = {
     },
 
     updateTeacher: async (req, res) => {
-        let {firstName, lastName} = req.body
-        console.log(typeof firstName)
+        let {firstName, lastName, email} = req.body
         let {id} = req.params
         let updatedTeacher = await pool.query(`
             update teachers
-            set first_name = ${firstName}, last_name = ${lastName}
+            set first_name = ${firstName}, last_name = ${lastName}, email=${email}
             where id = ${id}
             returning teachers.*;
         `)
         res.status(200).json(updatedTeacher.rows)
-        // res.send('hi')
     }
 }

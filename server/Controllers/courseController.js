@@ -32,5 +32,17 @@ module.exports = {
             }
             res.status(200).json(results.rows)
         })
+    },
+
+    updateCourse: async (req, res) => {
+        let {id} = req.params
+        let {description} = req.body
+        let updatedCourse = await pool.query(`
+            update courses
+            set description = ${description}
+            where id = ${id}
+            returning courses.*;
+        `)
+        res.status(200).json(updatedCourse.rows)
     }
 }
