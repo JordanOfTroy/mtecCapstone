@@ -108,7 +108,11 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  margin-left: 20px;
+  margin-left: 10%;
+  margin-top: 12%;
+}
+.adminMain h3 {
+  margin-top: 40px;
 }
 
 .courseTable {
@@ -118,10 +122,17 @@ body {
   display: flex;
   margin-top: 10px;
 }
+.courseTable td {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
 .courseTable tr {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border-bottom: #013832 1px solid;
+  margin-bottom: 5px;
 }
 .courseTable span {
   border: #013832 1px inset;

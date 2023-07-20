@@ -104,7 +104,11 @@ body{
   display: flex;
   flex-direction: column;
   position: absolute;
-  margin-left: 20px;
+  margin-left: 10%;
+  margin-top: 12%;
+  h3 {
+    margin-top: 40px;
+  }
 }
 
 .courseTable {
@@ -113,10 +117,17 @@ body{
   font-size: 14px;
   display: flex;
   margin-top: 10px;
+  td{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
   tr {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    border-bottom:#013832 1px solid;
+    margin-bottom: 5px;
   }
   span{
     border:#013832 1px inset;

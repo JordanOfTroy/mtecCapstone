@@ -22,7 +22,12 @@ export default function AdminDash() {
             <div className="courseTable">
                 <table>
                     <tr>
-
+                        <th>Name</th>
+                        <th>Email</th>
+                        </tr>
+                    <tr>
+                        <td>Bartimus</td>
+                        <td>Bartimus@bartybart.com</td>
                     </tr>
                 </table>
             </div>
@@ -30,8 +35,14 @@ export default function AdminDash() {
             <h3>Courses</h3>
             <div className="courseTable">    
                 <table>
+                <tr>
+                        <th>Course Title</th>
+                        <th>Credit Hours</th>
+                        <th>Amount of Students</th>
+                        </tr>
                     <tr>
-
+                        <td>Bartimus</td>
+                        <td>Bartimus@bartybart.com</td>
                     </tr>
                 </table>
             </div>
