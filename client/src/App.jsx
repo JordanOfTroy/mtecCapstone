@@ -17,6 +17,8 @@ function App() {
     <Route path='/' element={<WelcomeBase/>} />
     <Route path='/student' element={<StudentDash/>} />
     <Route path='/admin' element={<AdminDash/>} />
+    <Route path='/home' element={<WelcomeBase/>} />
+
   </Routes>
 )
   

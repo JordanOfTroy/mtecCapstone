@@ -1,20 +1,14 @@
 // import './mtecCapstone/client/src/App.css';
 import'../styles/main.css';
 import Header from './Header.jsx';
+// import {Link} from 'react-router-dom';
+import SideBar from './SideBar.jsx';
 
 export default function AdminDash() {
     return (
 <>
-    <basePage class="container">
-        <sideBar className="sideBar">
-            <button className="button glow-button">Button 1</button>
-            <button className="button glow-button">Button 2</button>
-            <button className="button glow-button">Button 3</button>
-            <button className="button glow-button">Button 4</button>
-            <span></span>
-            <span></span>
-            <button className="button glow-button">Button 5</button>
-        </sideBar>
+    <div class="container">
+        <SideBar/>
         <Header title="Dashboard" className="studentDashboard"/>
         <div className="adminMain">
 
@@ -70,7 +64,7 @@ export default function AdminDash() {
                 </table>
             </div>
         </div>
-    </basePage>
+    </div>
 </>
 
     )

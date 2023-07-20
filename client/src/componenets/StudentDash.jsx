@@ -1,20 +1,14 @@
 // import './mtecCapstone/client/src/App.css';
 import'../styles/main.css';
 import Header from './Header.jsx';
+import SideBar from './SideBar.jsx';
+
 
 export default function StudentDash() {
     return (
 <>
     <basePage class="container">
-        <sideBar className="sideBar">
-            <button className="button glow-button">Button 1</button>
-            <button className="button glow-button">Button 2</button>
-            <button className="button glow-button">Button 3</button>
-            <button className="button glow-button">Button 4</button>
-            <span></span>
-            <span></span>
-            <button className="button glow-button">Button 5</button>
-        </sideBar>
+        <SideBar/>
         <div className="studentMain">
             <Header title="Dashboard" className="studentDashboard"/>
             <div className="courseTable">
