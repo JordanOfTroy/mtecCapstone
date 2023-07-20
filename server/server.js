@@ -56,7 +56,7 @@ app.post('/newAdmin', userCTRL.addNewAdmin)
 app.put('/admins/:id', userCTRL.updateAdmin)
 
 app.get('/students', userCTRL.getAllStudents)
-app.post('/newStudent', userCTRL.addNewStudent)
+app.post('/api/newStudent', userCTRL.addNewStudent)
 app.put('/students/:id', userCTRL.updateStudent)
 
 app.post('/login', loginCTRL.handleLogin)

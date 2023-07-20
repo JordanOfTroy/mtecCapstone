@@ -1,0 +1,9 @@
+POST http://localhost:5555/newStudent
+content-type: application/json
+
+{
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "password": "password",
+    "email":"email"
+}
