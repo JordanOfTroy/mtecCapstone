@@ -19,8 +19,8 @@ function App() {
   return (
     // <WelcomeBase/>
     // <Base/>
-    // <StudentDash/>
-    <AdminDash/>
+    <StudentDash/>
+    // <AdminDash/>
   )
 }
 

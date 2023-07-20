@@ -20,31 +20,40 @@ export default function StudentDash() {
             <div className="courseTable">
                 <table>
                     <tr>
-                        <th>
-                            <p>Course Title</p>
-                            <span/>
-                            <td>this is another </td>
-
-                        </th>
-                        <span/>
-                        <th>
-                            <p>Description</p>
-                            <span/>
-                            <td>This is a description</td>
-                        </th>
-                        <span/>
-                        <th>
-                            <p>Time</p>
-                            <span/>
-                            <td>When it's held</td>
-                        </th>
-                        <span/>
-                        <th>
-                            <p>Credit Hours</p>
-                            <span/>
-                            <td>Eleventy-Billion</td>
-                        </th>
-                        
+                        <th>Course</th>
+                        <th>Description</th>
+                        <th>Time</th>
+                        <th>Credit Hours</th>
+                    </tr>
+                    <tr>
+                        <th>Rolling your own</th>
+                        <th>"Description"</th>
+                        <th>3 pm</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>Rolling your own</th>
+                        <th>"Description"</th>
+                        <th>3 pm</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>Rolling your own</th>
+                        <th>"Description"</th>
+                        <th>3 pm</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>Rolling your own</th>
+                        <th>"Description"</th>
+                        <th>3 pm</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>Rolling your own</th>
+                        <th>"Description"</th>
+                        <th>3 pm</th>
+                        <th>3</th>
                     </tr>
                 </table>
             </div>
