@@ -61,8 +61,6 @@ app.put('/students/:id', userCTRL.updateStudent)
 
 app.post('/login', loginCTRL.handleLogin)
 
-// app.post('/login') 
-//CRAP  I need to refactore the DB and combine students and teachers into a single Users table. FML
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
