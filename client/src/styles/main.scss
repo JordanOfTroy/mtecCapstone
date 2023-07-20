@@ -110,7 +110,9 @@ body{
     margin-top: 40px;
   }
 }
-
+table{
+  width: 100%;
+}
 .courseTable {
   color: #013832;
   background-color: #f1f1ed;
@@ -119,7 +121,7 @@ body{
   margin-top: 10px;
   td{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
   }
   tr {
@@ -127,7 +129,13 @@ body{
     flex-direction: row;
     justify-content: space-around;
     border-bottom:#013832 1px solid;
-    margin-bottom: 5px;
+    padding-top: 5px;
+  }
+  tr:nth-child(odd){
+    background-color:#B0BB9B;
+  }
+  tr:nth-child(even){
+    background-color:#DEDFDA;
   }
   span{
     border:#013832 1px inset;
@@ -137,6 +145,8 @@ body{
   th {
     margin-right: 100px;
     margin-left: 100px;
+    display: flex;
+    justify-content: space-evenly;
     td{
       font-size: 12px;
       display:flex;

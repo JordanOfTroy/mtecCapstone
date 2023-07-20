@@ -24,10 +24,22 @@ export default function AdminDash() {
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Classes Taken</th>
                         </tr>
                     <tr>
                         <td>Bartimus</td>
                         <td>Bartimus@bartybart.com</td>
+                        <td>2 Many</td>
+                    </tr>
+                    <tr>
+                        <td>Bartimus</td>
+                        <td>Bartimus@bartybart.com</td>
+                        <td>2 Many</td>
+                    </tr>
+                    <tr>
+                        <td>Bartimus</td>
+                        <td>Bartimus@bartybart.com</td>
+                        <td>2 Many</td>
                     </tr>
                 </table>
             </div>
@@ -43,6 +55,17 @@ export default function AdminDash() {
                     <tr>
                         <td>Bartimus</td>
                         <td>Bartimus@bartybart.com</td>
+                        <td>Lotso</td>
+                    </tr>
+                    <tr>
+                        <td>Bartimus</td>
+                        <td>Bartimus@bartybart.com</td>
+                        <td>Lotso</td>
+                    </tr>
+                    <tr>
+                        <td>Bartimus</td>
+                        <td>Bartimus@bartybart.com</td>
+                        <td>Lotso</td>
                     </tr>
                 </table>
             </div>
