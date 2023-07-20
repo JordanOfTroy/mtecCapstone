@@ -113,6 +113,7 @@ body {
 }
 .adminMain h3 {
   margin-top: 40px;
+  color: #013832;
 }
 
 table {
@@ -121,10 +122,11 @@ table {
 
 .courseTable {
   color: #013832;
-  background-color: #f1f1ed;
+  background-color: #013832;
   font-size: 14px;
   display: flex;
   margin-top: 10px;
+  overflow: hidden;
 }
 .courseTable td {
   display: flex;
