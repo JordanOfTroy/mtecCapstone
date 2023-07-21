@@ -1,7 +1,8 @@
-import {useLocation} from 'react-router-dom'
+import {useNavigate, useLocation} from 'react-router-dom'
 
 export default function Registration () {
     const location = useLocation()
+    const navTo = useNavigate()
 
     let handleRegistration = async () => {
         let firstName = document.getElementById('firstName').value
@@ -15,9 +16,12 @@ export default function Registration () {
             body: JSON.stringify({firstName, lastName, email, password})
         
         })
+        console.log(rawResult.status)
+        if (rawResult.status == 200) {
+            let parsedResults = await rawResult.json()
+            navTo('/', {state:{message: 'Thank you for Registering! Please login.'}})
+        }
 
-        let parsedResults = await rawResult.json()
-        console.log(parsedResults)
     }
 
     let message = location.state ? <h1>{location.state.message}</h1> : <h1>Registration</h1>
