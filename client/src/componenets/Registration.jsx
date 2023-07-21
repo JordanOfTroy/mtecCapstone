@@ -1,4 +1,7 @@
+import {useLocation} from 'react-router-dom'
+
 export default function Registration () {
+    const location = useLocation()
 
     let handleRegistration = async () => {
         let firstName = document.getElementById('firstName').value
@@ -13,13 +16,17 @@ export default function Registration () {
         
         })
 
-        let resutls = await rawResult.json()
-        console.log(resutls)
+        let parsedResults = await rawResult.json()
+        console.log(parsedResults)
     }
 
+    let message = location.state ? <h1>{location.state.message}</h1> : <h1>Registration</h1>
 
     return (
         <div>
+            
+            {message}
+            
             <div>
                 <label htmlFor="firstName">First Name:</label>
                 <input type="text" name="firstName" id="firstName" />
