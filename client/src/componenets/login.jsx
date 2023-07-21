@@ -19,11 +19,23 @@ export default function Login () {
         console.log(rawResult.status)
         if (rawResult.status == 200) {
             let parsedResults = await rawResult.json()
-            navTo(`/welcome/${parsedResults.id}`, {state:{token: parsedResults.token, is_admin: parsedResults.is_admin}})
+            navTo(`/welcome/${parsedResults.id}`, {
+                state:{
+                    token: parsedResults.token, 
+                    is_admin: parsedResults.is_admin
+                }
+            })
         } else {
             console.log(rawResult.status)
             console.log(rawResult)
-            navTo('/registration', {state:{message: 'Please Register before you login.'}})
+            navTo('/registration', {
+                state:{
+                    message: 'Please Register before you login.',
+                    props: {
+                        email: email
+                    }
+                }
+            })
         }
 
     }
@@ -35,9 +47,9 @@ export default function Login () {
             {message}
             <div>
                 <label htmlFor="email">Email:</label>
-                <input type="text" name='email' id='email' />
+                <input type="email" name='email' id='email' />
                 <label htmlFor="password">Password:</label>
-                <input type="text" name='password' id='password' />
+                <input type="password" name='password' id='password' />
             </div>
             <div>
                 <button onClick={() => handleLogin()}>Login</button>

@@ -19,7 +19,7 @@ export default function Registration () {
         console.log(rawResult.status)
         if (rawResult.status == 200) {
             let parsedResults = await rawResult.json()
-            navTo('/', {state:{message: 'Thank you for Registering! Please login.'}})
+            navTo('/', {state:{message: `Thank you for registering ${parsedResults.first_name}! Please login.`}})
         }
 
     }
@@ -41,11 +41,11 @@ export default function Registration () {
             </div>
             <div>
                 <label htmlFor="email">Email:</label>
-                <input type="text" name="email" id="email" />
+                <input type="email" name="email" id="email" value={location.state ? location.state.props.email : null}/>
             </div>
             <div>
                 <label htmlFor="password">Password:</label>
-                <input type="text" name="password" id="password" />
+                <input type="password" name="password" id="password" />
             </div>
             <button onClick={() => handleRegistration()}>Register as Student</button>
         </div>
