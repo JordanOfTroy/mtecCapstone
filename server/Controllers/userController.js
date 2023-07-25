@@ -20,8 +20,10 @@ module.exports = {
         `,
         [firstName, lastName, email, hash],
         (err, results) => {
+          if (err) console.log(err)
           if (err) throw err;
-          res.status(200).json(results.rows);
+          console.log(results.rows[0])
+          res.status(200).json(results.rows[0]);
         }
       );
     }, 
