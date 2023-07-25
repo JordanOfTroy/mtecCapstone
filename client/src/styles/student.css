@@ -1,0 +1,64 @@
+.studentMain {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 30px;
+}
+
+.studentTable {
+  color: #013832;
+  background-color: #013832;
+  font-size: 14px;
+  display: flex;
+  margin-top: 10%;
+  margin-left: 20px;
+  overflow: hidden;
+}
+.studentTable td {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.studentTable tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: #013832 1px solid;
+  padding-top: 5px;
+}
+.studentTable tr:nth-child(odd) {
+  background-color: #B0BB9B;
+}
+.studentTable tr:nth-child(even) {
+  background-color: #DEDFDA;
+}
+.studentTable span {
+  border: #013832 1px inset;
+  display: flex;
+  flex-direction: row;
+}
+.studentTable th {
+  margin-right: 100px;
+  margin-left: 100px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.studentTable th td {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+}
+
+.studentDashboard {
+  background-color: #B0BB9B;
+  color: #013832;
+  font-size: 20px;
+  margin: 30px 0px 0px 57%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 460px;
+  height: 68px;
+}/*# sourceMappingURL=student.css.map */
