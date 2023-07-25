@@ -4,14 +4,12 @@ body{
   align-items: center;
 }
 .container {
-
   width: 1280px;
   height: 100%;
   background-color: #DEDFDA;
   display: flex;
   flex-direction: row;
 }
-
 .sideBar {
   background-color: #387B5C;
   width: 10%;
@@ -24,11 +22,12 @@ body{
   align-items: center;
   
 }
-
 .buttonBox {
-  border: solid red 1px;
+  // border: solid red 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
-
 .button {
   background-color: #C56A19;
   color: #ffffff;
@@ -36,6 +35,10 @@ body{
   padding: 20px 20px;
   border-radius: 35px;
   border: none;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
 }
 .glow-button:hover {
   color:#C56A19;
@@ -61,7 +64,6 @@ body{
   width: 460px;
   height: 68px;
 }
-
 .info {
   background-color: #B0BB9B;
   color: #013832;
@@ -88,18 +90,16 @@ body{
   width: 1000px;
   height: 343px;
 }
-
-
 .header{
-    background-color: #B0BB9B;
-    color: #013832;
-    font-size: 20px;
-    margin: 30px 0px 0px 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 460px;
-    height: 68px;
+  background-color: #B0BB9B;
+  color: #013832;
+  font-size: 20px;
+  margin: 30px 0px 0px 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 460px;
+  height: 68px;
 }
 .studentMain {
   display: flex;
