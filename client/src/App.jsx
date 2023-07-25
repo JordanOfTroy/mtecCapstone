@@ -17,7 +17,7 @@ function App() {
   return (
   <Routes>
     <Route unique path='/' element={<Login/>}/>
-    <Route path='/welcome' element={<WelcomeBase/>} />
+    <Route path='/welcome/:id' element={<WelcomeBase/>} />
     <Route path='/student' element={<StudentDash/>} />
     <Route path='/admin' element={<AdminDash/>} />
     <Route path='/registration' element={<Registration/>}/>

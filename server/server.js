@@ -45,21 +45,21 @@ app.use(morgan('dev', {
 // });
 
 //ENDMPOINTS
-app.get('/courses', courseCTRL.getAllCourses)
-app.get('/courses/:id', courseCTRL.getCourseById)
-app.get('/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
-app.put('/courses/:id', courseCTRL.updateCourse) 
+app.get('/api/courses', courseCTRL.getAllCourses)
+app.get('/api/courses/:id', courseCTRL.getCourseById)
+app.get('/api/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
+app.put('/api/courses/:id', courseCTRL.updateCourse) 
 
-app.get('/admins', userCTRL.getAllAdmins)
-app.get('/admins/:id', userCTRL.getAdminById)
-app.post('/newAdmin', userCTRL.addNewAdmin)
-app.put('/admins/:id', userCTRL.updateAdmin)
+app.get('/api/admins', userCTRL.getAllAdmins)
+app.get('/api/admins/:id', userCTRL.getAdminById)
+app.post('/api/newAdmin', userCTRL.addNewAdmin)
+app.put('/api/admins/:id', userCTRL.updateAdmin)
 
-app.get('/students', userCTRL.getAllStudents)
+app.get('/api/students', userCTRL.getAllStudents)
 app.post('/api/newStudent', userCTRL.addNewStudent)
-app.put('/students/:id', userCTRL.updateStudent)
+app.put('/api/students/:id', userCTRL.updateStudent)
 
-app.post('/login', loginCTRL.handleLogin)
+app.post('/api/login', loginCTRL.handleLogin)
 
 
 app.listen(PORT, () => {
