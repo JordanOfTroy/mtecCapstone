@@ -60,6 +60,7 @@ app.post('/api/newStudent', userCTRL.addNewStudent)
 app.put('/api/students/:id', userCTRL.updateStudent)
 
 app.post('/api/login', loginCTRL.handleLogin)
+app.post('/api/logout/:id', loginCTRL.handleLogout)
 
 
 app.listen(PORT, () => {

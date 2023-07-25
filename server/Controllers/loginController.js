@@ -31,5 +31,12 @@ module.exports = {
                 res.status(404).send('incorrect Password or Email')
             }
         })
+    },
+
+    handleLogout: async (req, res) => {
+        console.log('logging out')
+        let {id} = req.params
+        //some code to log out user on back end. 
+        res.status(200).send()
     }
 }
