@@ -2,6 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #013832;
 }
 
 .container {
@@ -22,6 +23,12 @@ body {
   align-items: center;
 }
 
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .button {
   background-color: #C56A19;
   color: #ffffff;
@@ -29,6 +36,10 @@ body {
   padding: 20px 20px;
   border-radius: 35px;
   border: none;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
 }
 
 .glow-button:hover {
@@ -63,10 +74,11 @@ body {
   color: #013832;
   font-size: 18px;
   margin: 20px 0px 0px 40px;
+  padding-left: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 460px;
+  width: 452px;
   height: 229px;
 }
 
@@ -98,69 +110,15 @@ body {
   height: 68px;
 }
 
-.studentMain {
+.login {
   display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.adminMain {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  margin-left: 10%;
-  margin-top: 12%;
-}
-.adminMain h3 {
-  margin-top: 40px;
-  color: #013832;
-}
-
-table {
-  width: 100%;
-}
-
-.courseTable {
-  color: #013832;
-  background-color: #013832;
-  font-size: 14px;
-  display: flex;
-  margin-top: 10px;
-  overflow: hidden;
-}
-.courseTable td {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
-.courseTable tr {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border-bottom: #013832 1px solid;
-  padding-top: 5px;
-}
-.courseTable tr:nth-child(odd) {
-  background-color: #B0BB9B;
-}
-.courseTable tr:nth-child(even) {
-  background-color: #DEDFDA;
-}
-.courseTable span {
-  border: #013832 1px inset;
-  display: flex;
-  flex-direction: row;
-}
-.courseTable th {
-  margin-right: 100px;
-  margin-left: 100px;
-  display: flex;
-  justify-content: space-evenly;
-}
-.courseTable th td {
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 80px;
+  flex-direction: column;
+}
+.login input {
+  margin-bottom: 25px;
+}
+.login button {
+  margin-right: 15px;
 }/*# sourceMappingURL=main.css.map */

@@ -1,5 +1,6 @@
 // import './mtecCapstone/client/src/App.css';
-import'../styles/main.css';
+// import'../styles/main.css';
+import '../styles/student.css';
 import Header from './Header.jsx';
 import SideBar from './SideBar.jsx';
 
@@ -11,7 +12,7 @@ export default function StudentDash() {
         <SideBar/>
         <div className="studentMain">
             <Header title="Dashboard" className="studentDashboard"/>
-            <div className="courseTable">
+            <div className="studentTable">
                 <table>
                     <tr>
                         <th>Course</th>
