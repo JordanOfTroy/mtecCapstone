@@ -1,10 +1,10 @@
-body{
+body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.container {
 
+.container {
   width: 1280px;
   height: 100%;
   background-color: #DEDFDA;
@@ -16,13 +16,10 @@ body{
   background-color: #387B5C;
   width: 10%;
   height: 800px;
-  // border: 10px solid #ffffff;
-  // border-radius: 50px 0 0 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  
 }
 
 .buttonBox {
@@ -37,18 +34,21 @@ body{
   border-radius: 35px;
   border: none;
 }
+
 .glow-button:hover {
-  color:#C56A19;
-  background-color:#013832;
+  color: #C56A19;
+  background-color: #013832;
   box-shadow: 0 5px 15px #013832;
   transition: all 0.3s ease-in-out;
 }
+
 .main {
   display: flex;
   flex-direction: column;
   position: relative;
 }
-.welcomeMessage{
+
+.welcomeMessage {
   /* margin-top: 20px; */
   background-color: #013832;
   color: #ffffff;
@@ -73,6 +73,7 @@ body{
   width: 460px;
   height: 229px;
 }
+
 .largerInfo {
   background-color: #013832;
   color: #ffffff;
@@ -89,82 +90,81 @@ body{
   height: 343px;
 }
 
-
-.header{
-    background-color: #B0BB9B;
-    color: #013832;
-    font-size: 20px;
-    margin: 30px 0px 0px 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 460px;
-    height: 68px;
+.header {
+  background-color: #B0BB9B;
+  color: #013832;
+  font-size: 20px;
+  margin: 30px 0px 0px 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 460px;
+  height: 68px;
 }
+
 .studentMain {
   display: flex;
   flex-direction: column;
   position: relative;
 }
+
 .adminMain {
   display: flex;
   flex-direction: column;
   position: absolute;
   margin-left: 10%;
   margin-top: 12%;
-  h3 {
-    margin-top: 40px;
-    color:#013832;
-  }
 }
-table{
+.adminMain h3 {
+  margin-top: 40px;
+  color: #013832;
+}
+
+table {
   width: 100%;
 }
+
 .courseTable {
   color: #013832;
-  background-color:#013832;
+  background-color: #013832;
   font-size: 14px;
   display: flex;
   margin-top: 10px;
   overflow: hidden;
-  td{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-  tr {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border-bottom:#013832 1px solid;
-    padding-top: 5px;
-  }
-  // tr:first-child th{
-  //   background-color:#387B5C;
-  //   // width: 100%;
-  // }
-  tr:nth-child(odd){
-    background-color:#B0BB9B;
-  }
-  tr:nth-child(even){
-    background-color:#DEDFDA;
-  }
-  span{
-    border:#013832 1px inset;
-    display: flex;
-    flex-direction: row;
-  }
-  th {
-    margin-right: 100px;
-    margin-left: 100px;
-    display: flex;
-    justify-content: space-evenly;
-    td{
-      font-size: 12px;
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-      width: 80px;
-    }
-  }
 }
+.courseTable td {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.courseTable tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: #013832 1px solid;
+  padding-top: 5px;
+}
+.courseTable tr:nth-child(odd) {
+  background-color: #B0BB9B;
+}
+.courseTable tr:nth-child(even) {
+  background-color: #DEDFDA;
+}
+.courseTable span {
+  border: #013832 1px inset;
+  display: flex;
+  flex-direction: row;
+}
+.courseTable th {
+  margin-right: 100px;
+  margin-left: 100px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.courseTable th td {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+}/*# sourceMappingURL=main.css.map */

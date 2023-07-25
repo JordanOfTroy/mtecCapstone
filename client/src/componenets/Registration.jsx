@@ -24,6 +24,10 @@ export default function Registration () {
 
     }
 
+    // let handleEmailChange = (e) => {
+    //     console.log(e.target.value)
+    // }
+
     let message = location.state ? <h1>{location.state.message}</h1> : <h1>Registration</h1>
 
     return (
@@ -41,7 +45,10 @@ export default function Registration () {
             </div>
             <div>
                 <label htmlFor="email">Email:</label>
-                <input type="email" name="email" id="email" value={location.state ? location.state.props.email : null}/>
+                <input type="email" name="email" id="email" 
+                // value={location.state ? location.state.props.email : null} 
+                // onChange={(e) => handleEmailChange(e)}
+                />
             </div>
             <div>
                 <label htmlFor="password">Password:</label>

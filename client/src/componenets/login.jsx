@@ -40,6 +40,8 @@ export default function Login () {
 
     }
 
+    
+
     let message = location.state ? <h1>{location.state.message}</h1> : <h1>Please Login</h1>
 
     return (
