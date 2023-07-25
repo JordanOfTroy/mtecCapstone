@@ -108,20 +108,43 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  margin-left: 20px;
+  margin-left: 10%;
+  margin-top: 12%;
+}
+.adminMain h3 {
+  margin-top: 40px;
+  color: #013832;
+}
+
+table {
+  width: 100%;
 }
 
 .courseTable {
   color: #013832;
-  background-color: #f1f1ed;
+  background-color: #013832;
   font-size: 14px;
   display: flex;
   margin-top: 10px;
+  overflow: hidden;
+}
+.courseTable td {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 .courseTable tr {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border-bottom: #013832 1px solid;
+  padding-top: 5px;
+}
+.courseTable tr:nth-child(odd) {
+  background-color: #B0BB9B;
+}
+.courseTable tr:nth-child(even) {
+  background-color: #DEDFDA;
 }
 .courseTable span {
   border: #013832 1px inset;
@@ -131,6 +154,8 @@ body {
 .courseTable th {
   margin-right: 100px;
   margin-left: 100px;
+  display: flex;
+  justify-content: space-evenly;
 }
 .courseTable th td {
   font-size: 12px;

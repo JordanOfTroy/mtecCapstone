@@ -4,20 +4,14 @@ import'../styles/main.css';
 import Welcome from './Welcome.jsx';
 import Info from './Info.jsx';
 import LargeInfo from './LargerInfo';
+import SideBar from './SideBar.jsx';
+
 
 export default function WelcomeBase() {
     return (
 <>
     <div className="container">
-        <div className="sideBar">
-            <Link to='/student' className="button glow-button">Button 1</Link>
-            <button className="button glow-button">Button 2</button>
-            <button className="button glow-button">Button 3</button>
-            <button className="button glow-button">Button 4</button>
-            <span></span>
-            <span></span>
-            <button className="button glow-button">Logout</button>
-        </div>
+        <SideBar/>
         <main className="main">
             <Welcome title="Welcome to Blah™"/>
             <Info special="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid incidunt alias adipisci debitis est, amet quas aut quasi, nostrum enim odio quibusdam saepe ad magni-™"/>
