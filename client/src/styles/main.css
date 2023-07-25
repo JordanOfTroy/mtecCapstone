@@ -98,18 +98,6 @@ body {
   height: 343px;
 }
 
-.header {
-  background-color: #B0BB9B;
-  color: #013832;
-  font-size: 20px;
-  margin: 30px 0px 0px 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 460px;
-  height: 68px;
-}
-
 .login {
   display: flex;
   justify-content: center;

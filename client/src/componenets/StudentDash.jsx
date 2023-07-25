@@ -11,7 +11,9 @@ export default function StudentDash() {
     <basePage class="container">
         <SideBar/>
         <div className="studentMain">
-            <Header title="Dashboard" className="studentDashboard"/>
+            <div className="studentDashboard">
+                <Header title="Dashboard" />
+            </div>
             <div className="studentTable">
                 <table>
                     <tr>
@@ -38,19 +40,10 @@ export default function StudentDash() {
                         <th>3 pm</th>
                         <th>3</th>
                     </tr>
-                    <tr>
-                        <th>Rolling your own</th>
-                        <th>"Description"</th>
-                        <th>3 pm</th>
-                        <th>3</th>
-                    </tr>
-                    <tr>
-                        <th>Rolling your own</th>
-                        <th>"Description"</th>
-                        <th>3 pm</th>
-                        <th>3</th>
-                    </tr>
                 </table>
+            </div>
+            <div className="coursesButton">
+                <button className="button glow-button">oh no</button>
             </div>
         </div>
     </basePage>
