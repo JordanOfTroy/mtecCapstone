@@ -10,7 +10,9 @@ export default function AdminDash() {
 <>
     <div class="container">
         <SideBar/>
-        <Header title="Dashboard" className="adminDashboard"/>
+        <div className="adminDashboard">
+            <Header title="Dashboard"/>
+        </div>
         <div className="adminMain">
 
             <h3>Students</h3>

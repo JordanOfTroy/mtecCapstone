@@ -5,8 +5,9 @@ import './styles/main.css'
 import WelcomeBase from './componenets/WelcomeBase'
 import StudentDash from './componenets/StudentDash.jsx';
 import AdminDash from './componenets/AdminDash.jsx';
-import Login from './componenets/login.jsx'
-import Registration from './componenets/Registration.jsx'
+import Login from './componenets/login.jsx';
+import Registration from './componenets/Registration.jsx';
+// import AddCourses from './componenets/Courses.jsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <Route path='/admin' element={<AdminDash/>} />
     <Route path='/registration' element={<Registration/>}/>
     <Route path='/home' element={<WelcomeBase/>} />
+    {/* <Route path='/courses' element={<Courses/>}/> */}
 
   </Routes>
 )
