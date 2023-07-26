@@ -8,6 +8,9 @@ import SideBar from './SideBar.jsx';
 
 
 export default function WelcomeBase() {
+
+    
+
     return (
 <>
     <div className="container">
