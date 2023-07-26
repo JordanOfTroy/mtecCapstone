@@ -1,4 +1,5 @@
 const express = require("express");
+const {expressjwt} = require('express-jwt')
 const path = require('path')
 const morgan = require('morgan')
 const winston = require('winston')
@@ -17,8 +18,13 @@ const logger = winston.createLogger({
 const {
   DB_URL,
   EXT_DB_URL,
-  DB_PW
+  DB_PW,
+  SECRET
 } = process.env
+const auth = expressjwt({
+  secret:SECRET,
+  algorithms: ['HS256']
+})
 const courseCTRL = require('./Controllers/courseController')
 const userCTRL = require('./Controllers/userController')
 const loginCTRL = require('./Controllers/loginController')
@@ -60,7 +66,6 @@ app.post('/api/newStudent', userCTRL.addNewStudent)
 app.put('/api/students/:id', userCTRL.updateStudent)
 
 app.post('/api/login', loginCTRL.handleLogin)
-app.post('/api/logout/:id', loginCTRL.handleLogout)
 
 
 app.listen(PORT, () => {
