@@ -47,13 +47,20 @@ module.exports = {
     },
 
     getAllStudents: (req, res) => {
-      pool.query(`
-        select (id, first_name, last_name, email) from users
-        where is_admin = 'false'
-      `, (err, results) => {
-        if (err) throw err
-        res.status(200).json(results.rows)
-      })
+      console.log(`~~~~~~~~`)
+      console.log(req.auth)
+      console.log(`~~~~~~~~`)
+      let {is_admin} = req.auth
+      if (is_admin) {
+        pool.query(`
+          select (id, first_name, last_name, email) from users
+          where is_admin = 'false'
+        `, (err, results) => {
+          if (err) throw err
+          console.log(results.rows)
+          res.status(200).json(results.rows)
+        })
+      }
     }, 
 
     getAllAdmins: (req, res) => {

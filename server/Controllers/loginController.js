@@ -26,7 +26,7 @@ module.exports = {
                         first_name, last_name, email, id, is_admin
                     }, SECRET, {
                         algorithm: "HS256",
-                        expiresIn: '10s'
+                        expiresIn: '1d'
                     })
                     
                     res.status(200).json({

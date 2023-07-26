@@ -1,11 +1,36 @@
-// import './mtecCapstone/client/src/App.css';
-// import'../styles/main.css';
 import '../styles/admin.css';
+import { useEffect, useState } from 'react';
 import Header from './Header.jsx';
-// import {Link} from 'react-router-dom';
 import SideBar from './SideBar.jsx';
 
 export default function AdminDash() {
+
+    const [students, setStudents] = useState()
+    const [courses, setCourses] = useState()
+
+
+    useEffect(() => {
+        let apiCalls = async () => {
+            let rawStudents = await fetch('/api/students', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
+                 }
+            })
+            let rawCourses = await fetch('/api/courses', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                }
+            })
+            let parsedStudents = await rawStudents.json()
+            let parsedCourses = await rawCourses.json()
+            // console.log(parsedStudents, parsedCourses)
+        }
+        apiCalls()
+    })
+
     return (
 <>
     <div class="container">
