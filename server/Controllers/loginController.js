@@ -20,10 +20,19 @@ module.exports = {
             if (results.rows.length) {
                 validPW = bcrypt.compareSync(password, results.rows[0].password)
                 if (validPW) {
-                    let token = jwt.sign({name: results.rows[0].email}, SECRET)
-                    results.rows[0].jwtToken = token
-                    console.log(results.rows[0])
-                    res.status(200).json(results.rows[0])
+                    let user = results.rows[0]
+                    let {first_name, last_name, email, id, is_admin} = user
+                    let token = jwt.sign({
+                        first_name, last_name, email, id, is_admin
+                    }, SECRET, {
+                        algorithm: "HS256",
+                        expiresIn: '10s'
+                    })
+                    
+                    res.status(200).json({
+                        token: token,
+                        isAdmin: is_admin
+                    })
                 } else (
                     res.status(404).send('incorrect Password or Email')
                 )
@@ -32,4 +41,5 @@ module.exports = {
             }
         })
     }
+
 }

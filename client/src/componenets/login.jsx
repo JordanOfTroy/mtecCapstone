@@ -1,9 +1,11 @@
 import '../styles/login.scss'
 import {Link, useNavigate, useLocation} from 'react-router-dom'
+import { useState } from 'react'
 
 export default function Login () {
     const location = useLocation()
     const navTo = useNavigate()
+    const [user, setUser] = useState()
 
     let handleLogin = async () => {
         console.log('logging in')
@@ -19,15 +21,14 @@ export default function Login () {
         console.log(rawResult.status)
         if (rawResult.status == 200) {
             let parsedResults = await rawResult.json()
+            setUser(parsedResults)
+            console.log(user)
             navTo(`/welcome/${parsedResults.id}`, {
                 state:{
-                    token: parsedResults.token, 
-                    is_admin: parsedResults.is_admin
+                    user: parsedResults
                 }
             })
         } else {
-            console.log(rawResult.status)
-            console.log(rawResult)
             navTo('/registration', {
                 state:{
                     message: 'Please Register before you login.',
