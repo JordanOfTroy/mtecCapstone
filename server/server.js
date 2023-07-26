@@ -46,9 +46,6 @@ app.use(morgan('dev', {
 }))
 
 
-// app.get("/api", (req, res) => {
-//   res.json({ message: "Hello from server!" });
-// });
 
 //ENDMPOINTS
 app.get('/api/courses', courseCTRL.getAllCourses)
@@ -61,7 +58,7 @@ app.get('/api/admins/:id', userCTRL.getAdminById)
 app.post('/api/newAdmin', userCTRL.addNewAdmin)
 app.put('/api/admins/:id', userCTRL.updateAdmin)
 
-app.get('/api/students', userCTRL.getAllStudents)
+app.get('/api/students', auth, userCTRL.getAllStudents)
 app.post('/api/newStudent', userCTRL.addNewStudent)
 app.put('/api/students/:id', userCTRL.updateStudent)
 
