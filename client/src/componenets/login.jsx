@@ -2,10 +2,11 @@ import '../styles/login.scss'
 import {Link, useNavigate, useLocation} from 'react-router-dom'
 import { useState } from 'react'
 
+
+
 export default function Login () {
     const location = useLocation()
     const navTo = useNavigate()
-    const [user, setUser] = useState()
 
     let handleLogin = async () => {
         console.log('logging in')
@@ -19,11 +20,12 @@ export default function Login () {
         
         // Example of what is happening here: https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
         console.log(rawResult.status)
+        console.log(rawResult)
         if (rawResult.status == 200) {
             let parsedResults = await rawResult.json()
-            setUser(parsedResults)
-            console.log(user)
-            navTo(`/welcome/${parsedResults.id}`, {
+            window.localStorage.setItem('isAdmin', parsedResults.isAdmin)
+            window.localStorage.setItem('token', parsedResults.token)
+            navTo(`/welcome`, {
                 state:{
                     user: parsedResults
                 }

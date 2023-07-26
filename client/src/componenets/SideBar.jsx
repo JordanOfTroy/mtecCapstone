@@ -1,37 +1,29 @@
 import'../styles/main.css';
-import {Link, useParams, useNavigate, useLocation} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 
 export default function SideBar() {
     let location = useLocation()
     const navTo = useNavigate()
-    let {id} = useParams()
-    // const [user, setUser] = useState(location.state.user)
-
-    // console.log(user)
+  
+    let isAdmin = window.localStorage.getItem('isAdmin')
 
     let handleLogout = async () => {
         console.log('logging_out')
-        let rawResults = await fetch(`/api/logout/${id}`, {
-            method: 'POST',
-            headers: {"content-type": "application/json"}
-        })
-        console.log('RR-Status:', rawResults.status, typeof rawResults.status)
-        if (rawResults.status == 200) {
-            navTo('/', {state: {message: 'Thank you for visiting Blah. Please come see us again soon!'}})
-        } else {
-            console.log('something fucked up')
-        }
+        window.localStorage.removeItem('token')
+        window.localStorage.removeItem('isAdmin')
+        navTo('/', {state: {message: 'Thank you for visiting BLAH. Please visit us again soon!'}})
     }
 
-    // let adminStatus = location.state.user.is_admin
     return (
     <div className="sideBar">
         <div className='buttonBox'>
             <Link to='/home' className="button glow-button">Home</Link>
-            <Link to='/admin' className="button glow-button">Admin</Link> 
-            <Link to='/student' className="button glow-button">Student</Link>
+            {
+                isAdmin == 'true' ? // localStorage saves the value as a string, not a bool.
+                <Link to='/admin' className="button glow-button">Admin</Link> :
+                <Link to='/student' className="button glow-button">Student</Link>
+            }
             <button className="button glow-button">Courses</button>
         </div>
         <div className='buttonBox'>
