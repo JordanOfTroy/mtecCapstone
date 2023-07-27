@@ -36,7 +36,7 @@ export default function StudentDash() {
         <SideBar/>
         <div className="studentMain">
             <div className="studentDashboard">
-                <Header title="Dashboard" />
+                <Header title="Current courses" />
             </div>
             <h3>You are enrolled in:</h3>
             <div className="studentTable">
