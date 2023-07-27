@@ -47,22 +47,22 @@ export default function StudentDash() {
                         <th>Credit Hours</th>
                     </tr>
                     <tr>
-                        <th>Rolling your own</th>
-                        <th>"Description"</th>
-                        <th>3 pm</th>
-                        <th>3</th>
+                        <td>Rolling your own</td>
+                        <td className="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt voluptatem mollitia placeat necessitatibus facilis sit fuga maxime eius quis esse nostrum alias vel consectetur, facere temporibus tempore aperiam dolores similique.</td>
+                        <td>3 pm</td>
+                        <td>3</td>
                     </tr>
                     <tr>
-                        <th>Rolling your own</th>
-                        <th>"Description"</th>
-                        <th>3 pm</th>
-                        <th>3</th>
+                        <td>Rolling your own</td>
+                        <td className="description">"Description"</td>
+                        <td>3 pm</td>
+                        <td>3</td>
                     </tr>
                     <tr>
-                        <th>Rolling your own</th>
-                        <th>"Description"</th>
-                        <th>3 pm</th>
-                        <th>3</th>
+                        <td>Rolling your own</td>
+                        <td className="description">"Description"</td>
+                        <td>3 pm</td>
+                        <td>3</td>
                     </tr>
                 </table>
             </div>
