@@ -42,8 +42,25 @@ module.exports = {
         FROM courses
         JOIN students_courses ON courses.id = students_courses.course_id
         JOIN users ON students_courses.student_id = users.id
-        WHERE users.id = ${id};
-        `, (err, results) => {
+        WHERE users.id = $1;
+        `,
+        [id],
+        (err, results) => {
+            if (err) throw err
+            res.status(200).json(results.rows)
+        })
+    },
+
+    getCoursesImTeaching: async (req, res) => {
+        let {id} = req.auth
+        let courses = await pool.query(`
+        SELECT title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
+        FROM courses
+        JOIN users ON courses.teacher_id = users.id
+        WHERE users.id = $1;
+        `,
+        [id],
+        (err, results) => {
             if (err) throw err
             res.status(200).json(results.rows)
         })
