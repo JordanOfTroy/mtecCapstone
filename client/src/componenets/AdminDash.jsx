@@ -7,6 +7,7 @@ export default function AdminDash() {
 
     const [students, setStudents] = useState()
     const [courses, setCourses] = useState()
+    const [myStudents, setMyStudents] = useState()
 
 
     useEffect(() => {
@@ -17,22 +18,34 @@ export default function AdminDash() {
                     headers: {
                         "content-type": "application/json",
                         Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
-                     }
+                    }
                 })
-                const rawCourses = await fetch('/api/courses', {
+                const rawCourses = await fetch('/api/coursesImTeaching', {
                     method: 'GET',
                     headers: {
                         "content-type": "application/json",
+                        Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
                     }
                 })
+                const rawMyStudents = await fetch('/api/getMyStudents', {
+                    method: 'GET',
+                    headers: {
+                        'content-type': 'application/json',
+                        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                    }
+                })
+
                 const parsedStudents = await rawStudents.json()
                 const parsedCourses = await rawCourses.json()
+                const parsedMyStudents = await rawMyStudents.json()
                 console.log(`~~~~~~~~`)
                 console.log(parsedStudents)
                 console.log(parsedCourses)
+                console.log(parsedMyStudents)
                 console.log(`~~~~~~~~`)
                 setStudents(parsedStudents)
                 setCourses(parsedCourses)
+                setMyStudents(parsedMyStudents)
             } catch (err) {
                 console.log('Fetching Error:', err)
             }

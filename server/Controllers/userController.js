@@ -47,9 +47,6 @@ module.exports = {
     },
 
     getAllStudents: (req, res) => {
-      // console.log(`~~~~~~~~`)
-      // console.log(req.auth)
-      // console.log(`~~~~~~~~`)
       let {is_admin} = req.auth
       if (is_admin) {
         pool.query(`
@@ -62,6 +59,25 @@ module.exports = {
         })
       }
     }, 
+
+    getMyStudents: (req, res) => {
+      let {is_admin, id} = req.auth
+      if (is_admin) {
+        pool.query(`
+        select distinct users.first_name, users.last_name, users.id, users.email, courses.title, courses.course_code from users
+        join students_courses on users.id = students_courses.student_id
+        join courses on students_courses.course_id = courses.id
+        where courses.teacher_id = $1 
+        order by users.id
+        `,
+        [id],
+        (err, results) => {
+          if (err) throw err
+          res.status(200).json(results.rows)
+        })
+      }
+    },
+
 
     getAllAdmins: (req, res) => {
       pool.query(`
