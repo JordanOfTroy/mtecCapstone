@@ -49,6 +49,7 @@ app.use(morgan('dev', {
 
 //ENDMPOINTS
 app.get('/api/courses', courseCTRL.getAllCourses)
+app.get('/api/myCourses', auth, courseCTRL.getCoursesByStudent)
 app.get('/api/courses/:id', courseCTRL.getCourseById)
 app.get('/api/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
 app.put('/api/courses/:id', courseCTRL.updateCourse) 

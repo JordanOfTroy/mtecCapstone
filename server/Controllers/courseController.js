@@ -34,6 +34,21 @@ module.exports = {
         })
     },
 
+    getCoursesByStudent: async (req, res) => {
+        console.log('the backend is fucking working')
+        let {id} = req.auth
+        let studentCourses = await pool.query(`
+        SELECT title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
+        FROM courses
+        JOIN students_courses ON courses.id = students_courses.course_id
+        JOIN users ON students_courses.student_id = users.id
+        WHERE users.id = ${id};
+        `, (err, results) => {
+            if (err) throw err
+            res.status(200).json(results.rows)
+        })
+    },
+
     updateCourse: async (req, res) => {
         let {id} = req.params
         let {description} = req.body

@@ -1,11 +1,29 @@
-// import './mtecCapstone/client/src/App.css';
-// import'../styles/main.css';
+import { useEffect } from 'react';
 import '../styles/student.css';
 import Header from './Header.jsx';
 import SideBar from './SideBar.jsx';
 
 
 export default function StudentDash() {
+
+    useEffect(() => {
+        console.log('im fucking working')
+        let apiCalls = async () => {
+            let rawCourses = await fetch('/api/myCourses', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
+                 }
+            })
+            let parsedCourses = await rawCourses.json()
+            // console.log(`~~~~~~`)
+            // console.log(parsedCourses)
+            // console.log(`~~~~~~`)
+        }
+        apiCalls()
+    })
+
     return (
 <>
     <basePage class="container">
