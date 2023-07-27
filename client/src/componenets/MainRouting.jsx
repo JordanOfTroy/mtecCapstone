@@ -3,7 +3,7 @@ import WelcomeBase from './WelcomeBase'
 import StudentDash from './StudentDash.jsx';
 import AdminDash from './AdminDash.jsx';
 import Registration from './Registration.jsx';
-import AddCourses from "./Courses.jsx";
+import Courses from "./Courses.jsx";
 
 function MainRouting () {
     return (
@@ -13,7 +13,7 @@ function MainRouting () {
             <Route path='/admin' element={<AdminDash/>} />
             <Route path='/registration' element={<Registration/>}/>
             <Route path='/home' element={<WelcomeBase/>} />
-            <Route path='/courses' element={<AddCourses/>}/>
+            <Route path='/courses' element={<Courses/>}/>
         </Routes>
     )
 }
