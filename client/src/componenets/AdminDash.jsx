@@ -33,7 +33,7 @@ export default function AdminDash() {
 
     return (
 <>
-    <div class="container">
+    <div className="container">
         <SideBar/>
         <div className="adminDashboard">
             <Header title="Dashboard"/>

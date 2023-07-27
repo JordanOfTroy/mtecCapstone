@@ -47,9 +47,9 @@ module.exports = {
     },
 
     getAllStudents: (req, res) => {
-      console.log(`~~~~~~~~`)
-      console.log(req.auth)
-      console.log(`~~~~~~~~`)
+      // console.log(`~~~~~~~~`)
+      // console.log(req.auth)
+      // console.log(`~~~~~~~~`)
       let {is_admin} = req.auth
       if (is_admin) {
         pool.query(`
