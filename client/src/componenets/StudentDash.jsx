@@ -38,6 +38,7 @@ export default function StudentDash() {
             <div className="studentDashboard">
                 <Header title="Dashboard" />
             </div>
+            <h3>You are enrolled in:</h3>
             <div className="studentTable">
                 <table>
                     <tr>
@@ -54,7 +55,7 @@ export default function StudentDash() {
                     </tr>
                     <tr>
                         <td>Rolling your own</td>
-                        <td className="description">"Description"</td>
+                        <td className="description">"Can currently fit 10 courses before forcing page expansion"</td>
                         <td>3 pm</td>
                         <td>3</td>
                     </tr>
@@ -64,10 +65,12 @@ export default function StudentDash() {
                         <td>3 pm</td>
                         <td>3</td>
                     </tr>
+                    
                 </table>
             </div>
             <div className="coursesButton">
-                <button className="button glow-button">oh no</button>
+                <h3>Want to add more courses? </h3>
+                <button className="button glow-button">Courses</button>
             </div>
         </div>
     </div>
