@@ -5,6 +5,7 @@ export default function Registration () {
     const navTo = useNavigate()
 
     let handleRegistration = async () => {
+        console.log('what the fuck')
         let firstName = document.getElementById('firstName').value
         let lastName = document.getElementById('lastName').value
         let email = document.getElementById('email').value
@@ -31,9 +32,9 @@ export default function Registration () {
     let message = location.state ? <h1>{location.state.message}</h1> : <h1>Registration</h1>
 
     return (
-        <div>
+        <div className="registration">
             
-            {message}
+            <div className="message">{message}</div>
             
             <div>
                 <label htmlFor="firstName">First Name:</label>
@@ -54,7 +55,7 @@ export default function Registration () {
                 <label htmlFor="password">Password:</label>
                 <input type="password" name="password" id="password" />
             </div>
-            <button onClick={() => handleRegistration()}>Register as Student</button>
+            <button className="button glow-button" onClick={() => handleRegistration()}>Register as Student</button>
         </div>
     )
 }

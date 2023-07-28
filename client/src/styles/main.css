@@ -103,10 +103,53 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #387B5C;
+  color: #B0BB9B;
 }
 .login input {
   margin-bottom: 25px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .login button {
   margin-right: 15px;
+}
+
+#firstName {
+  background-color: #B0BB9B;
+}
+
+#lastName {
+  background-color: #B0BB9B;
+}
+
+#email {
+  background-color: #B0BB9B;
+}
+
+#password {
+  background-color: #B0BB9B;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUp {
+  color: #B0BB9B;
+}
+
+.registration {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #387B5C;
+}
+
+.message {
+  color: #B0BB9B;
 }/*# sourceMappingURL=main.css.map */

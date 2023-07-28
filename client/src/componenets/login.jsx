@@ -56,9 +56,9 @@ export default function Login () {
                 <label htmlFor="password">Password:</label>
                 <input type="password" name='password' id='password' />
             </div>
-            <div>
-                <button onClick={() => handleLogin()}>Login</button>
-                <Link to='/registration'>Sign Up</Link>
+            <div className="buttons">
+                <button onClick={() => handleLogin()} className="button glow-button">Login</button>
+                <Link to='/registration' className="signUp">Sign Up</Link>
             </div>
         </div>
     )
