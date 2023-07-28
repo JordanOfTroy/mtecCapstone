@@ -65,7 +65,6 @@ export default function StudentDash() {
                         <td>3 pm</td>
                         <td>3</td>
                     </tr>
-                    
                 </table>
             </div>
             <div className="coursesButton">
