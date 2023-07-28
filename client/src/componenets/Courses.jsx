@@ -40,6 +40,7 @@ export default function Courses() {
                     <td>{course.course_code}</td>
                     <td>Time</td>
                     <td>Teacher</td>
+                    <td><button ></button></td>
                 </tr>
             )
         })
@@ -65,12 +66,16 @@ export default function Courses() {
                             <th>Course Code</th>
                             <th>Time</th>
                             <th>Teacher</th>
+                            <th>Enroll</th>
                         </tr>
                         {allCourses.length>0 ? courses : <tr></tr>}
                         
                     </table>
+                    
                 </div>
+                <button className="submitButton">Submit</button>
             </div>
+            
         </div>
     )
 };
