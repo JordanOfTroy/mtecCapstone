@@ -12,6 +12,7 @@ export default function SideBar() {
         console.log('logging_out')
         window.localStorage.removeItem('token')
         window.localStorage.removeItem('isAdmin')
+        window.localStorage.removeItem('isLoggedIn')
         navTo('/', {state: {message: 'Thank you for visiting BLAH. Please visit us again soon!'}})
     }
 
