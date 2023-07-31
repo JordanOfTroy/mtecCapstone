@@ -25,6 +25,7 @@ export default function Login () {
             let parsedResults = await rawResult.json()
             window.localStorage.setItem('isAdmin', parsedResults.isAdmin)
             window.localStorage.setItem('token', parsedResults.token)
+            window.localStorage.setItem('isLoggedIn', true)
             navTo(`/welcome`, {
                 state:{
                     user: parsedResults
