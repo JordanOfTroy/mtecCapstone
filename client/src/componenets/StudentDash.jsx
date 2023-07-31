@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../styles/student.css';
 import Header from './Header.jsx';
 import SideBar from './SideBar.jsx';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 
 export default function StudentDash() {
@@ -65,12 +66,11 @@ export default function StudentDash() {
                         <td>3 pm</td>
                         <td>3</td>
                     </tr>
-                    
                 </table>
             </div>
             <div className="coursesButton">
                 <h3>Want to add more courses? </h3>
-                <button className="button glow-button">Courses</button>
+                <Link to="/courses" className="button glow-button">Courses</Link>
             </div>
         </div>
     </div>

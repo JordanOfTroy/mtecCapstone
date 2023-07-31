@@ -35,9 +35,12 @@ export default function Courses() {
         courses = allCourses.map((course, i) => {
             return (
                 <tr key={i}>
-                    <td>{course.description}</td>
                     <td>{course.title}</td>
+                    <td className="description">{course.description}</td>
                     <td>{course.course_code}</td>
+                    <td>Time</td>
+                    <td>Teacher</td>
+                    <td><button ></button></td>
                 </tr>
             )
         })
@@ -53,22 +56,26 @@ export default function Courses() {
                     <Header title="Course Wizard"/>
                 </div>
                 <div className="searchBar">
-                    <input placeholder='search by course title'></input>
+                    <input className="search" placeholder='search by course title'></input>
                 </div>
                 <div className="courseTable">
                     <table>
                         <tr>
                             <th>Course</th>
                             <th>Description</th>
+                            <th>Course Code</th>
                             <th>Time</th>
-                            <th>Credit Hours</th>
                             <th>Teacher</th>
+                            <th>Enroll</th>
                         </tr>
                         {allCourses.length>0 ? courses : <tr></tr>}
                         
                     </table>
+                    
                 </div>
+                <button className="submitButton">Submit</button>
             </div>
+            
         </div>
     )
 };
