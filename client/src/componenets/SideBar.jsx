@@ -25,6 +25,7 @@ export default function SideBar() {
                 <Link to='/student' className="button glow-button">Student</Link>
             }
             <Link to="/courses" className="button glow-button">Courses</Link>
+            <Link to="/profile" className="button glow-button">Profile</Link>
         </div>
         <div className='buttonBox'>
             <button className="button glow-button" onClick={() => handleLogout()}>Logout</button>

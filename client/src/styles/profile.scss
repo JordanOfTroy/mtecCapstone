@@ -1,0 +1,29 @@
+.profileMain {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 30px;
+}
+.profileDashboard{
+    background-color: #B0BB9B;
+    color: #013832;
+    font-size: 20px;
+    margin: 30px 0px 0px 57%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 460px;
+    height: 68px;
+}
+.editInfo{
+    display: flex;
+    flex-direction: row;
+}
+.inputBars{
+    display: flex;
+    flex-direction: column;
+    
+}
+input{
+    background-color: #013832;
+}

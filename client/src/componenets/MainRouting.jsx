@@ -4,6 +4,7 @@ import StudentDash from './StudentDash.jsx';
 import AdminDash from './AdminDash.jsx';
 import Registration from './Registration.jsx';
 import Courses from "./Courses.jsx";
+import Profile from './Profile.jsx';
 
 function MainRouting () {
     return (
@@ -14,6 +15,7 @@ function MainRouting () {
             <Route path='/registration' element={<Registration/>}/>
             <Route path='/home' element={<WelcomeBase/>} />
             <Route path='/courses' element={<Courses/>}/>
+            <Route path='/profile' element={<Profile/>}/>
         </Routes>
     )
 }
