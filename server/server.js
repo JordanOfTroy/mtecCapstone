@@ -29,6 +29,7 @@ const auth = expressjwt({
 const courseCTRL = require('./Controllers/courseController')
 const userCTRL = require('./Controllers/userController')
 const loginCTRL = require('./Controllers/loginController')
+const registrationCTRL = require('./Controllers/registrationController')
 
 
 
@@ -64,15 +65,17 @@ app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 
 app.put('/api/courses/:id', courseCTRL.updateCourse) //add auth when FE available
 app.put('/api/user', userCTRL.updateUser) //add auth
+app.put('/api/joinCourse/', registrationCTRL.joinCourse)
 
 app.post('/api/courses/', courseCTRL.addNewCourse) //add auth when FE available
-
 app.post('/api/newAdmin', userCTRL.addNewAdmin)
-app.post('/api/newStudent', userCTRL.addNewStudent)
+app.post('/api/newStudent', userCTRL.addNewStudent)//used when registering
 app.post('/api/login', loginCTRL.handleLogin)
 
 app.delete('/api/user/:id', userCTRL.removeUser) // add auth
 app.delete('/api/courses/:id', courseCTRL.removeCourse) //add auth
+
+
 
 
 
