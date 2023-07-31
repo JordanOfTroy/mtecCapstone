@@ -68,13 +68,60 @@ module.exports = {
 
     updateCourse: async (req, res) => {
         let {id} = req.params
-        let {description} = req.body
+        let {teacher_id, title, course_code, credit_hours, tuition, description,
+            capacity, enrolled, days_of_week, start_time, end_time, room_number} = req.body
         let updatedCourse = await pool.query(`
-            update courses
-            set description = ${description}
-            where id = ${id}
-            returning courses.*;
-        `)
-        res.status(200).json(updatedCourse.rows)
+        UPDATE courses
+        SET teacher_id=$2, title=$3, course_code=$4, credit_hours=$5, tuition=$6,
+        description=$7, capacity=$8, enrolled=$9, days_of_week=$10, start_time=$11,
+        end_time=$12, room_number=$13
+        WHERE id=$1
+        RETURNING courses.*
+        `, [id, teacher_id, title, course_code, credit_hours, tuition, description, capacity,
+        enrolled, days_of_week, start_time, end_time, room_number],
+        (err, results) => {
+            if (err) throw err
+            console.log(results.rows)
+            res.status(200).json(results.rows)
+        })
+    },
+
+    addNewCourse: (req, res) => { //convert to async and send back results
+        let {teacher_id, title, course_code, credit_hours, tuition, description,
+            capacity, enrolled, days_of_week, start_time, end_time, room_number} = req.body
+        console.log(req.body)
+        pool.query(`
+        INSERT INTO courses (teacher_id, title, course_code, credit_hours, tuition, description,
+            capacity, enrolled, days_of_week, start_time, end_time, room_number)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        `,
+        [teacher_id, title, course_code, credit_hours, tuition, description,
+            capacity, enrolled, days_of_week, start_time, end_time, room_number],
+        (err, results) => {
+            if (err) throw err
+            res.status(200).json('all good brah!')
+        })
+    },
+
+    removeCourse: async (req, res) => {
+        let {id} = req.params
+        //check for admin on req.auth
+        let updatedCourses = await pool.query(`
+        DELETE FROM courses
+        where id=$1
+        `,
+        [id],
+        (err, results) => {
+            if (err) throw err
+            pool.query(`
+            SELECT * from courses
+            `, (err, results) => {
+                if (err) throw err
+                res.status(200).json(results.rows)
+            })
+        })
+
     }
+
+
 }

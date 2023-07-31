@@ -3,6 +3,7 @@ const {expressjwt} = require('express-jwt')
 const path = require('path')
 const morgan = require('morgan')
 const winston = require('winston')
+// const helment = require('helmet')
 const PORT = process.env.PORT || 3001;
 const app = express();
 const logger = winston.createLogger({
@@ -36,6 +37,9 @@ app.use(express.static(path.resolve(__dirname, "../client/dist")));
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
+// https://helmetjs.github.io/
+// app.use(helmet.contentSecurityPolicy())
+
 
 app.use(morgan('dev', {
   stream: {
@@ -53,19 +57,24 @@ app.get('/api/coursesImTeaching', auth, courseCTRL.getCoursesImTeaching)
 app.get('/api/myCourses', auth, courseCTRL.getCoursesByStudent)
 app.get('/api/courses/:id', courseCTRL.getCourseById)
 app.get('/api/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
-app.put('/api/courses/:id', courseCTRL.updateCourse) 
-
 app.get('/api/admins', userCTRL.getAllAdmins)
 app.get('/api/admins/:id', userCTRL.getAdminById)
-app.post('/api/newAdmin', userCTRL.addNewAdmin)
-app.put('/api/admins/:id', userCTRL.updateAdmin)
-
 app.get('/api/students', auth, userCTRL.getAllStudents)
 app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
-app.post('/api/newStudent', userCTRL.addNewStudent)
-app.put('/api/students/:id', userCTRL.updateStudent)
 
+app.put('/api/courses/:id', courseCTRL.updateCourse) //add auth when FE available
+app.put('/api/user', userCTRL.updateUser) //add auth
+
+app.post('/api/courses/', courseCTRL.addNewCourse) //add auth when FE available
+
+app.post('/api/newAdmin', userCTRL.addNewAdmin)
+app.post('/api/newStudent', userCTRL.addNewStudent)
 app.post('/api/login', loginCTRL.handleLogin)
+
+app.delete('/api/user/:id', userCTRL.removeUser) // add auth
+app.delete('/api/courses/:id', courseCTRL.removeCourse) //add auth
+
+
 
 
 app.listen(PORT, () => {

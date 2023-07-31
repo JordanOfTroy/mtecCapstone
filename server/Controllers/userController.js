@@ -57,6 +57,8 @@ module.exports = {
           console.log(results.rows)
           res.status(200).json(results.rows)
         })
+      } else {
+        res.status(404).send('not an admin')
       }
     }, 
 
@@ -97,9 +99,9 @@ module.exports = {
       })
     },
 
-    updateAdmin: async (req, res) => {
+    updateUser: async (req, res) => {
       let {firstName, lastName, email} = req.body
-      let {id} = req.params
+      let {id} = req.body // switch to req.auth
       let updatedAdmin = await pool.query(`
           update users
           set first_name=$1, last_name=$2, email=$3
@@ -108,22 +110,22 @@ module.exports = {
       `, [firstName, lastName, email, id],
       (err, results) => {
         if (err) throw err
-        res.status(200).json(results.rows)
+        console.log(results.rows[0])
+        res.status(200).json(results.rows[0])
       })
     },
 
-    updateStudent: async (req, res) => {
-      let {firstName, lastName, email} = req.body
+    removeUser: (req, res) => {
       let {id} = req.params
-      let updatedAdmin = await pool.query(`
-          update users
-          set first_name=$1, last_name=$2, email=$3
-          where id = $4
-          returning users.*;
-      `, [firstName, lastName, email, id],
+      //check admin status from req.auth
+      pool.query(`
+      DELETE FROM users
+      WHERE id=$1
+      `,
+      [id],
       (err, results) => {
         if (err) throw err
-        res.status(200).json(results.rows)
+        res.status(200).send('user has been removed')
       })
     }
 
