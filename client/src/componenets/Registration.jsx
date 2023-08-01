@@ -10,6 +10,8 @@ export default function Registration () {
         let lastName = document.getElementById('lastName').value
         let email = document.getElementById('email').value
         let password = document.getElementById('password').value
+        let telephone = document.getElementById('telephone').value
+        let address = document.getElementById('address').value
 
         let rawResult = await fetch('/api/newStudent', {
             method: 'POST',
@@ -35,27 +37,40 @@ export default function Registration () {
         <div className="registration">
             
             <div className="message">{message}</div>
-            
-            <div>
-                <label htmlFor="firstName">First Name:</label>
-                <input type="text" name="firstName" id="firstName" />
+            <div className="fillOut">
+                <div>
+                    <label htmlFor="firstName">First Name:</label>
+                    <input type="text" name="firstName" id="firstName" />
+                </div>
+                <div>
+                    <label htmlFor="lastName">Last Name:</label>
+                    <input type="text" name="lastName" id="lastName" />
+                </div>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" name="email" id="email" 
+                    // value={location.state ? location.state.props.email : null} 
+                    // onChange={(e) => handleEmailChange(e)}
+                    />
+                    
+                </div>
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" name="password" id="password" />
+                </div>
+                <div>
+                    <label htmlFor="telephone">Phone # :</label>
+                    <input type="telephone" name='telephone' id='telephone'/>
+                </div>
+                <div>
+                    <label htmlFor="address">Address:</label>
+                    <input type="address" name="address" id="address"></input>
+                </div>
+                
+                <div className="registerButton">
+                    <button className="button glow-button" onClick={() => handleRegistration()}>Register as Student</button>
+                </div>
             </div>
-            <div>
-                <label htmlFor="lastName">Last Name:</label>
-                <input type="text" name="lastName" id="lastName" />
-            </div>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input type="email" name="email" id="email" 
-                // value={location.state ? location.state.props.email : null} 
-                // onChange={(e) => handleEmailChange(e)}
-                />
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input type="password" name="password" id="password" />
-            </div>
-            <button className="button glow-button" onClick={() => handleRegistration()}>Register as Student</button>
         </div>
     )
 }

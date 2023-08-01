@@ -22,8 +22,31 @@
 .inputBars{
     display: flex;
     flex-direction: column;
-    
+    justify-content: center;
+    margin-top: 50px;
+    margin-left: 15%;
+    color: #013832;
 }
 input{
     background-color: #013832;
+    width: 350px;
+    height: 30px;
+    margin-bottom: 50px;
+}
+.profileImage{
+    display: flex;
+    justify-content: center;
+    margin-left: 140px;
+    margin-top: 140px;
+}
+.profileLabel{
+    font-weight: bolder;
+}
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    margin-left: 15%;
+    color: #013832;
 }
