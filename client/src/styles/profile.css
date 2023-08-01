@@ -9,7 +9,7 @@
   background-color: #B0BB9B;
   color: #013832;
   font-size: 20px;
-  margin: 30px 0px 0px 100%;
+  margin: 30px 0px 0px 57%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,10 +25,35 @@
 .inputBars {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  margin-left: 95%;
+  justify-content: center;
+  margin-top: 50px;
+  margin-left: 15%;
+  color: #013832;
 }
 
 input {
   background-color: #013832;
+  width: 350px;
+  height: 30px;
+  margin-bottom: 50px;
+}
+
+.profileImage {
+  display: flex;
+  justify-content: center;
+  margin-left: 140px;
+  margin-top: 140px;
+}
+
+.profileLabel {
+  font-weight: bolder;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+  margin-left: 15%;
+  color: #013832;
 }/*# sourceMappingURL=profile.css.map */

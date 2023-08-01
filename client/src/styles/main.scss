@@ -180,7 +180,7 @@ body{
   input {
     margin-bottom: 25px;
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 10px;
   }
   button{
     margin-right: 15px;
@@ -196,6 +196,12 @@ body{
   background-color: #B0BB9B;
 }
 #password {
+  background-color:#B0BB9B;
+}
+#address {
+  background-color:#B0BB9B;
+}
+#telephone {
   background-color:#B0BB9B;
 }
 .buttons{
@@ -214,6 +220,17 @@ body{
   align-items: center;
   background-color: #387B5C;
 }
+.fillOut{
+  margin-right: 20px;
+}
+label{
+  margin-right: 20px;
+  margin-left: 20px;
+}
 .message {
   color:#B0BB9B
+}
+.registerButton{
+  display: flex;
+  justify-content: center;
 }
