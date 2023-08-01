@@ -45,25 +45,25 @@ export default function StudentDash() {
                     <tr>
                         <th>Course</th>
                         <th>Description</th>
-                        <th>Time</th>
+                        <th>Course Code</th>
                         <th>Credit Hours</th>
                     </tr>
                     <tr>
                         <td>Rolling your own</td>
                         <td className="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt voluptatem mollitia placeat necessitatibus facilis sit fuga maxime eius quis esse nostrum alias vel consectetur, facere temporibus tempore aperiam dolores similique.</td>
-                        <td>3 pm</td>
+                        <td></td>
                         <td>3</td>
                     </tr>
                     <tr>
                         <td>Rolling your own</td>
                         <td className="description">"Can currently fit 10 courses before forcing page expansion"</td>
-                        <td>3 pm</td>
+                        <td></td>
                         <td>3</td>
                     </tr>
                     <tr>
                         <td>Rolling your own</td>
                         <td className="description">"Description"</td>
-                        <td>3 pm</td>
+                        <td></td>
                         <td>3</td>
                     </tr>
                 </table>

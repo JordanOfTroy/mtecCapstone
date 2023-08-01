@@ -5,6 +5,7 @@ import StudentDash from './StudentDash.jsx';
 import AdminDash from './AdminDash.jsx';
 import Registration from './Registration.jsx';
 import Courses from "./Courses.jsx";
+import Profile from './Profile.jsx';
 
 
 function MainRouting () {
@@ -35,6 +36,11 @@ function MainRouting () {
             <Route path='/courses' element={
                 <ProtectedRoutes user={isLoggedIn}>
                     <Courses/>
+                </ProtectedRoutes>
+            }/>
+            <Route path='/profile' element={
+                <ProtectedRoutes user={isLoggedIn}>
+                    <Profile/>
                 </ProtectedRoutes>
             }/>
         </Routes>
