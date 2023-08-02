@@ -16,7 +16,7 @@ export default function Registration () {
         let rawResult = await fetch('/api/newStudent', {
             method: 'POST',
             headers: {"content-type": "application/json"},
-            body: JSON.stringify({firstName, lastName, email, password})
+            body: JSON.stringify({firstName, lastName, email, password, telephone, address})
         
         })
         console.log(rawResult.status)

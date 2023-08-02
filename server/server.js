@@ -62,6 +62,7 @@ app.get('/api/admins', userCTRL.getAllAdmins)
 app.get('/api/admins/:id', userCTRL.getAdminById)
 app.get('/api/students', auth, userCTRL.getAllStudents)
 app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
+app.get('/api/user', auth, userCTRL.getUser)
 
 app.put('/api/courses/:id', courseCTRL.updateCourse) //add auth when FE available
 app.put('/api/user', userCTRL.updateUser) //add auth

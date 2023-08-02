@@ -76,9 +76,9 @@ export default function Profile() {
                     <Header title="Profile"/>
                 </div>
                 <div className='editInfo'>
-                    {/* <div className="profileImage">
+                    <div className="profileImage">
                         <img className="rounded-circle shadow-4-strong" alt="avatar2" src='https://i.imgur.com/2uz4wi3.png' height='300' width='300' />
-                    </div> */}
+                    </div>
                     {/* <EditInfo></EditInfo> */}
                     {EditInfo()}
                 </div>
