@@ -36,6 +36,32 @@ export default function Profile() {
     }, [])
 
     function handleEdit() {
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let telephone = document.getElementById('telephone').value;
+        let address = document.getElementById('address').value;
+        
+        let apiCall = async () => {
+            try {
+                const rawUser = await fetch('/api/user', {
+                    method: 'POST',
+                    headers: {
+                        "content-type" : "application/json",
+                        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                    },
+                    body: {
+                        name, email, telephone, address
+                    } 
+                })
+                let parsedUser = await rawUser.json();
+                setUser(parsedUser);
+                setClicked(true);
+
+            }catch(err){
+                console.log(err)    
+                    }
+        }
+        apiCall()
     }
     const EditInfo = () => {
         
@@ -51,7 +77,7 @@ export default function Profile() {
                             <p id="phone">Phone</p>
                             <label className="profileLabel" htmlFor="address">Address:</label>
                             <p id="address">Address</p>
-                            <button onClick={()=>setClicked(clicked => !clicked)} className="button glow-button">Edit</button>
+                            <button onClick={()=>setClicked(false)} className="button glow-button">Edit</button>
                         </div> :<div className="inputBars">
                             <h4>Created date : </h4>
                             <label className="profileLabel" htmlFor="name">Name:</label>
@@ -62,7 +88,7 @@ export default function Profile() {
                             <input type="phone" name="phone" id="phone" placeholder="Phone"/>
                             <label className="profileLabel" htmlFor="address">Address:</label>
                             <input type="address" name="address" id="address" placeholder="Address"/>
-                            <button onClick={()=>setClicked(clicked => !clicked)} className="button glow-button">Submit</button>
+                            <button onClick={()=>handleEdit()} className="button glow-button">Submit</button>
                         </div> }
            </div>
        )
