@@ -100,19 +100,17 @@ module.exports = {
     },
 
     updateUser: async (req, res) => {
-      let {firstName, lastName, email} = req.body
-      let {id} = req.body // switch to req.auth
-      let updatedAdmin = await pool.query(`
+      console.log('UPDATING USER')
+      let {firstName, lastName, email, telephone, address} = req.body
+      let {id} = req.auth
+      let updatedUser = await pool.query(`
           update users
-          set first_name=$1, last_name=$2, email=$3
-          where id = $4
+          set first_name=$2, last_name=$3, email=$4, telephone=$5, address=$6
+          where id = $1
           returning users.*;
-      `, [firstName, lastName, email, id],
-      (err, results) => {
-        if (err) throw err
-        console.log(results.rows[0])
-        res.status(200).json(results.rows[0])
-      })
+      `, [id, firstName, lastName, email, telephone, address]
+      )
+      res.status(200).json(updatedUser.rows[0])
     },
 
     removeUser: (req, res) => {
@@ -133,7 +131,7 @@ module.exports = {
       console.log('getting user')
       let {id} = req.auth
       let user = await pool.query(`
-      SELECT first_name, last_name, is_admin, email from users
+      SELECT first_name, last_name, is_admin, telephone, address, email from users
       WHERE id = $1
       `,
       [id])
