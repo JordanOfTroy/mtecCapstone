@@ -80,9 +80,9 @@ export default function Profile() {
                             <button onClick={()=>setClicked(false)} className="button glow-button">Edit</button>
                         </div> :<div className="inputBars">
                             <h4>Created date : </h4>
-                            <label className="profileLabel" htmlFor="firstName">firstName:</label>
+                            <label className="profileLabel" htmlFor="firstName">First Name:</label>
                             <input type="firstName" name="firstName" id="firstName" placeholder="firstName"/>
-                            <label className="profileLabel" htmlFor="lastName">lastName:</label>
+                            <label className="profileLabel" htmlFor="lastName">Last Name:</label>
                             <input type="lastName" name="lastName" id="lastName" placeholder="lastName"/>
                             <label className="profileLabel" htmlFor="email">Email:</label>
                             <input type="email" name="email" id="email" placeholder="Email"/>
