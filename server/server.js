@@ -65,7 +65,7 @@ app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 app.get('/api/user', auth, userCTRL.getUser)
 
 app.put('/api/courses/:id', courseCTRL.updateCourse) //add auth when FE available
-app.put('/api/user', userCTRL.updateUser) //add auth
+app.put('/api/user', auth, userCTRL.updateUser) //add auth
 app.put('/api/joinCourse/', registrationCTRL.joinCourse)
 
 app.post('/api/courses/', courseCTRL.addNewCourse) //add auth when FE available

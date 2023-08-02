@@ -36,7 +36,8 @@ export default function Profile() {
     }, [])
 
     function handleEdit() {
-        let name = document.getElementById('name').value;
+        let firstName = document.getElementById('first_name').value;
+        let lastName = document.getElementById('last_name').value
         let email = document.getElementById('email').value;
         let telephone = document.getElementById('telephone').value;
         let address = document.getElementById('address').value;
@@ -46,31 +47,42 @@ export default function Profile() {
                 const rawUser = await fetch('/api/user', {
                     method: 'PUT',
                     headers: {
-                        "content-type" : "application/json",
-                        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                        "content-type": "application/json",
+                        Authorization: `Bearer ${window.localStorage.getItem('token')}` 
                     },
-                    body: {
-                        name, email, telephone, address
-                    } 
+                    body: JSON.stringify({firstName, lastName, email, telephone, address} )
                 })
                 let parsedUser = await rawUser.json();
                 setUser(parsedUser);
                 setClicked(true);
 
-            }catch(err){
-                console.log(err)    
+            } catch (err) {
+                console.log('FETCHING ERROR:', err)    
                     }
         }
         apiCall()
     }
+
+    const handleUserInput = (e) => {
+        const target = e.target.id;
+        const value = e.target.value;
+    
+        // Update the user state with the new value
+        setUser((prevUser) => ({
+            ...prevUser,
+            [target]: value,
+        }));
+    }
+
     const EditInfo = () => {
         
        return (
            <div>
-               {clicked ? <div className="profileInfo">
+               {clicked ? 
+                    <div className="profileInfo">
                             <h4>Created date : </h4>
                             <label className="profileLabel" htmlFor="name">Name:</label>
-                            <p id="name">Name</p>
+                            <p id="name">{`${user.first_name} ${user.last_name}`}</p>
                             <label className="profileLabel" htmlFor="email">Email:</label>
                             <p id="email">Email</p>
                             <label className="profileLabel" htmlFor="telephone">Phone #:</label>
@@ -78,20 +90,38 @@ export default function Profile() {
                             <label className="profileLabel" htmlFor="address">Address:</label>
                             <p id="address">Address</p>
                             <button onClick={()=>setClicked(false)} className="button glow-button">Edit</button>
-                        </div> :<div className="inputBars">
+                        </div>
+                        :
+                        <div className="inputBars">
                             <h4>Created date : </h4>
-                            <label className="profileLabel" htmlFor="firstName">First Name:</label>
-                            <input type="firstName" name="firstName" id="firstName" placeholder="firstName"/>
-                            <label className="profileLabel" htmlFor="lastName">Last Name:</label>
-                            <input type="lastName" name="lastName" id="lastName" placeholder="lastName"/>
+                            <label className="profileLabel" htmlFor="first_name">firstName:</label>
+                            <input type="firstName" name="firstName" id="first_name" 
+                                value={user.first_name}
+                                onChange={(e) => handleUserInput(e)}
+                            />
+                            <label className="profileLabel" htmlFor="last_name">lastName:</label>
+                            <input type="lastName" name="lastName" id="last_name" 
+                                defaultValue={user.last_name}
+                                onChange={(e) => handleUserInput(e)}
+                            />
                             <label className="profileLabel" htmlFor="email">Email:</label>
-                            <input type="email" name="email" id="email" placeholder="Email"/>
+                            <input type="email" name="email" id="email" 
+                                defaultValue={user.email}
+                                onChange={(e) => handleUserInput(e)}
+                            />
                             <label className="profileLabel" htmlFor="telephone">Phone #:</label>
-                            <input type="phone" name="phone" id="phone" placeholder="Phone"/>
+                            <input type="phone" name="phone" id="telephone" 
+                                defaultValue={user.telephone}
+                                onChange={(e) => handleUserInput(e)}
+                            />
                             <label className="profileLabel" htmlFor="address">Address:</label>
-                            <input type="address" name="address" id="address" placeholder="Address"/>
+                            <input type="address" name="address" id="address" 
+                                defaultValue={user.address}
+                                onChange={(e) => handleUserInput(e)}
+                            />
                             <button onClick={()=>handleEdit()} className="button glow-button">Submit</button>
-                        </div> }
+                        </div>
+                }
            </div>
        )
    }
