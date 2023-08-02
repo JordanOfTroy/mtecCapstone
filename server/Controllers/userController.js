@@ -9,16 +9,16 @@ const pool = new Pool({
 module.exports = {
   
   addNewStudent: async (req, res) => {
-      let { firstName, lastName, email, password } = req.body;
+      let { firstName, lastName, email, password, telephone, address} = req.body;
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
   
       let newSudent = await pool.query(
         `INSERT INTO users 
-        (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)
+        (first_name, last_name, email, password, telephone, address) VALUES ($1, $2, $3, $4, $5, $6)
         returning users.*
         `,
-        [firstName, lastName, email, hash],
+        [firstName, lastName, email, hash, telephone, address],
         (err, results) => {
           if (err) console.log(err)
           if (err) throw err;
@@ -127,6 +127,20 @@ module.exports = {
         if (err) throw err
         res.status(200).send('user has been removed')
       })
+    },
+
+    getUser: async (req, res) =>{
+      console.log('getting user')
+      let {id} = req.auth
+      let user = await pool.query(`
+      SELECT first_name, last_name, is_admin, email from users
+      WHERE id = $1
+      `,
+      [id])
+      console.log(`-=-=-`)
+      console.log(user)
+      console.log(`-=-=-`)
+      res.status(200).json(user.rows[0])
     }
 
 }

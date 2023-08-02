@@ -1,8 +1,8 @@
 INSERT INTO users (is_admin, first_name, last_name, email, password)
-VALUES ('true','Cheech', 'AndChong', 'gethistayhi@email.com', 'password'),
-       ('true','Freddie', 'Mercury', 'justkilledaman@email.com', 'password'),
-       ('true','Trixie', 'Mattel', 'dragisnotacrime@email.com', 'password'),
-       ('true','Henry', 'Cavill', 'geraltofrivia@email.com', 'password');
+VALUES ('true','Cheech', 'AndChong', 'gethistayhi@email.com', 'password', '000-000-0000', '1234 S Fake Street, Faketown, UT, 00000'),
+       ('true','Freddie', 'Mercury', 'justkilledaman@email.com', 'password',  '000-000-0000', '1234 S Fake Street, Faketown, UT, 00000'),
+       ('true','Trixie', 'Mattel', 'dragisnotacrime@email.com', 'password', '000-000-0000', '1234 S Fake Street, Faketown, UT, 00000'),
+       ('true','Henry', 'Cavill', 'geraltofrivia@email.com', 'password',  '000-000-0000', '1234 S Fake Street, Faketown, UT, 00000');
 
 
 

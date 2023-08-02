@@ -33,7 +33,7 @@ export default function StudentDash() {
 
     return (
 <>
-    <div class="container">
+    <div className="container">
         <SideBar/>
         <div className="studentMain">
             <div className="studentDashboard">

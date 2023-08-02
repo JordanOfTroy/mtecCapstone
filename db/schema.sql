@@ -1,9 +1,9 @@
+DROP TABLE IF EXISTS students_courses;
 DROP TABLE IF EXISTS teachers;
 DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS teachers_courses;
-DROP TABLE IF EXISTS students_courses;
 
 CREATE TABLE users (
     id serial primary key,
@@ -11,7 +11,9 @@ CREATE TABLE users (
     first_name varchar (60),
     last_name varchar (60),
     email varchar (250) unique not null,
-    password varchar(250) not null
+    password varchar(250) not null,
+    telephone varchar(25),
+    address varchar(500), 
 );
 
 CREATE TABLE courses (
