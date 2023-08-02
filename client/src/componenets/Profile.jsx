@@ -1,19 +1,44 @@
+import '../styles/profile.css';
+import { useEffect, useState } from 'react';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 import SideBar from './SideBar.jsx';
 import Header from './Header.jsx';
-import '../styles/profile.css';
-import { useEffect, useState } from 'react';
 
 
 
 export default function Profile() {
+
+    // Create a piece of state, and initialize it to `false`
+    // `checked` will hold the current value of the state,
+    // and `setChecked` will let us change it
+    const [clicked, setClicked] = useState(true);
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        console.log('WHAT IS HAPPENING???')
+        let apiCalls = async () => {
+            try {
+                const rawUser = await fetch('/api/user', {
+                    method: 'GET',
+                    headers: {
+                        "content-type": "application/json",
+                        Authorization: `Bearer ${window.localStorage.getItem('token')}` 
+                    }
+                })
+                const parsedUser = await rawUser.json()
+                console.log(parsedUser)
+                setUser(parsedUser)
+            } catch (err) {
+                console.log('Fetching Error:', err)
+            }
+        }
+        apiCalls()
+    }, [])
+
     function handleEdit() {
     }
     const EditInfo = () => {
-        // Create a piece of state, and initialize it to `false`
-        // `checked` will hold the current value of the state,
-        // and `setChecked` will let us change it
-        const [clicked, setClicked] = useState(true);
+        
        return (
            <div>
                {clicked ? <div className="profileInfo">
@@ -44,17 +69,18 @@ export default function Profile() {
    }
     return (
 <>
-    <div class="container">
+    <div className="container">
         <SideBar/>
             <div className="profileMain">
                 <div className="profileDashboard">
                     <Header title="Profile"/>
                 </div>
                 <div className='editInfo'>
-                    <div className="profileImage">
-                        <img class="rounded-circle shadow-4-strong" alt="avatar2" src='https://i.imgur.com/2uz4wi3.png' height='300' width='300' />
-                    </div>
-                    <EditInfo></EditInfo>
+                    {/* <div className="profileImage">
+                        <img className="rounded-circle shadow-4-strong" alt="avatar2" src='https://i.imgur.com/2uz4wi3.png' height='300' width='300' />
+                    </div> */}
+                    {/* <EditInfo></EditInfo> */}
+                    {EditInfo()}
                 </div>
             </div>
         </div>
