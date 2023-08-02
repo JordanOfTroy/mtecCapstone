@@ -44,7 +44,7 @@ export default function Profile() {
         let apiCall = async () => {
             try {
                 const rawUser = await fetch('/api/user', {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         "content-type" : "application/json",
                         Authorization: `Bearer ${window.localStorage.getItem('token')}`
@@ -80,8 +80,10 @@ export default function Profile() {
                             <button onClick={()=>setClicked(false)} className="button glow-button">Edit</button>
                         </div> :<div className="inputBars">
                             <h4>Created date : </h4>
-                            <label className="profileLabel" htmlFor="name">Name:</label>
-                            <input type="name" name="name" id="name" placeholder="Name"/>
+                            <label className="profileLabel" htmlFor="firstName">firstName:</label>
+                            <input type="firstName" name="firstName" id="firstName" placeholder="firstName"/>
+                            <label className="profileLabel" htmlFor="lastName">lastName:</label>
+                            <input type="lastName" name="lastName" id="lastName" placeholder="lastName"/>
                             <label className="profileLabel" htmlFor="email">Email:</label>
                             <input type="email" name="email" id="email" placeholder="Email"/>
                             <label className="profileLabel" htmlFor="telephone">Phone #:</label>
