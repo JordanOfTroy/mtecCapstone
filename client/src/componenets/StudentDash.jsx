@@ -7,7 +7,7 @@ import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 export default function StudentDash() {
 
-    const [courses, setCourses] = useState()
+    const [courses, setCourses] = useState([])
 
     useEffect(() => {
         let apiCalls = async () => {
@@ -20,9 +20,9 @@ export default function StudentDash() {
                      }
                 })
                 const parsedCourses = await rawCourses.json()
-                // console.log(`~~~~~~`)
-                // console.log(parsedCourses)
-                // console.log(`~~~~~~`)
+                console.log(`~~~~~~`)
+                console.log(parsedCourses)
+                console.log(`~~~~~~`)
                 setCourses(parsedCourses)
             } catch (err) {
                 console.log('Fetching Error:', err)
@@ -30,6 +30,21 @@ export default function StudentDash() {
         }
         apiCalls()
     }, [])
+    let myCourses
+    console.log(courses.length)
+    if (courses.length > 0) {
+        myCourses = courses.map((course, i) => {
+            return (
+                <tr key={i}>
+                    <td>{course.title}</td>
+                    <td className="description">{course.description}</td>
+                    <td>{course.course_code}</td>
+                    <td>Teacher</td>
+                    <td><button></button></td>
+                </tr>
+            )
+        })
+    }
 
     return (
 <>
@@ -48,24 +63,8 @@ export default function StudentDash() {
                         <th>Course Code</th>
                         <th>Credit Hours</th>
                     </tr>
-                    <tr>
-                        <td>Rolling your own</td>
-                        <td className="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt voluptatem mollitia placeat necessitatibus facilis sit fuga maxime eius quis esse nostrum alias vel consectetur, facere temporibus tempore aperiam dolores similique.</td>
-                        <td></td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Rolling your own</td>
-                        <td className="description">"Can currently fit 10 courses before forcing page expansion"</td>
-                        <td></td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Rolling your own</td>
-                        <td className="description">"Description"</td>
-                        <td></td>
-                        <td>3</td>
-                    </tr>
+                    {courses.length > 0 ? myCourses : <tr></tr>}
+
                 </table>
             </div>
             <div className="coursesButton">
