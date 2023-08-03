@@ -10,7 +10,7 @@ import Header from './Header.jsx';
 export default function Courses() {
 
     const [allCourses, setAllCourses] = useState([])
-    const[addingCourse, setAddingCourse] = useState(false)
+    const [addingCourse, setAddingCourse] = useState(false)
     const [admins, setAdmins] = useState([])
 
     useEffect(() => {
@@ -40,6 +40,10 @@ export default function Courses() {
         }
         apiCalls()
     }, [])
+
+    const handleEditCourse = (courseId) => {
+        console.log(courseId)
+    }
 
 
     const handleDeleteCourse = async (courseId) => {
@@ -73,8 +77,11 @@ export default function Courses() {
                     <td>{
                         window.localStorage.getItem('isAdmin') === 'true'
                         ?
-                        <button onClick={() => handleDeleteCourse(course.id)}>Delete</button>
-                        :
+                        <div>
+                            <button onClick={() => handleEditCourse(course.id)}>Edit</button>
+                            <button onClick={() => handleDeleteCourse(course.id)}>Delete</button>
+                        </div>
+                            :
                         <input type='checkbox' className='selectedCourse' value={course.id}></input>
                         }</td>
                 </tr>
