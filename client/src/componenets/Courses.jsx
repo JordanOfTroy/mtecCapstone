@@ -41,6 +41,25 @@ export default function Courses() {
         apiCalls()
     }, [])
 
+
+    const handleDeleteCourse = async (courseId) => {
+        try {
+            let results = await fetch(`/api/courses/${courseId}`, {
+                method: 'DElETE',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                }
+            })
+            if (results.status == 200) {
+                let parsedResults = await results.json()
+                setAllCourses(parsedResults)
+            }
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+    }
+
     let courses
     if (allCourses.length > 0) {
         courses = allCourses.map((course, i) => {
@@ -51,7 +70,13 @@ export default function Courses() {
                     <td>{course.course_code}</td>
                     <td>Time</td>
                     <td>Teacher</td>
-                    <td><button ></button></td>
+                    <td>{
+                        window.localStorage.getItem('isAdmin') === 'true'
+                        ?
+                        <button onClick={() => handleDeleteCourse(course.id)}>Delete</button>
+                        :
+                        <input type='checkbox' className='selectedCourse' value={course.id}></input>
+                        }</td>
                 </tr>
             )
         })
@@ -137,7 +162,7 @@ export default function Courses() {
                             <th>Teacher</th>
                             <th>Enroll</th>
                         </tr>
-                        {allCourses.length>0 ? courses : <tr></tr>}
+                        {allCourses.length>0 ? courses : <p>No courses</p>}
                         
                     </table>
                     
