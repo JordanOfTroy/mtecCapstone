@@ -74,7 +74,7 @@ app.post('/api/newStudent', userCTRL.addNewStudent)//used when registering
 app.post('/api/login', loginCTRL.handleLogin)
 
 app.delete('/api/user/:id', userCTRL.removeUser) // add auth
-app.delete('/api/courses/:id', courseCTRL.removeCourse) //add auth
+app.delete('/api/courses/:id', auth, courseCTRL.removeCourse)
 
 
 

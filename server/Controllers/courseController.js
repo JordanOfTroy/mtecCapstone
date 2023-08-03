@@ -113,22 +113,25 @@ module.exports = {
 
     removeCourse: async (req, res) => {
         let {id} = req.params
-        //check for admin on req.auth
-        let updatedCourses = await pool.query(`
-        DELETE FROM courses
-        where id=$1
-        `,
-        [id],
-        (err, results) => {
-            if (err) throw err
-            pool.query(`
-            SELECT * from courses
-            `, (err, results) => {
+        let {is_admin} = req.auth
+        if (is_admin) {
+            let updatedCourses = await pool.query(`
+            DELETE FROM courses
+            where id=$1
+            `,
+            [id],
+            (err, results) => {
                 if (err) throw err
-                res.status(200).json(results.rows)
+                pool.query(`
+                SELECT * from courses
+                `, (err, results) => {
+                    if (err) throw err
+                    res.status(200).json(results.rows)
+                })
             })
-        })
-
+        } else {
+            res.status(401).json('non-admin user')
+        }
     }
 
 
