@@ -83,10 +83,13 @@ module.exports = {
 
     getAllAdmins: (req, res) => {
       pool.query(`
-        select (id, first_name, last_name, email) from users
+        select id, first_name, last_name, email from users
         where is_admin = 'true'
       `, (err, results) => {
         if (err) throw err
+        for (let row of results.rows) {
+          console.log(JSON.stringify(row))
+      }
         res.status(200).json(results.rows)
       })
     },
