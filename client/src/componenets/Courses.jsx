@@ -31,7 +31,7 @@ export default function Courses() {
 
                 const parsedCourses = await rawCourses.json()
                 const parsedAdmins = await rawAdmins.json()
-
+                
                 setAllCourses(parsedCourses)
                 setAdmins(parsedAdmins)
             } catch (err) {
@@ -58,9 +58,62 @@ export default function Courses() {
     
     }
 
-    const adminOptions = admin.map((admin, i) => {
-        return <option key={i} value={admin.id}>{admin.name}</option>
+    const adminOptions = admins.map((admin, i) => {
+        return <option key={i} value={admin.id}>{admin.first_name} {admin.last_name}</option>
     })
+
+    const handleCourseSubmission = async () => {
+        let title = document.getElementById('title').value
+        let description = document.getElementById('description').value
+        let course_code = document.getElementById('course_code').value
+        let credit_hours = document.getElementById('credit_hours').value
+        let tuition = document.getElementById('tuition').value
+        let capacity = document.getElementById('capacity').value
+        let teacher_id = document.getElementById('teacher_id').value
+        let start_time = document.getElementById('start_time').value
+        let end_time = document.getElementById('end_time').value
+        let days_of_week = ''
+        let selectedDays = document.getElementsByClassName('selectedDays')
+        for (let i=0; i<selectedDays.length; i++) {
+            if (selectedDays[i].checked) {
+                days_of_week += selectedDays[i].value
+            }
+        }
+        let room_number = document.getElementById('room_number').value
+
+        try {
+            let postResults = await fetch('/api/courses', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({title, description, course_code, credit_hours, tuition, capacity, teacher_id, start_time, end_time, days_of_week, room_number})
+            })
+
+            if (postResults.status == 200) {
+                try {
+                    let courses = await fetch('/api/courses', {
+                        method: 'GET',
+                        headers: {
+                            "content-type": "application/json"
+                        }
+                    })
+                    let parsedCourses = await courses.json()
+                    setAllCourses(parsedCourses)
+                    setAddingCourse(false)
+                } catch (err) {
+                    console.log('FETCHING ERROR:', err)
+                }
+            } else {
+                console.log(postResults.status)
+            }
+
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+
+    }
 
     return (
         <div className="container">
@@ -107,21 +160,26 @@ export default function Courses() {
                     </div>
                     <div>
                         <label htmlFor="credit_hours">Credit Hours</label>
-                        <input type="text" name="credit_hours" id="credit_hours" />
+                        <input type="number" name="credit_hours" id="credit_hours" />
                     </div>
                     <div>
                         <label htmlFor="tuition">Tuition</label>
-                        <input type="text" name="tuition" id="tuition" />
+                        <input type="number" name="tuition" id="tuition" />
                     </div>
                     <div>
                         <label htmlFor="capacity">Max Capacity</label>
-                        <input type="text" name="capacity" id="capacity" />
+                        <input type="number" name="capacity" id="capacity" />
                     </div>
                     <div>
                         <label htmlFor="teacher_id">Instructor</label>
                         <select type="text" name="teacher_id" id="teacher_id" >
+                            <option unselectable='Please select an instructor'>Please select an instructor</option>
                             {adminOptions}
                         </select>
+                    </div>
+                    <div>
+                        <label htmlFor="room_number">Room Number</label>
+                        <input type="text" name="room_number" id="room_number"/>
                     </div>
                     <div>
                         <label htmlFor="start_time">Start Time</label>
@@ -134,38 +192,44 @@ export default function Courses() {
                     <div>
                         <p htmlFor="course">Days</p>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="monday" id="monday" />
-                            <label htmlFor="monday" value='M'>Monday</label>
+                            <input type="checkbox" className='selectedDays' name="monday" id="monday" value='M' />
+                            <label htmlFor="monday" >Monday</label>
                         </div>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="tuesday" id="tuesday" />
-                            <label htmlFor="tuesday" value='T'>Tuesday</label>
+                            <input type="checkbox" className='selectedDays' name="tuesday" id="tuesday" value='T'/>
+                            <label htmlFor="tuesday" >Tuesday</label>
                         </div>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="wednesday" id="wednesday" />
-                            <label htmlFor="wednesday" value='W'>Wednesday</label>
+                            <input type="checkbox" className='selectedDays' name="wednesday" id="wednesday" value='W'/>
+                            <label htmlFor="wednesday" >Wednesday</label>
                         </div>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="thursday" id="thursday" />
-                            <label htmlFor="thursday" value='R'>Thursday</label>
+                            <input type="checkbox" className='selectedDays' name="thursday" id="thursday" value='R'/>
+                            <label htmlFor="thursday" >Thursday</label>
                         </div>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="friday" id="friday" />
-                            <label htmlFor="friday" value='F'>Friday</label>
+                            <input type="checkbox" className='selectedDays' name="friday" id="friday" value='F'/>
+                            <label htmlFor="friday" >Friday</label>
                         </div>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="saturday" id="saturday" />
-                            <label htmlFor="saturday" value='S'>Saturday</label>
+                            <input type="checkbox" className='selectedDays' name="saturday" id="saturday" value='S'/>
+                            <label htmlFor="saturday" >Saturday</label>
                         </div>
                         <div>
-                            <input type="checkbox" className='selectedDays' name="sunday" id="sunday" />
-                            <label htmlFor="sunday" value='S'>Sunday</label>
+                            <input type="checkbox" className='selectedDays' name="sunday" id="sunday" value='S'/>
+                            <label htmlFor="sunday" >Sunday</label>
                         </div>
                     </div>
                   
                 </div>
                 }
-                <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
+                {
+                    !addingCourse && window.localStorage.getItem('isAdmin') === 'true'
+                    ?
+                    <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
+                    :
+                    <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
+                }
             </div>
             
         </div>
