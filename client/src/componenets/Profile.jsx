@@ -12,7 +12,7 @@ export default function Profile() {
     // `checked` will hold the current value of the state,
     // and `setChecked` will let us change it
     const [clicked, setClicked] = useState(true);
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         console.log('WHAT IS HAPPENING???')
@@ -84,22 +84,22 @@ export default function Profile() {
                             <label className="profileLabel" htmlFor="name">Name:</label>
                             <p id="name">{`${user.first_name} ${user.last_name}`}</p>
                             <label className="profileLabel" htmlFor="email">Email:</label>
-                            <p id="email">Email</p>
+                            <p id="email">{`${user.email}`}</p>
                             <label className="profileLabel" htmlFor="telephone">Phone #:</label>
-                            <p id="phone">Phone</p>
+                            <p id="phone">{`${user.telephone}`}</p>
                             <label className="profileLabel" htmlFor="address">Address:</label>
-                            <p id="address">Address</p>
+                            <p id="address">{`${user.address}`}</p>
                             <button onClick={()=>setClicked(false)} className="button glow-button">Edit</button>
                         </div>
                         :
                         <div className="inputBars">
                             <h4>Created date : </h4>
-                            <label className="profileLabel" htmlFor="first_name">firstName:</label>
+                            <label className="profileLabel" htmlFor="first_name">First Name:</label>
                             <input type="firstName" name="firstName" id="first_name" 
                                 value={user.first_name}
                                 onChange={(e) => handleUserInput(e)}
                             />
-                            <label className="profileLabel" htmlFor="last_name">lastName:</label>
+                            <label className="profileLabel" htmlFor="last_name">Last Name:</label>
                             <input type="lastName" name="lastName" id="last_name" 
                                 defaultValue={user.last_name}
                                 onChange={(e) => handleUserInput(e)}
