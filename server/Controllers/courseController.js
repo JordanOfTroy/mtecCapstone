@@ -88,19 +88,27 @@ module.exports = {
 
     addNewCourse: (req, res) => { //convert to async and send back results
         let {teacher_id, title, course_code, credit_hours, tuition, description,
-            capacity, enrolled, days_of_week, start_time, end_time, room_number} = req.body
+            capacity, days_of_week, start_time, end_time, room_number} = req.body
+        let {is_admin} = req.auth
+        console.log(`~~~~~~~~`)
         console.log(req.body)
-        pool.query(`
-        INSERT INTO courses (teacher_id, title, course_code, credit_hours, tuition, description,
-            capacity, enrolled, days_of_week, start_time, end_time, room_number)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-        `,
-        [teacher_id, title, course_code, credit_hours, tuition, description,
-            capacity, enrolled, days_of_week, start_time, end_time, room_number],
-        (err, results) => {
-            if (err) throw err
-            res.status(200).json('all good brah!')
-        })
+        console.log(req.auth)
+        console.log(`~~~~~~~~`)
+        if (is_admin) {
+            pool.query(`
+            INSERT INTO courses (teacher_id, title, course_code, credit_hours, tuition, description,
+                capacity, enrolled, days_of_week, start_time, end_time, room_number)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+            `,
+            [teacher_id, title, course_code, credit_hours, tuition, description,
+                capacity, 0, days_of_week, start_time, end_time, room_number],
+            (err, results) => {
+                if (err) throw err
+                res.status(200).json('all good brah!')
+            })
+        } else {
+            res.status(401).json('non-admin user')
+        }
     },
 
     removeCourse: async (req, res) => {

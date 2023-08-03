@@ -68,7 +68,7 @@ app.put('/api/courses/:id', courseCTRL.updateCourse) //add auth when FE availabl
 app.put('/api/user', auth, userCTRL.updateUser) //add auth
 app.put('/api/joinCourse/', registrationCTRL.joinCourse)
 
-app.post('/api/courses/', courseCTRL.addNewCourse) //add auth when FE available
+app.post('/api/courses', auth, courseCTRL.addNewCourse)
 app.post('/api/newAdmin', userCTRL.addNewAdmin)
 app.post('/api/newStudent', userCTRL.addNewStudent)//used when registering
 app.post('/api/login', loginCTRL.handleLogin)
