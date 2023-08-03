@@ -73,7 +73,6 @@ export default function Profile() {
             [target]: value,
         }));
     }
-
     const EditInfo = () => {
         
        return (

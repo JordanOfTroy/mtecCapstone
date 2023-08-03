@@ -5,7 +5,7 @@ export default function Info(props) {
         return (
         <>            
         <div className="info">
-            <h2>{special}</h2>
+            <p>{special}</p>
         </div>
         </>
 
