@@ -81,14 +81,12 @@ module.exports = {
     },
 
 
-    getAllAdmins: (req, res) => {
-      pool.query(`
+    getAllAdmins: async (req, res) => {
+      let admins = await pool.query(`
         select (id, first_name, last_name, email) from users
         where is_admin = 'true'
-      `, (err, results) => {
-        if (err) throw err
-        res.status(200).json(results.rows)
-      })
+      `)
+      res.status(200).json(admins.rows)
     },
 
     getAdminById: (req, res) => {
