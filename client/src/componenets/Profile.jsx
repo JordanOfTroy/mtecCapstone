@@ -79,7 +79,7 @@ export default function Profile() {
            <div>
                {clicked ? 
                     <div className="profileInfo">
-                            <h4>Created date : </h4>
+                            <h4>Created date :</h4>
                             <label className="profileLabel" htmlFor="name">Name:</label>
                             <p id="name">{`${user.first_name} ${user.last_name}`}</p>
                             <label className="profileLabel" htmlFor="email">Email:</label>
@@ -92,7 +92,6 @@ export default function Profile() {
                         </div>
                         :
                         <div className="inputBars">
-                            <h4>Created date : </h4>
                             <label className="profileLabel" htmlFor="first_name">First Name:</label>
                             <input type="firstName" name="firstName" id="first_name" 
                                 value={user.first_name}
@@ -118,7 +117,9 @@ export default function Profile() {
                                 defaultValue={user.address}
                                 onChange={(e) => handleUserInput(e)}
                             />
-                            <button onClick={()=>handleEdit()} className="button glow-button">Submit</button>
+                            <div className="profileButton">
+                                <button onClick={()=>handleEdit()} className="button glow-button">Submit</button>
+                            </div>
                         </div>
                 }
            </div>
