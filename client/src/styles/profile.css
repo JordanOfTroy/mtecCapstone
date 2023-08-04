@@ -24,18 +24,23 @@
 
 .inputBars {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin-top: 50px;
-  margin-left: 21%;
+  margin-left: 29%;
   width: 500px;
   height: 500px;
   color: #013832;
 }
 .inputBars #first_name {
+  display: flex;
+  justify-content: flex-end;
   background-color: #B0BB9B;
 }
 .inputBars #last_name {
+  display: flex;
+  justify-content: center;
   background-color: #B0BB9B;
 }
 
@@ -69,7 +74,6 @@ input {
   width: 500px;
   height: 500px;
   color: #013832;
-  border: #000000 1px solid;
 }
 .profileInfo #phone {
   background-color: #B0BB9B;
@@ -81,7 +85,23 @@ input {
   display: flex;
   justify-content: center;
 }
+.profileInfo #address {
+  display: flex;
+  justify-content: center;
+}
+.profileInfo #email {
+  display: flex;
+  justify-content: center;
+}
 
 h4 {
   margin-bottom: 20px;
+}
+
+.profileButton {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  margin-top: 60%;
+  margin-left: 14%;
 }/*# sourceMappingURL=profile.css.map */
