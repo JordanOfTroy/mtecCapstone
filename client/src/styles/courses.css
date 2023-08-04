@@ -53,10 +53,9 @@
 .courseTable tr {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   border-bottom: #013832 1px solid;
   padding-top: 5px;
-  width: 88%;
 }
 .courseTable tr:nth-child(odd) {
   background-color: #B0BB9B;
@@ -64,14 +63,8 @@
 .courseTable tr:nth-child(even) {
   background-color: #DEDFDA;
 }
-.courseTable span {
-  border: #013832 1px inset;
-  display: flex;
-  flex-direction: row;
-}
 .courseTable th {
-  margin-right: 100px;
-  margin-left: 100px;
+  margin-right: 15px;
   display: flex;
 }
 .courseTable td {
@@ -82,7 +75,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
+  width: 200px;
   height: 35px;
 }
 
