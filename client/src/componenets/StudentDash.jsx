@@ -40,7 +40,7 @@ export default function StudentDash() {
                     <td className="description">{course.description}</td>
                     <td>{course.course_code}</td>
                     <td>Teacher</td>
-                    <td><button></button></td>
+                    <td><input type="checkbox" className="checkbox"/></td>
                 </tr>
             )
         })
