@@ -105,7 +105,7 @@ export default function Courses() {
                         <td className="description">{course.description}</td>
                         <td>{course.course_code}</td>
                         <td>{course.start_time}</td>
-                        <td>Teacher</td>
+                        <td>{`${course.first_name} ${course.last_name}`}</td>
                         <td>{
                             window.localStorage.getItem('isAdmin') === 'true'
                             ?
