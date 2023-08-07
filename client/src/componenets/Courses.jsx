@@ -119,10 +119,10 @@ export default function Courses() {
                     </tr>
                     :
                     <tr key={i}>
-                        <td><input width='25' type='text' defaultValue={course.title} id='row_title'></input></td>
-                        <td><input width='25' type='text' defaultValue={course.description} id='row_description'></input></td>
-                        <td><input width='25' type='text' defaultValue={course.course_code} id='row_course_code'></input></td>
-                        <td><input width='25' type='time' defaultValue={course.course_code} id='row_start_time'></input></td>
+                        <td><input type='text' defaultValue={course.title} id='row_title'></input></td>
+                        <td><input type='text' defaultValue={course.description} id='row_description'></input></td>
+                        <td><input type='text' defaultValue={course.course_code} id='row_course_code'></input></td>
+                        <td><input type='time' defaultValue={course.course_code} id='row_start_time'></input></td>
                         <td>Teacher</td>
                         <td>{
                             window.localStorage.getItem('isAdmin') === 'true'
