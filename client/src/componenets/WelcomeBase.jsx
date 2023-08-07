@@ -15,7 +15,7 @@ export default function WelcomeBase() {
 <>
     <div className="container">
         <SideBar/>
-        <main className="main">
+        <div className="main">
             <Welcome title="Welcome to Blah™"/>
             <Info special="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid incidunt alias adipisci debitis est, amet quas aut quasi, nostrum enim odio quibusdam saepe ad magni-™"/>
                 {/* Note for Ashlyn : I'm wanting to try and fix the centering of the words in this box. 
@@ -24,7 +24,11 @@ export default function WelcomeBase() {
 
             <LargeInfo more="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, eligendi accusantium. Voluptatum minima sapiente sed, earum iure quam velit vero. Ipsum nostrum rem at minus, dignissimos architecto maiores perspiciatis vel!"/>
                 {/* Do we make this a scrolly scroll box or no? */}
-        </main>
+        </div>
+        <div className='photo'>
+            <img src='https://i.imgur.com/YBDH8YX.jpg' width='540' height='338'></img>
+        </div>
+
     </div>
 </> 
 

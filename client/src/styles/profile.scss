@@ -8,7 +8,7 @@
     background-color: #B0BB9B;
     color: #013832;
     font-size: 20px;
-    margin: 30px 0px 0px 57%;
+    margin: 30px 0px 0px 62%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,11 +21,28 @@
 }
 .inputBars{
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
     // margin-top: 10px;
-    margin-left: 15%;
+    margin-top: 50px;
+    margin-left: 29%;
+    width: 500px;
+    height: 500px;
     color: #013832;
+    // border: #000000 1px solid;
+
+    #first_name{
+        display: flex;
+        justify-content: flex-end;
+        background-color: #B0BB9B;
+    }
+    #last_name{
+        display: flex;
+        justify-content: center;
+        background-color: #B0BB9B;
+    }
+    
 }
 input{
     background-color: #013832;
@@ -41,15 +58,48 @@ input{
 }
 .profileLabel{
     font-weight: bolder;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 0px;
+
 }
 .profileInfo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 50px;
-    margin-left: 15%;
+    margin-left: 21%;
+    width: 500px;
+    height: 500px;
     color: #013832;
+    #phone {
+        background-color: #B0BB9B;
+        display: flex;
+        justify-content: center;
+    }
+    #name{
+        background-color: #B0BB9B;
+        display: flex;
+        justify-content: center;
+    }
+    #address{
+        display: flex;
+        justify-content: center;
+    }
+    #email{
+        display: flex;
+        justify-content: center;
+    }
+    
 }
 h4 {
     margin-bottom: 20px;
+}
+.profileButton{
+    display: flex;
+    justify-content: flex-end;
+    position:absolute;
+    margin-top: 60%;
+    margin-left: 14%;
+
 }

@@ -61,7 +61,8 @@ export default function StudentDash() {
                         <th>Course</th>
                         <th>Description</th>
                         <th>Course Code</th>
-                        <th>Credit Hours</th>
+                        <th>Teacher</th>
+                        <th>Drop?</th>
                     </tr>
                     {courses.length > 0 ? myCourses : <tr></tr>}
 
