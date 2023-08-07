@@ -178,6 +178,8 @@ body{
   flex-direction: column;
   background-color: #387B5C;
   color: #B0BB9B;
+  width: 800px;
+  height: 400px;
   input {
     margin-bottom: 25px;
     margin-left: 5px;
@@ -224,10 +226,10 @@ body{
 .fillOut{
   margin-right: 20px;
 }
-label{
-  margin-right: 20px;
-  margin-left: 20px;
-}
+// label{
+//   margin-right: 20px;
+//   margin-left: 20px;
+// }
 .message {
   color:#B0BB9B
 }
