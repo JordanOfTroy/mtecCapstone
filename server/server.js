@@ -64,7 +64,7 @@ app.get('/api/students', auth, userCTRL.getAllStudents)
 app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 app.get('/api/user', auth, userCTRL.getUser)
 
-app.put('/api/courses/:id', courseCTRL.updateCourse) //add auth when FE available
+app.put('/api/courses', auth, courseCTRL.updateCourse)
 app.put('/api/user', auth, userCTRL.updateUser) //add auth
 app.put('/api/joinCourse/', registrationCTRL.joinCourse)
 
@@ -74,7 +74,7 @@ app.post('/api/newStudent', userCTRL.addNewStudent)//used when registering
 app.post('/api/login', loginCTRL.handleLogin)
 
 app.delete('/api/user/:id', userCTRL.removeUser) // add auth
-app.delete('/api/courses/:id', courseCTRL.removeCourse) //add auth
+app.delete('/api/courses/:id', auth, courseCTRL.removeCourse)
 
 
 
