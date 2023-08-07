@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  margin-left: 10%;
-  margin-top: 12%;
+  margin-left: 12%;
+  margin-top: 10%;
 }
 .adminMain h3 {
   margin-top: 40px;
@@ -19,13 +19,17 @@ table {
   background-color: #013832;
   font-size: 14px;
   display: flex;
+  justify-content: center;
   margin-top: 10px;
-  overflow: hidden;
+  overflow: scroll;
+  max-height: 200px;
+  max-width: 1000px;
 }
-.adminTable td {
+.adminTable th {
+  margin-right: 100px;
+  margin-left: 100px;
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  justify-content: space-evenly;
 }
 .adminTable tr {
   display: flex;
@@ -33,6 +37,11 @@ table {
   justify-content: space-around;
   border-bottom: #013832 1px solid;
   padding-top: 5px;
+}
+.adminTable td {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 .adminTable tr:nth-child(odd) {
   background-color: #B0BB9B;
@@ -44,19 +53,6 @@ table {
   border: #013832 1px inset;
   display: flex;
   flex-direction: row;
-}
-.adminTable th {
-  margin-right: 100px;
-  margin-left: 100px;
-  display: flex;
-  justify-content: space-evenly;
-}
-.adminTable th td {
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80px;
 }
 
 .adminDashboard {

@@ -31,21 +31,45 @@ export default function StudentDash() {
         apiCalls()
     }, [])
     let myCourses
-    console.log(courses.length)
+    // console.log(courses.length)
     if (courses.length > 0) {
         myCourses = courses.map((course, i) => {
+            console.log(course)
             return (
                 <tr key={i}>
                     <td>{course.title}</td>
                     <td className="description">{course.description}</td>
                     <td>{course.course_code}</td>
                     <td>Teacher</td>
-                    <td><input type="checkbox" className="checkbox"/></td>
+                    <td>
+                        <input type="checkbox" value={`${course.id}`} className="selectedCourse" id='checkbox'></input>
+                    </td>
                 </tr>
             )
         })
     }
+    const handleCourseRemoval = async () => {
+        let selectedCourses = document.getElementsByClassName('selectedCourse');
+        let removing = [];
+        for (let i = 0; i < selectedCourses.length; i++){
+            if (selectedCourses[i].checked){
+                removing.push(selectedCourses[i].value)
+            }
+        }
+        try {
+            const rawCourses = await fetch('/api/dropCourse', {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
+                 },
+                body: JSON.stringify({removing})
+            })
+        }catch(err){
 
+        }
+
+    }
     return (
 <>
     <div className="container">
@@ -69,9 +93,12 @@ export default function StudentDash() {
                 </table>
             </div>
             <div className="coursesButton">
-                <h3>Want to add more courses? </h3>
+                <h4>Want to add more courses? </h4>
                 <Link to="/courses" className="button glow-button">Courses</Link>
+                <h4>Remove selected courses?</h4>
+                <button onClick={()=> handleCourseRemoval()} className="button glow-button">Remove</button>
             </div>
+            
         </div>
     </div>
 </>
