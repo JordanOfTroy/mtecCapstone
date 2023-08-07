@@ -6,7 +6,12 @@ const pool = new Pool({
 
 module.exports = {
     getAllCourses: (req, res) => {
-        pool.query('select * from courses;', (err, results) => {
+        pool.query(`
+        select courses.id, teacher_id, title, course_code, credit_hours, tuition,
+        description, capacity, days_of_week, start_time, end_time, room_number,
+        first_name, last_name from courses
+join    users on courses.teacher_id = users.id
+        `, (err, results) => {
             if (err) throw err
             for (let row of results.rows) {
                 console.log(JSON.stringify(row))
