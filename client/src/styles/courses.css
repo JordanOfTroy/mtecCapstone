@@ -95,4 +95,9 @@
   overflow-y: scroll;
   overflow-wrap: break-word;
   overscroll-behavior: contain;
+}
+
+.createCourse {
+  background-color: #B0BB9B;
+  color: #013832;
 }/*# sourceMappingURL=courses.css.map */

@@ -37,34 +37,34 @@ export default function Registration () {
         <div className="registration">
             
             <div className="message">{message}</div>
-            <div className="fillOut">
+            <div>
                 <div>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" name="firstName" id="firstName" />
+                    <label htmlFor="firstName"></label>
+                    <input className='register' type="text" name="firstName" id="firstName" placeholder='First Name' />
                 </div>
                 <div>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" name="lastName" id="lastName" />
+                    <label htmlFor="lastName"></label>
+                    <input className='register' type="text" name="lastName" id="lastName" placeholder='Last Name' />
                 </div>
                 <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" name="email" id="email" 
+                    <label htmlFor="email"></label>
+                    <input className='register' type="email" name="email" id="email" placeholder='Email'
                     // value={location.state ? location.state.props.email : null} 
                     // onChange={(e) => handleEmailChange(e)}
                     />
                     
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" id="password" />
+                    <label htmlFor="password"></label>
+                    <input className='register' type="password" name="password" id="password" placeholder='Password'/>
                 </div>
                 <div>
-                    <label htmlFor="telephone">Phone # :</label>
-                    <input type="telephone" name='telephone' id='telephone'/>
+                    <label htmlFor="telephone"></label>
+                    <input className='register' type="telephone" name='telephone' id='telephone' placeholder='Phone #'/>
                 </div>
                 <div>
-                    <label htmlFor="address">Address:</label>
-                    <input type="address" name="address" id="address"></input>
+                    <label htmlFor="address"></label>
+                    <input className='register' type="address" name="address" id="address" placeholder='Address'></input>
                 </div>
                 
                 <div className="registerButton">
