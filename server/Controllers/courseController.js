@@ -43,7 +43,7 @@ join    users on courses.teacher_id = users.id
         console.log('the backend is fucking working')
         let {id} = req.auth
         let studentCourses = await pool.query(`
-        SELECT title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
+        SELECT title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number, courses.id
         FROM courses
         JOIN students_courses ON courses.id = students_courses.course_id
         JOIN users ON students_courses.student_id = users.id
