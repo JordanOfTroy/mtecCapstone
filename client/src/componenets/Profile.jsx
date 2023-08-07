@@ -93,27 +93,27 @@ export default function Profile() {
                         :
                         <div className="inputBars">
                             <label className="profileLabel" htmlFor="first_name">First Name:</label>
-                            <input type="firstName" name="firstName" id="first_name" 
+                            <input className="profileInput" type="firstName" name="firstName" id="first_name" 
                                 value={user.first_name}
                                 onChange={(e) => handleUserInput(e)}
                             />
                             <label className="profileLabel" htmlFor="last_name">Last Name:</label>
-                            <input type="lastName" name="lastName" id="last_name" 
+                            <input className="profileInput" type="lastName" name="lastName" id="last_name" 
                                 defaultValue={user.last_name}
                                 onChange={(e) => handleUserInput(e)}
                             />
                             <label className="profileLabel" htmlFor="email">Email:</label>
-                            <input type="email" name="email" id="email" 
+                            <input className="profileInput" type="email" name="email" id="email" 
                                 defaultValue={user.email}
                                 onChange={(e) => handleUserInput(e)}
                             />
                             <label className="profileLabel" htmlFor="telephone">Phone #:</label>
-                            <input type="phone" name="phone" id="telephone" 
+                            <input className="profileInput" type="phone" name="phone" id="telephone" 
                                 defaultValue={user.telephone}
                                 onChange={(e) => handleUserInput(e)}
                             />
                             <label className="profileLabel" htmlFor="address">Address:</label>
-                            <input type="address" name="address" id="address" 
+                            <input className="profileInput" type="address" name="address" id="address" 
                                 defaultValue={user.address}
                                 onChange={(e) => handleUserInput(e)}
                             />
