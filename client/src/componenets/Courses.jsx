@@ -31,7 +31,9 @@ export default function Courses() {
 
                 const parsedCourses = await rawCourses.json()
                 const parsedAdmins = await rawAdmins.json()
-                
+                parsedCourses.forEach(course => {
+                    course.isEditing = false
+                })
                 setAllCourses(parsedCourses)
                 setAdmins(parsedAdmins)
             } catch (err) {
@@ -41,10 +43,36 @@ export default function Courses() {
         apiCalls()
     }, [])
 
-    const handleEditCourse = (courseId) => {
-        console.log(courseId)
+    const handleIsEditingRow = (courseId) => {
+        let coursesCopy = [...allCourses]
+        for (let i=0; i<coursesCopy.length; i++) {
+            if (coursesCopy[i].id === courseId) {
+                coursesCopy[i].isEditing = true
+            }
+        }
+        setAllCourses(coursesCopy)
     }
 
+    const handleRowInput = (courseId) => {
+        console.log(courseId)
+        let title = document.getElementById('row_title').value
+        let description = document.getElementById('row_description').value
+        let course_code = document.getElementById('row_course_code').value
+        let start_time = document.getElementById('row_start_time').value
+
+        try {
+            fetch('/api/courses', {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({courseID, title, description, course_code, start_time})
+            })
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+    }
 
     const handleDeleteCourse = async (courseId) => {
         try {
@@ -68,23 +96,48 @@ export default function Courses() {
     if (allCourses.length > 0) {
         courses = allCourses.map((course, i) => {
             return (
-                <tr key={i}>
-                    <td>{course.title}</td>
-                    <td className="description">{course.description}</td>
-                    <td>{course.course_code}</td>
-                    <td>Time</td>
-                    <td>Teacher</td>
-                    <td>{
-                        window.localStorage.getItem('isAdmin') === 'true'
-                        ?
-                        <div>
-                            <button onClick={() => handleEditCourse(course.id)}>Edit</button>
-                            <button onClick={() => handleDeleteCourse(course.id)}>Delete</button>
-                        </div>
-                            :
-                        <input type='checkbox' className='selectedCourse' value={course.id}></input>
-                        }</td>
-                </tr>
+                <>
+                {
+                    !course.isEditing
+                    ?
+                    <tr key={i}>
+                        <td>{course.title}</td>
+                        <td className="description">{course.description}</td>
+                        <td>{course.course_code}</td>
+                        <td>{course.start_time}</td>
+                        <td>Teacher</td>
+                        <td>{
+                            window.localStorage.getItem('isAdmin') === 'true'
+                            ?
+                            <div>
+                                <button onClick={() => handleIsEditingRow(course.id)}>Edit</button>
+                                <button onClick={() => handleDeleteCourse(course.id)}>Delete</button>
+                            </div>
+                                :
+                            <input type='checkbox' className='selectedCourse' value={course.id}></input>
+                            }</td>
+                    </tr>
+                    :
+                    <tr key={i}>
+                        <td><input width='25' type='text' defaultValue={course.title} id='row_title'></input></td>
+                        <td><input width='25' type='text' defaultValue={course.description} id='row_description'></input></td>
+                        <td><input width='25' type='text' defaultValue={course.course_code} id='row_course_code'></input></td>
+                        <td><input width='25' type='time' defaultValue={course.course_code} id='row_start_time'></input></td>
+                        <td>Teacher</td>
+                        <td>{
+                            window.localStorage.getItem('isAdmin') === 'true'
+                            ?
+                            <div>
+                                <button onClick={() => handleRowInput(course.id)}>Submit</button>
+                                
+                            </div>
+                                :
+                            <input type='checkbox' className='selectedCourse' value={course.id}></input>
+                            }</td>
+                    </tr>
+                    
+                }
+                </>
             )
         })
     

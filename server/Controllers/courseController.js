@@ -67,9 +67,8 @@ module.exports = {
     },
 
     updateCourse: async (req, res) => {
-        let {id} = req.params
-        let {teacher_id, title, course_code, credit_hours, tuition, description,
-            capacity, enrolled, days_of_week, start_time, end_time, room_number} = req.body
+        let {courseId, title, course_code, description, start_time} = req.body
+        let {is_admin} = req.auth
         let updatedCourse = await pool.query(`
         UPDATE courses
         SET teacher_id=$2, title=$3, course_code=$4, credit_hours=$5, tuition=$6,
