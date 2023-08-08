@@ -1,4 +1,5 @@
 const {Pool} = require('pg')
+const { log } = require('winston')
 const {DB_URL} = process.env
 const pool = new Pool({
     connectionString: DB_URL
@@ -13,41 +14,132 @@ const createScheduleDay = (obj) => {
 }
 
 module.exports = {
+    // joinCourse: async (req, res) => { 
+    //     // check for opening
+    //     // check if already enrolled
+    //     let {selectedCourses} = req.body
+    //     let {id} = req.auth 
+    //     console.log(`$$$$$$$$$$$$$$`)
+    //     console.log(selectedCourses)
+    //     console.log(`$$$$$$$$$$$$$$`)
+
+    //     for (let course in selectedCourses) {
+    //         let courseId = selectedCourses[course]
+    //         console.log(`*_*_*_*_*_*_*_*`)
+    //         console.log(courseId)
+    //         console.log(`*_*_*_*_*_*_*_*`)
+    //         let userCourses = await pool.query(`
+    //         SELECT * FROM students_courses
+    //         WHERE student_id = $1
+    //         AND course_id = $2
+    //         `,
+    //         [id, courseId])
+            
+    //         let courseEnrollment = await pool.query(`
+    //         SELECT * FROM students_courses
+    //         WHERE course_id = $1
+    //         `,
+    //         [courseId])
+           
+    //         if (userCourses.rows.length == 0 && courseEnrollment.rows.length == 0 ) {
+    //             pool.query(`
+    //             INSERT INTO students_courses (student_id, course_id)
+    //             VALUES ($1, $2)
+    //             `,
+    //             [userId, courseId],
+    //             (err, results) => {
+    //                 if (err) throw err
+    //                 res.status(200).json('enrolled')
+    //             })
+    //         } else {
+    //             res.status(200).json('unable to enroll')
+    //         }
+    //     }
+    // },
+
     joinCourse: async (req, res) => { 
-        // check for opening
-        // check if already enrolled
-        let {courseId} = req.body
-        let {userId} = req.body // replace with req.auth
-        let userCourses = await pool.query(`
-        SELECT * FROM students_courses
-        WHERE student_id = $1
-        AND course_id = $2
-        `,
-        [userId, courseId])
-        
-        let courseEnrollment = await pool.query(`
-        SELECT * FROM students_courses
-        WHERE course_id = $1
-        `,
-        [courseId])
-       
-        if (userCourses.rows.length == 0 && courseEnrollment.rows.length == 0 ) {
-            pool.query(`
-            INSERT INTO students_courses (student_id, course_id)
-            VALUES ($1, $2)
-            `,
-            [userId, courseId],
-            (err, results) => {
-                if (err) throw err
-                res.status(200).json('enrolled')
-            })
-        } else {
-            res.status(200).json('unable to enroll')
+        try {
+            // check for opening
+            // check if already enrolled
+            const { selectedCourses } = req.body;
+            const { id } = req.auth;
+            
+            console.log("$$$$$$$$$$$$$$");
+            console.log(selectedCourses);
+            console.log("$$$$$$$$$$$$$$");
+    
+            for (const courseId of selectedCourses) {
+                console.log("*_*_*_*_*_*_*_*");
+                console.log(courseId);
+                console.log("*_*_*_*_*_*_*_*");
+    
+                const userCourses = await pool.query(
+                    `SELECT * FROM students_courses
+                     WHERE student_id = $1
+                     AND course_id = $2`,
+                    [id, courseId]
+                );
+                
+                const courseEnrollment = await pool.query(
+                    `SELECT * FROM students_courses
+                     WHERE course_id = $1`,
+                    [courseId]
+                );
+
+                const courseCapacity = await pool.query(
+                    `SELECT capacity FROM courses
+                     WHERE id = $1`,
+                    [courseId]
+                )
+
+                console.log(`?????????????`)
+                console.log(userCourses.rows.length)
+                console.log(courseEnrollment.rows.length)
+                console.log(courseCapacity.rows[0].capacity)
+                //need to determine course capacity or pass it is
+                console.log(`?????????????`)
+                if (userCourses.rows.length === 0 && courseEnrollment.rows.length < courseCapacity.rows[0].capacity) {
+                    await pool.query(
+                        `INSERT INTO students_courses (student_id, course_id)
+                         VALUES ($1, $2)`,
+                        [id, courseId]
+                    );
+                } else {
+                    res.status(200).json("unable to enroll");
+                    return; // Exit the loop early if unable to enroll in any course
+                }
+            }
+    
+            res.status(200).json("enrolled");
+        } catch (error) {
+            console.error(error);
+            res.status(500).json("An error occurred");
         }
     },
-    handleCourseRemoval: async (req, res) => {
-        let {removing}= req.body
+    
+
+    dropCourse: async (req, res) => {
+        let {removedCourses}= req.body
         let {id} = req.auth
+        console.log(`-=-=-=-`)
+        console.log(removedCourses)
+        console.log(id)
+        console.log(`-=-=-=-`)
+        for (let course in removedCourses) {
+            console.log(`***********`)
+            console.log(removedCourses[course])
+            console.log(id)
+            console.log(`***********`)
+            let results = await pool.query(`
+            delete from students_courses
+            where student_id = $1
+            and course_id = $2
+            `,
+            [id, removedCourses[course]])
+            console.log(`~~~~`)
+            console.log(results)
+            console.log(`~~~~`)
+        }
         res.status(200).json('its grrrrrrreat')
     }
 }

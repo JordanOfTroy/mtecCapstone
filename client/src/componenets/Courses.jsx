@@ -97,6 +97,33 @@ export default function Courses() {
         }
     }
 
+    const handleJoinCourses = async () => {
+        let selectedOptions = document.getElementsByClassName('selectedCourse')
+        let selectedCourses = []
+        for (let option in selectedOptions) {
+            if (selectedOptions[option].checked) {
+                selectedCourses.push(selectedOptions[option].value)
+            }
+        }
+
+        try {
+            let rawJoinResults = await fetch('/api/joinCourse', {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({selectedCourses})
+            })
+
+            let parsedResults = await rawJoinResults.json()
+            console.log(parsedResults)
+
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+    }
+
     const cancelRowEdit = (courseId) => {
         let courses = [...allCourses]
         for (let i = 0; i < courses.length; i++){
@@ -266,31 +293,38 @@ export default function Courses() {
                 <div className="coursesDashboard">
                     <Header title="Course Wizard"/>
                 </div>
-                {!addingCourse ?
+                {!addingCourse
+                ?
                 <>
-                <div className="searchBar">
-                    <input className="search" placeholder='search by course title'></input>
-                </div>
-                <div className="courseTable">
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Course Code</th>
-                            <th>Time</th>
-                            <th>Credit Hours</th>
-                            <th>Teacher</th>
-                            <th>Capacity</th>
-                            <th>Days</th>
-                            <th>RoomNumber</th>
-                            <th></th>
-                        </tr>
-                        {allCourses && allCourses.length>0 ? courses : <p>No courses</p>}
+                    <div className="searchBar">
+                        <input className="search" placeholder='search by course title'></input>
+                    </div>
+                    <div className="courseTable">
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Course Code</th>
+                                <th>Time</th>
+                                <th>Credit Hours</th>
+                                <th>Teacher</th>
+                                <th>Capacity</th>
+                                <th>Days</th>
+                                <th>RoomNumber</th>
+                                <th></th>
+                            </tr>
+                            {allCourses && allCourses.length>0 ? courses : <p>No courses</p>}
+                            
+                        </table>
                         
-                    </table>
-                    
-                </div>
-                <button className="submitButton">Submit</button>
+                    </div>
+                    {
+                    window.localStorage.getItem('isAdmin') === 'true'
+                    ?
+                    <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
+                    :
+                    <button className="submitButton" onClick={() => handleJoinCourses()}>Join Courses</button>
+                    }
                 </>
                 :
                 <div>
@@ -368,16 +402,11 @@ export default function Courses() {
                             <label htmlFor="sunday" >Sunday</label>
                         </div>
                     </div>
-                  
+                    
+                    <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
                 </div>
                 }
-                {
-                    !addingCourse && window.localStorage.getItem('isAdmin') === 'true'
-                    ?
-                    <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
-                    :
-                    <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
-                }
+               
             </div>
             
         </div>

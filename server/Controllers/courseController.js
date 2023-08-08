@@ -40,7 +40,7 @@ join    users on courses.teacher_id = users.id
     },
 
     getCoursesByStudent: async (req, res) => {
-        console.log('the backend is fucking working')
+        // console.log('the backend is fucking working')
         let {id} = req.auth
         let studentCourses = await pool.query(`
         SELECT courses.id, title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
