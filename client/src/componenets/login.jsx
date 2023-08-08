@@ -49,10 +49,10 @@ export default function Login () {
         <div className="login">
             {message}
             <div>
-                <label htmlFor="email">Email:</label>
-                <input type="email" name='email' id='email' />
-                <label htmlFor="password">Password:</label>
-                <input type="password" name='password' id='password' />
+                <label htmlFor="email"></label>
+                <input type="email" name='email' id='email' placeholder="Email:" />
+                <label htmlFor="password"></label>
+                <input type="password" name='password' id='password' placeholder="Password:"/>
             </div>
             <div className="buttons">
                 <button onClick={() => handleLogin()} className="button glow-button">Login</button>

@@ -44,6 +44,11 @@ module.exports = {
         } else {
             res.status(200).json('unable to enroll')
         }
+    },
+    handleCourseRemoval: async (req, res) => {
+        let {removing}= req.body
+        let {id} = req.auth
+        res.status(200).json('its grrrrrrreat')
     }
 }
 

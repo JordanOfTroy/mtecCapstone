@@ -106,10 +106,11 @@ body {
   flex-direction: column;
   background-color: #387B5C;
   color: #B0BB9B;
+  width: 800px;
+  height: 400px;
 }
 .login input {
   margin-bottom: 25px;
-  margin-left: 5px;
   margin-right: 10px;
 }
 .login button {
@@ -157,15 +158,15 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #387B5C;
+  width: 550px;
+  height: 550px;
 }
 
-.fillOut {
-  margin-right: 20px;
-}
-
-label {
-  margin-right: 20px;
-  margin-left: 20px;
+.register {
+  margin-bottom: 10px;
+  height: 25px;
+  width: 300px;
+  color: #013832;
 }
 
 .message {

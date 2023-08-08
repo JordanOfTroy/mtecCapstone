@@ -68,7 +68,7 @@ export default function AdminDash() {
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Classes Taken</th>
+                        <th>Remove Student?</th>
                     </tr>
                     <tr>
                         <td>Bartimus</td>
@@ -97,18 +97,18 @@ export default function AdminDash() {
                         <th>Amount of Students</th>
                         </tr>
                     <tr>
-                        <td>Bartimus</td>
-                        <td>Bartimus@bartybart.com</td>
+                        <td>Course</td>
+                        <td>Timey-Wimey</td>
                         <td>Lotso</td>
                     </tr>
                     <tr>
-                        <td>Bartimus</td>
-                        <td>Bartimus@bartybart.com</td>
+                        <td>Course</td>
+                        <td>Timey-Wimey</td>
                         <td>Lotso</td>
                     </tr>
                     <tr>
-                        <td>Bartimus</td>
-                        <td>Bartimus@bartybart.com</td>
+                        <td>Course</td>
+                        <td>Timey-Wimey</td>
                         <td>Lotso</td>
                     </tr>
                 </table>

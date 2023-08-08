@@ -75,7 +75,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
+  width: 175px;
   height: 35px;
 }
 
@@ -95,4 +95,9 @@
   overflow-y: scroll;
   overflow-wrap: break-word;
   overscroll-behavior: contain;
+}
+
+.createCourse {
+  background-color: #B0BB9B;
+  color: #013832;
 }/*# sourceMappingURL=courses.css.map */
