@@ -93,13 +93,8 @@ export default function Profile() {
                         :
                         <div className="inputBars">
                             <label className="profileLabel" htmlFor="first_name">First Name:</label>
-<<<<<<< HEAD
-                            <input type="firstName" name="firstName" id="first_name" 
-                                defaultValue={user.first_name}
-=======
                             <input className="profileInput" type="firstName" name="firstName" id="first_name" 
                                 value={user.first_name}
->>>>>>> main
                                 onChange={(e) => handleUserInput(e)}
                             />
                             <label className="profileLabel" htmlFor="last_name">Last Name:</label>
