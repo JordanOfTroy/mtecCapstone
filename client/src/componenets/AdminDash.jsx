@@ -87,8 +87,8 @@ export default function AdminDash() {
                         <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
                     </tr>
                 </table>
+                
             </div>
-            
             <h3>Courses</h3>
             <div className="adminTable">    
                 <table>
