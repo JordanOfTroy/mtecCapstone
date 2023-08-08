@@ -82,6 +82,10 @@ table {
   width: 175px;
   height: 35px;
 }
+.courseTable td:nth-child(2) {
+  padding-top: 5px;
+  font-size: 8px;
+}
 
 .searchBar {
   display: flex;
