@@ -1,5 +1,7 @@
 {
   "vscode-pets.petType": "cat",
   "vscode-pets.petSize": "small",
-  "vscode-pets.theme": "none"
+  "vscode-pets.theme": "none",
+  "git.mergeEditor": true,
+  "merge-conflict.autoNavigateNextConflict.enabled": true
 }
