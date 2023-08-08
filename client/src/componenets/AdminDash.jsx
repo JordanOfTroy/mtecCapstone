@@ -73,17 +73,18 @@ export default function AdminDash() {
                     <tr>
                         <td>Bartimus</td>
                         <td>Bartimus@bartybart.com</td>
-                        <td>2 Many</td>
+                        <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
                     </tr>
                     <tr>
                         <td>Bartimus</td>
                         <td>Bartimus@bartybart.com</td>
-                        <td>2 Many</td>
+                        <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
+
                     </tr>
                     <tr>
                         <td>Bartimus</td>
                         <td>Bartimus@bartybart.com</td>
-                        <td>2 Many</td>
+                        <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
                     </tr>
                 </table>
             </div>

@@ -36,6 +36,9 @@
     width: 460px;
     height: 68px;
 }
+table {
+    width: 100%;
+}
 .courseTable {
     color: #013832;
     background-color:#013832;
@@ -105,7 +108,13 @@
 }
 
 .createCourse {
-    background-color: #B0BB9B;
+    background-color:#B0BB9B;
     color: #013832;
-    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    margin-left: 60%;
+    width: 400px;
+    padding: 20px 20px 20px 20px;
 }

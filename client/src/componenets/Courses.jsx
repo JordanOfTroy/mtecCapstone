@@ -293,30 +293,34 @@ export default function Courses() {
                 <button className="submitButton">Submit</button>
                 </>
                 :
-                <div>
+                <div className="createCourse">
                     <div>
-                        <label htmlFor="title">Title</label>
-                        <input type="text" name="title" id="title" />
+                        <label htmlFor="title"/>
+                        <input type="text" name="title" id="title" placeholder='Title' />
                     </div>
                     <div>
-                        <label htmlFor="description">Description</label>
-                        <input type="text" name="description" id="description" />
+                        <label htmlFor="description"/>
+                        <input type="text" name="description" id="description" placeholder="Description" />
                     </div>
                     <div>
-                        <label htmlFor="course_code">Course Code</label>
-                        <input type="text" name="course_code" id="course_code" />
+                        <label htmlFor="course_code"/>
+                        <input type="text" name="course_code" id="course_code" placeholder="Course Code" />
                     </div>
                     <div>
-                        <label htmlFor="credit_hours">Credit Hours</label>
-                        <input type="number" name="credit_hours" id="credit_hours" />
+                        <label htmlFor="credit_hours"/>
+                        <input type="number" name="credit_hours" id="credit_hours" placeholder="Credit Hours"/>
                     </div>
                     <div>
-                        <label htmlFor="tuition">Tuition</label>
-                        <input type="number" name="tuition" id="tuition" />
+                        <label htmlFor="tuition"/>
+                        <input type="number" name="tuition" id="tuition" placeholder="Tuition"/>
                     </div>
                     <div>
-                        <label htmlFor="capacity">Max Capacity</label>
-                        <input type="number" name="capacity" id="capacity" />
+                        <label htmlFor="capacity"/>
+                        <input type="number" name="capacity" id="capacity" placeholder="Max Capacity" />
+                    </div>
+                    <div>
+                        <label htmlFor="room_number"/>
+                        <input type="text" name="room_number" id="room_number" placeholder="Room Number"/>
                     </div>
                     <div>
                         <label htmlFor="teacher_id">Instructor</label>
@@ -325,10 +329,7 @@ export default function Courses() {
                             {adminOptions}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor="room_number">Room Number</label>
-                        <input type="text" name="room_number" id="room_number"/>
-                    </div>
+                    
                     <div>
                         <label htmlFor="start_time">Start Time</label>
                         <input type="time" name="start_time" id="start_time" min='00:00' max='24:00'/>
