@@ -9,7 +9,6 @@ export default function Login () {
     const navTo = useNavigate()
 
     let handleLogin = async () => {
-        console.log('logging in')
         let email = document.getElementById('email').value
         let password = document.getElementById('password').value
         let rawResult = await fetch('/api/login', {
@@ -19,8 +18,6 @@ export default function Login () {
         })
         
         // Example of what is happening here: https://stackoverflow.com/questions/64566405/react-router-dom-v6-usenavigate-passing-value-to-another-component
-        console.log(rawResult.status)
-        console.log(rawResult)
         if (rawResult.status == 200) {
             let parsedResults = await rawResult.json()
             window.localStorage.setItem('isAdmin', parsedResults.isAdmin)

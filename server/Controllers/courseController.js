@@ -43,7 +43,7 @@ join    users on courses.teacher_id = users.id
         console.log('the backend is fucking working')
         let {id} = req.auth
         let studentCourses = await pool.query(`
-        SELECT title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
+        SELECT courses.id, title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
         FROM courses
         JOIN students_courses ON courses.id = students_courses.course_id
         JOIN users ON students_courses.student_id = users.id
@@ -72,22 +72,25 @@ join    users on courses.teacher_id = users.id
     },
 
     updateCourse: async (req, res) => {
-        let {courseId, title, course_code, description, start_time} = req.body
+        let {courseId, title, description, course_code, start_time, end_time, credit_hours, teacher_id, capacity, days_of_week, room_number} = req.body
         let {is_admin} = req.auth
-        let updatedCourse = await pool.query(`
-        UPDATE courses
-        SET teacher_id=$2, title=$3, course_code=$4, credit_hours=$5, tuition=$6,
-        description=$7, capacity=$8, enrolled=$9, days_of_week=$10, start_time=$11,
-        end_time=$12, room_number=$13
-        WHERE id=$1
-        RETURNING courses.*
-        `, [id, teacher_id, title, course_code, credit_hours, tuition, description, capacity,
-        enrolled, days_of_week, start_time, end_time, room_number],
-        (err, results) => {
-            if (err) throw err
-            console.log(results.rows)
-            res.status(200).json(results.rows)
-        })
+        console.log(`~~~~~`)
+        console.log(is_admin)
+        req.body
+        console.log(`~~~~~`)
+        if (is_admin) {
+            let updatedCourse = await pool.query(`
+            UPDATE courses
+            SET title=$2, description=$3, course_code=$4, start_time=$5, end_time=$6, credit_hours=$7, teacher_id=$8, capacity=$9, days_of_week=$10, room_number=$11
+            WHERE id=$1
+            RETURNING courses.*
+            `, [courseId, title, description, course_code, start_time, end_time, credit_hours, teacher_id, capacity, days_of_week, room_number],
+            (err, results) => {
+                if (err) throw err
+                console.log(results.rows)
+                res.status(200).json(results.rows)
+            })
+        }
     },
 
     addNewCourse: (req, res) => { //convert to async and send back results

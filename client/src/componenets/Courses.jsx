@@ -53,25 +53,58 @@ export default function Courses() {
         setAllCourses(coursesCopy)
     }
 
-    const handleRowInput = (courseId) => {
-        console.log(courseId)
+    const handleRowInput = async (courseId) => {
         let title = document.getElementById('row_title').value
         let description = document.getElementById('row_description').value
         let course_code = document.getElementById('row_course_code').value
         let start_time = document.getElementById('row_start_time').value
+        let end_time = document.getElementById('row_end_time'). value
+        let credit_hours = document.getElementById('row_credit_hours').value
+        let teacher_id = document.getElementById('row_teacher_id').value
+        let capacity = document.getElementById('row_capacity').value
+        let days_of_week = document.getElementById('row_days_of_week').value
+        let room_number = document.getElementById('row_room_number').value
 
         try {
-            fetch('/api/courses', {
+            let results = await fetch('/api/courses', {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json",
                     Authorization: `Bearer ${window.localStorage.getItem('token')}`
                 },
-                body: JSON.stringify({courseID, title, description, course_code, start_time})
+                body: JSON.stringify({
+                    courseId, title, description, course_code, start_time, end_time, credit_hours, teacher_id, capacity, days_of_week, room_number
+                })
             })
+
+            if (results.status == 200) {
+                let parsedResults = await results.json()
+                parsedResults[0].isEditing = false
+                console.log('parsed results:',parsedResults, parsedResults[0].id)
+           
+                setAllCourses((prevCourses) => {
+                    return prevCourses.map((course) => {
+                        return course.id === parsedResults[0].id ? parsedResults[0] : course;
+                    });
+                });
+               
+            } else {
+                console.log(results.status)
+            }
+
         } catch (err) {
             console.log('FETCHING ERROR:', err)
         }
+    }
+
+    const cancelRowEdit = (courseId) => {
+        let courses = [...allCourses]
+        for (let i = 0; i < courses.length; i++){
+            if (courses[i].id === courseId) {
+                courses[i].isEditing = false
+            }
+        }
+        setAllCourses(courses)
     }
 
     const handleDeleteCourse = async (courseId) => {
@@ -92,8 +125,12 @@ export default function Courses() {
         }
     }
 
+    const adminOptions = admins.map((admin, i) => {
+        return <option key={i} value={admin.id}>{admin.first_name} {admin.last_name}</option>
+    })
+
     let courses
-    if (allCourses.length > 0) {
+    if (allCourses && allCourses.length > 0) {
         courses = allCourses.map((course, i) => {
             return (
                 <>
@@ -104,8 +141,12 @@ export default function Courses() {
                         <td>{course.title}</td>
                         <td className="description">{course.description}</td>
                         <td>{course.course_code}</td>
-                        <td>{course.start_time}</td>
+                        <td>{`${course.start_time} - ${course.end_time}`}</td>
+                        <td>{course.credit_hours}</td>
                         <td>{`${course.first_name} ${course.last_name}`}</td>
+                        <td>{course.capacity}</td>
+                        <td>{course.days_of_week}</td>
+                        <td>{course.room_number}</td>
                         <td>{
                             window.localStorage.getItem('isAdmin') === 'true'
                             ?
@@ -119,17 +160,37 @@ export default function Courses() {
                     </tr>
                     :
                     <tr key={i}>
-                        <td><input width='25' type='text' defaultValue={course.title} id='row_title'></input></td>
-                        <td><input width='25' type='text' defaultValue={course.description} id='row_description'></input></td>
-                        <td><input width='25' type='text' defaultValue={course.course_code} id='row_course_code'></input></td>
-                        <td><input width='25' type='time' defaultValue={course.course_code} id='row_start_time'></input></td>
-                        <td>Teacher</td>
+                        <td><input type='text' defaultValue={course.title} id='row_title'></input></td>
+                        <td><input type='text' defaultValue={course.description} id='row_description'></input></td>
+                        <td><input type='text' defaultValue={course.course_code} id='row_course_code'></input></td>
+                        <td>
+                            <input type='time' defaultValue={course.start_time} id='row_start_time'></input>
+                            <input type='time' defaultValue={course.end_time} id='row_end_time'></input>
+                        </td>
+                        <td><input type="number" defaultValue={course.credit_hours} id='row_credit_hours'/></td>
+                        <td>
+                           <select name="" id="row_teacher_id">
+                            {
+                                admins.map((admin, i) => {
+                                    if (admin.id === course.teacher_id) {
+                                        return <option key={i} value={admin.id} selected='selected'>{admin.first_name} {admin.last_name}</option>
+                                    } else {
+                                        return <option key={i} value={admin.id}>{admin.first_name} {admin.last_name}</option>
+                                    }
+
+                                })
+                            }
+                           </select>
+                        </td>
+                        <td><input type="number" defaultValue={course.capacity} id="row_capacity" /></td>
+                        <td><input type="text" defaultValue={course.days_of_week} id="row_days_of_week" /></td>
+                        <td><input type="text" defaultValue={course.room_number} id="row_room_number" /></td>
                         <td>{
                             window.localStorage.getItem('isAdmin') === 'true'
                             ?
                             <div>
                                 <button onClick={() => handleRowInput(course.id)}>Submit</button>
-                                
+                                <button onClick={() => cancelRowEdit(course.id)}>Cancel</button>
                             </div>
                                 :
                             <input type='checkbox' className='selectedCourse' value={course.id}></input>
@@ -143,9 +204,7 @@ export default function Courses() {
     
     }
 
-    const adminOptions = admins.map((admin, i) => {
-        return <option key={i} value={admin.id}>{admin.first_name} {admin.last_name}</option>
-    })
+   
 
     const handleCourseSubmission = async () => {
         let title = document.getElementById('title').value
@@ -219,10 +278,14 @@ export default function Courses() {
                             <th>Description</th>
                             <th>Course Code</th>
                             <th>Time</th>
+                            <th>Credit Hours</th>
                             <th>Teacher</th>
-                            <th>Enroll</th>
+                            <th>Capacity</th>
+                            <th>Days</th>
+                            <th>RoomNumber</th>
+                            <th></th>
                         </tr>
-                        {allCourses.length>0 ? courses : <p>No courses</p>}
+                        {allCourses && allCourses.length>0 ? courses : <p>No courses</p>}
                         
                     </table>
                     
