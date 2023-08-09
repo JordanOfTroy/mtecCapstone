@@ -10,7 +10,7 @@ module.exports = {
         select courses.id, teacher_id, title, course_code, credit_hours, tuition,
         description, capacity, days_of_week, start_time, end_time, room_number,
         first_name, last_name from courses
-join    users on courses.teacher_id = users.id
+        join users on courses.teacher_id = users.id
         `, (err, results) => {
             if (err) throw err
             for (let row of results.rows) {
@@ -18,6 +18,28 @@ join    users on courses.teacher_id = users.id
             }
             res.status(200).json(results.rows)
         })
+    },
+
+    searchAllCourses: async (req, res) => {
+        let {term} = req.body
+        try {
+            let searchedCourses = await pool.query(
+                `
+                select courses.id, teacher_id, title, course_code, credit_hours, tuition,
+                description, capacity, days_of_week, start_time, end_time, room_number,
+                first_name, last_name from courses
+                join users on courses.teacher_id = users.id
+                WHERE LOWER(title) LIKE '%'||LOWER($1)||'%'
+                `,
+                [term]
+            )
+            res.status(200).json(searchedCourses.rows)
+        } catch (err) {
+            console.log(`!!!!!!!!!!!!!!!`)
+            console.log(err)
+            console.log(`!!!!!!!!!!!!!!!`)
+        }
+        
     },
 
     getCourseById: (req, res) => {
@@ -40,7 +62,7 @@ join    users on courses.teacher_id = users.id
     },
 
     getCoursesByStudent: async (req, res) => {
-        console.log('the backend is fucking working')
+        // console.log('the backend is fucking working')
         let {id} = req.auth
         let studentCourses = await pool.query(`
         SELECT courses.id, title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import'../styles/courses.scss';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import SideBar from './SideBar.jsx';
 import Header from './Header.jsx';
 
@@ -12,6 +12,8 @@ export default function Courses() {
     const [allCourses, setAllCourses] = useState([])
     const [addingCourse, setAddingCourse] = useState(false)
     const [admins, setAdmins] = useState([])
+    const [searchTimeout, setSearchTimeout] = useState(null)
+    const navTo = useNavigate()
 
     useEffect(() => {
         let apiCalls = async () => {
@@ -90,6 +92,43 @@ export default function Courses() {
                
             } else {
                 console.log(results.status)
+            }
+
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+    }
+
+    const handleJoinCourses = async () => {
+        let selectedOptions = document.getElementsByClassName('selectedCourse')
+        let selectedCourses = []
+        for (let option in selectedOptions) {
+            if (selectedOptions[option].checked) {
+                selectedCourses.push(selectedOptions[option].value)
+            }
+        }
+
+        try {
+            let rawJoinResults = await fetch('/api/joinCourse', {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({selectedCourses})
+            })
+
+            let parsedResults = await rawJoinResults.json()
+
+            if (rawJoinResults.status == 200) {
+                console.log(parsedResults)
+                navTo('/student')
+            } else {
+                console.log('status: ',rawJoinResults.status)
+                console.log('Message: ',parsedResults.message)
+                console.log('Course:', parsedResults.courseId)
+                //do something to tell user they can't sign up
+                //or make the options unavailable if they are already enrolled??
             }
 
         } catch (err) {
@@ -259,6 +298,33 @@ export default function Courses() {
 
     }
 
+    const handleUserSearch = async (e) => {
+        const term = e.target.value;
+
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
+
+        const newTimeout = setTimeout(async () => {
+            try {
+                let rawResults = await fetch('/api/searchCourses', {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({ term })
+                });
+                let parsedResults = await rawResults.json();
+                console.log(parsedResults);
+                setAllCourses(parsedResults)
+            } catch (err) {
+                console.log('FETCHING ERROR:', err);
+            }
+        }, 300); 
+
+        setSearchTimeout(newTimeout);
+    };
+
     return (
         <div className="container">
             <SideBar/>
@@ -266,31 +332,38 @@ export default function Courses() {
                 <div className="coursesDashboard">
                     <Header title="Course Wizard"/>
                 </div>
-                {!addingCourse ?
+                {!addingCourse
+                ?
                 <>
-                <div className="searchBar">
-                    <input className="search" placeholder='search by course title'></input>
-                </div>
-                <div className="courseTable">
-                    <table>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Course Code</th>
-                            <th>Time</th>
-                            <th>Credit Hours</th>
-                            <th>Teacher</th>
-                            <th>Capacity</th>
-                            <th>Days</th>
-                            <th>RoomNumber</th>
-                            <th></th>
-                        </tr>
-                        {allCourses && allCourses.length>0 ? courses : <p>No courses</p>}
+                    <div className="searchBar">
+                        <input className="search" placeholder='search by course title' onKeyUp={(e) => handleUserSearch(e)}></input>
+                    </div>
+                    <div className="courseTable">
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Course Code</th>
+                                <th>Time</th>
+                                <th>Credit Hours</th>
+                                <th>Teacher</th>
+                                <th>Capacity</th>
+                                <th>Days</th>
+                                <th>RoomNumber</th>
+                                <th></th>
+                            </tr>
+                            {allCourses && allCourses.length>0 ? courses : <p>No courses</p>}
+                            
+                        </table>
                         
-                    </table>
-                    
-                </div>
-                <button className="submitButton">Submit</button>
+                    </div>
+                    {
+                    window.localStorage.getItem('isAdmin') === 'true'
+                    ?
+                    <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
+                    :
+                    <button className="submitButton" onClick={() => handleJoinCourses()}>Join Courses</button>
+                    }
                 </>
                 :
                 <div>
@@ -368,16 +441,11 @@ export default function Courses() {
                             <label htmlFor="sunday" >Sunday</label>
                         </div>
                     </div>
-                  
+                    
+                    <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
                 </div>
                 }
-                {
-                    !addingCourse && window.localStorage.getItem('isAdmin') === 'true'
-                    ?
-                    <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
-                    :
-                    <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
-                }
+               
             </div>
             
         </div>
