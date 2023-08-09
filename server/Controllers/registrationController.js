@@ -105,7 +105,10 @@ module.exports = {
                         [id, courseId]
                     );
                 } else {
-                    res.status(200).json("unable to enroll");
+                    res.status(400).json({
+                        message: 'Unable to enroll',
+                        courseId
+                    });
                     return; // Exit the loop early if unable to enroll in any course
                 }
             }

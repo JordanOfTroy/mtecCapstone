@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import'../styles/courses.scss';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import SideBar from './SideBar.jsx';
 import Header from './Header.jsx';
 
@@ -12,6 +12,8 @@ export default function Courses() {
     const [allCourses, setAllCourses] = useState([])
     const [addingCourse, setAddingCourse] = useState(false)
     const [admins, setAdmins] = useState([])
+    const [searchTimeout, setSearchTimeout] = useState(null)
+    const navTo = useNavigate()
 
     useEffect(() => {
         let apiCalls = async () => {
@@ -117,7 +119,17 @@ export default function Courses() {
             })
 
             let parsedResults = await rawJoinResults.json()
-            console.log(parsedResults)
+
+            if (rawJoinResults.status == 200) {
+                console.log(parsedResults)
+                navTo('/student')
+            } else {
+                console.log('status: ',rawJoinResults.status)
+                console.log('Message: ',parsedResults.message)
+                console.log('Course:', parsedResults.courseId)
+                //do something to tell user they can't sign up
+                //or make the options unavailable if they are already enrolled??
+            }
 
         } catch (err) {
             console.log('FETCHING ERROR:', err)
@@ -286,6 +298,33 @@ export default function Courses() {
 
     }
 
+    const handleUserSearch = async (e) => {
+        const term = e.target.value;
+
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
+
+        const newTimeout = setTimeout(async () => {
+            try {
+                let rawResults = await fetch('/api/searchCourses', {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({ term })
+                });
+                let parsedResults = await rawResults.json();
+                console.log(parsedResults);
+                setAllCourses(parsedResults)
+            } catch (err) {
+                console.log('FETCHING ERROR:', err);
+            }
+        }, 300); 
+
+        setSearchTimeout(newTimeout);
+    };
+
     return (
         <div className="container">
             <SideBar/>
@@ -297,7 +336,7 @@ export default function Courses() {
                 ?
                 <>
                     <div className="searchBar">
-                        <input className="search" placeholder='search by course title'></input>
+                        <input className="search" placeholder='search by course title' onKeyUp={(e) => handleUserSearch(e)}></input>
                     </div>
                     <div className="courseTable">
                         <table>

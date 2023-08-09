@@ -54,6 +54,7 @@ app.use(morgan('dev', {
 
 //ENDMPOINTS
 app.get('/api/courses', courseCTRL.getAllCourses)
+app.post('/api/searchCourses', courseCTRL.searchAllCourses)
 app.get('/api/coursesImTeaching', auth, courseCTRL.getCoursesImTeaching)
 app.get('/api/myCourses', auth, courseCTRL.getCoursesByStudent)
 app.get('/api/courses/:id', courseCTRL.getCourseById)
