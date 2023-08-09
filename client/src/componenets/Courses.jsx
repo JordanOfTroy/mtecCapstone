@@ -15,33 +15,33 @@ export default function Courses() {
     const [searchTimeout, setSearchTimeout] = useState(null)
     const navTo = useNavigate()
 
-    useEffect(() => {
-        let apiCalls = async () => {
-            try {
-                const rawCourses = await fetch('/api/courses', {
-                    method: 'GET',
-                    headers: {
-                        "content-type": "application/json"
-                    }
-                })
-                const rawAdmins = await fetch('/api/admins', {
-                    method:'GET',
-                    headers: {
-                        "content-type": "application/json"
-                    }
-                })
+    let apiCalls = async () => {
+        try {
+            const rawCourses = await fetch('/api/courses', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json"
+                }
+            })
+            const rawAdmins = await fetch('/api/admins', {
+                method:'GET',
+                headers: {
+                    "content-type": "application/json"
+                }
+            })
 
-                const parsedCourses = await rawCourses.json()
-                const parsedAdmins = await rawAdmins.json()
-                parsedCourses.forEach(course => {
-                    course.isEditing = false
-                })
-                setAllCourses(parsedCourses)
-                setAdmins(parsedAdmins)
-            } catch (err) {
-                console.log('Fetching Error:', err)
-            }
+            const parsedCourses = await rawCourses.json()
+            const parsedAdmins = await rawAdmins.json()
+            parsedCourses.forEach(course => {
+                course.isEditing = false
+            })
+            setAllCourses(parsedCourses)
+            setAdmins(parsedAdmins)
+        } catch (err) {
+            console.log('Fetching Error:', err)
         }
+    }
+    useEffect(() => {
         apiCalls()
     }, [])
 
@@ -80,15 +80,7 @@ export default function Courses() {
             })
 
             if (results.status == 200) {
-                let parsedResults = await results.json()
-                parsedResults[0].isEditing = false
-                console.log('parsed results:',parsedResults, parsedResults[0].id)
-           
-                setAllCourses((prevCourses) => {
-                    return prevCourses.map((course) => {
-                        return course.id === parsedResults[0].id ? parsedResults[0] : course;
-                    });
-                });
+                apiCalls()
                
             } else {
                 console.log(results.status)
@@ -157,6 +149,7 @@ export default function Courses() {
             })
             if (results.status == 200) {
                 let parsedResults = await results.json()
+                console.log(parsedResults)
                 setAllCourses(parsedResults)
             }
         } catch (err) {
