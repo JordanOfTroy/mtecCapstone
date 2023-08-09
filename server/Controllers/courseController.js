@@ -96,22 +96,20 @@ module.exports = {
     updateCourse: async (req, res) => {
         let {courseId, title, description, course_code, start_time, end_time, credit_hours, teacher_id, capacity, days_of_week, room_number} = req.body
         let {is_admin} = req.auth
-        console.log(`~~~~~`)
-        console.log(is_admin)
-        req.body
-        console.log(`~~~~~`)
         if (is_admin) {
-            let updatedCourse = await pool.query(`
-            UPDATE courses
-            SET title=$2, description=$3, course_code=$4, start_time=$5, end_time=$6, credit_hours=$7, teacher_id=$8, capacity=$9, days_of_week=$10, room_number=$11
-            WHERE id=$1
-            RETURNING courses.*
-            `, [courseId, title, description, course_code, start_time, end_time, credit_hours, teacher_id, capacity, days_of_week, room_number],
-            (err, results) => {
-                if (err) throw err
-                console.log(results.rows)
-                res.status(200).json(results.rows)
-            })
+            try {
+                let updatedCourse = await pool.query(
+                `
+                UPDATE courses
+                SET title=$2, description=$3, course_code=$4, start_time=$5, end_time=$6, credit_hours=$7, teacher_id=$8, capacity=$9, days_of_week=$10, room_number=$11
+                WHERE id=$1
+                `,
+                [courseId, title, description, course_code, start_time, end_time, credit_hours, teacher_id, capacity, days_of_week, room_number]
+                )
+                res.status(200).json('course has been edited')
+            } catch (err) {
+                console.log('SERVER ERROR:', err)
+            }
         }
     },
 
@@ -144,23 +142,36 @@ module.exports = {
         let {id} = req.params
         let {is_admin} = req.auth
         if (is_admin) {
-            let updatedCourses = await pool.query(`
-            DELETE FROM courses
-            where id=$1
-            `,
-            [id],
-            (err, results) => {
-                if (err) throw err
-                pool.query(`
-                SELECT * from courses
-                `, (err, results) => {
-                    if (err) throw err
-                    res.status(200).json(results.rows)
-                })
-            })
-        } else {
-            res.status(401).json('non-admin user')
+            try {
+                let removedCourse = await pool.query(
+                    `
+                    DELETE FROM courses
+                    WHERE id = $1
+                    `,
+                    [id]
+                )
+                let removedStudents = await pool.query(
+                    `
+                    DELETE FROM students_courses
+                    WHERE course_id = $1
+                    `,
+                    [id]
+                )
+                let updatedCourses = await pool.query(
+                    `
+                    select courses.id, teacher_id, title, course_code, credit_hours, tuition,
+                    description, capacity, days_of_week, start_time, end_time, room_number,
+                    first_name, last_name from courses
+                    join users on courses.teacher_id = users.id
+                    `
+                )
+                res.status(200).json(updatedCourses.rows)
+
+            } catch (err) {
+                console.log('SERVER ERROR: ', err)
+            }
         }
+            
     }
 
 
