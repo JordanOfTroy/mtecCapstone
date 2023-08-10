@@ -1,13 +1,15 @@
 import '../styles/admin.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './Header.jsx';
 import SideBar from './SideBar.jsx';
 
 export default function AdminDash() {
 
-    const [students, setStudents] = useState()
-    const [courses, setCourses] = useState()
-    const [myStudents, setMyStudents] = useState()
+    const [students, setStudents] = useState([])
+    const [courses, setCourses] = useState([])
+    const [myStudents, setMyStudents] = useState([])
+    const [isAddingUser, setIsAddingUser] = useState(false)
 
 
     let apiCalls = async () => {
@@ -37,11 +39,11 @@ export default function AdminDash() {
             const parsedStudents = await rawStudents.json()
             const parsedCourses = await rawCourses.json()
             const parsedMyStudents = await rawMyStudents.json()
-            console.log(`~~~~~~~~`)
-            console.log(parsedStudents)
-            console.log(parsedCourses)
-            console.log(parsedMyStudents)
-            console.log(`~~~~~~~~`)
+            // console.log(`~~~~~~~~`)
+            // console.log(parsedStudents)
+            // console.log(parsedCourses)
+            // console.log(parsedMyStudents)
+            // console.log(`~~~~~~~~`)
             setStudents(parsedStudents)
             setCourses(parsedCourses)
             setMyStudents(parsedMyStudents)
@@ -53,6 +55,75 @@ export default function AdminDash() {
     useEffect(() => {
         apiCalls()
     }, [])
+
+    const createNewAdmin = async(obj) => {
+        try {
+            let rawResponse = await fetch('/api/newAdmin', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(obj)
+            })
+
+            if (rawResponse.status == 200) {
+                setIsAddingUser(false)
+            }
+
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+    }
+
+    const createNewStudent = async (obj) => {
+        try {
+            let rawResponse = await fetch('/api/newStudent', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(obj)
+            })
+
+            if (rawResponse.status == 200) {
+                setIsAddingUser(false)
+            }
+
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+    }
+
+    const handleCreateNewUser = () => {
+        let firstName = document.getElementById('firstName').value
+        let lastName = document.getElementById('lastName').value
+        let email = document.getElementById('email').value
+        let password = document.getElementById('password').value
+        let telephone = document.getElementById('telephone').value
+        let address = document.getElementById('address').value
+        let radioButtons = document.getElementsByName('user_type_radio')
+        let userType 
+        for (let button in radioButtons) {
+            if (radioButtons[button].checked) {
+                userType = radioButtons[button].value
+                break
+            } 
+        }
+        let is_admin = userType === 'admin'
+
+        /**Yes. this can be done in a single call. But that ain't how I set things up
+         * and I want to get it working before I refactor the backend.
+         * Fight me! RAWR!!!! 
+         */
+        if (is_admin) {
+            createNewAdmin({firstName, lastName, email, password, telephone, address})
+        } else {
+            createNewStudent ({firstName, lastName, email, password, telephone, address})
+        }
+
+    }
 
     let myCourses
     if (courses && courses.length > 0) {
@@ -75,13 +146,12 @@ export default function AdminDash() {
     let myStudentList
     if (myStudents && myStudents.length > 0) {
         myStudentList = myStudents.map((student, i) => {
-            console.log(student.id)
             return (
                 <tr key={i}>
                     <td>{student.id}</td>
                     <td>{`${student.first_name} ${student.last_name}`}</td>
                     <td>{student.email}</td>
-                    <td><button>Details</button></td>
+                    <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
                 </tr>
             )
         })
@@ -95,7 +165,7 @@ export default function AdminDash() {
                      <td>{student.id}</td>
                     <td>{`${student.first_name} ${student.last_name}`}</td>
                     <td>{student.email}</td>
-                    <td><button>Details</button></td>
+                    <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
                 </tr>
             )
         })
@@ -107,54 +177,101 @@ export default function AdminDash() {
             <div className="adminDashboard">
                 <Header title="Dashboard"/>
             </div>
-            <div className="adminMain">
-                <div>
-                    <h3>My Courses</h3>
-                    <div className="adminTable">    
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Course Code</th>
-                                <th>Time</th>
-                                <th>Credit Hours</th>
-                                <th>Capacity</th>
-                                <th>Days</th>
-                                <th>RoomNumber</th>
-                            </tr>
-                            {myCourses}
-                        </table>
+            {
+                !isAddingUser
+                ?
+                <div className="adminMain">
+                    <div>
+                        <button className="button glow-button" onClick={() => setIsAddingUser(true)}>Add New User</button>
+                    </div>
+                    <div>
+                        <h3>My Courses</h3>
+                        <div className="adminTable">    
+                            <table>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Course Code</th>
+                                    <th>Time</th>
+                                    <th>Credit Hours</th>
+                                    <th>Capacity</th>
+                                    <th>Days</th>
+                                    <th>RoomNumber</th>
+                                </tr>
+                                {myCourses}
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>My Students</h3>
+                        <div className="adminTable">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>email</th>
+                                    <th>View Details</th>
+                                </tr>
+                                {myStudentList}
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>All Students</h3>
+                        <div className="adminTable">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>email</th>
+                                    <th>View Details</th>
+                                </tr>
+                                {allStudents}
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h3>My Students</h3>
-                    <div className="adminTable">
-                        <table>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>email</th>
-                                <th>View Details</th>
-                            </tr>
-                            {myStudentList}
-                        </table>
+                :
+                <div className="adminMain">
+                    <div className='creatingNewUserForm'>
+                        <div>
+                            <label htmlFor="firstName"></label>
+                            <input className='register' type="text" name="firstName" id="firstName" placeholder='First Name' />
+                        </div>
+                        <div>
+                            <label htmlFor="lastName"></label>
+                            <input className='register' type="text" name="lastName" id="lastName" placeholder='Last Name' />
+                        </div>
+                        <div>
+                            <label htmlFor="email"></label>
+                            <input className='register' type="email" name="email" id="email" placeholder='Email'/>
+                        </div>
+                        <div>
+                            <label htmlFor="password"></label>
+                            <input className='register' type="password" name="password" id="password" placeholder='Password'/>
+                        </div>
+                        <div>
+                            <label htmlFor="telephone"></label>
+                            <input className='register' type="telephone" name='telephone' id='telephone' placeholder='Phone #'/>
+                        </div>
+                        <div>
+                            <label htmlFor="address"></label>
+                            <input className='register' type="address" name="address" id="address" placeholder='Address'></input>
+                        </div>
+                        <div>
+                            <input className='register_radio' type="radio" name="user_type_radio" id="student_radio" value='student' ></input>
+                            <label htmlFor="address">Student</label>
+                            <input className='register_radio' type="radio" name="user_type_radio" id="admin_radio" value='admin' ></input>
+                            <label htmlFor="address">Admin</label>
+                        </div>
+                        
+                        <div className="registerButton">
+                            <button className="button glow-button" onClick={() => setIsAddingUser(false)}>Cancel</button>
+                            <button className="button glow-button" onClick={() => handleCreateNewUser()}>Submit new user</button>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h3>All Students</h3>
-                    <div className="adminTable">
-                        <table>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>email</th>
-                                <th>View Details</th>
-                            </tr>
-                            {allStudents}
-                        </table>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     )
 };
