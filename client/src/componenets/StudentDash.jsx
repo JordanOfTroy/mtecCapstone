@@ -9,32 +9,33 @@ export default function StudentDash() {
 
     const [courses, setCourses] = useState([])
 
-    useEffect(() => {
-        let apiCalls = async () => {
-            try {
-                const rawCourses = await fetch('/api/myCourses', {
-                    method: 'GET',
-                    headers: {
-                        "content-type": "application/json",
-                        Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
-                     }
-                })
-                const parsedCourses = await rawCourses.json()
-                console.log(`~~~~~~`)
-                console.log(parsedCourses)
-                console.log(`~~~~~~`)
-                setCourses(parsedCourses)
-            } catch (err) {
-                console.log('Fetching Error:', err)
-            }
+    let fetchCourses = async () => {
+        try {
+            const rawCourses = await fetch('/api/myCourses', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
+                 }
+            })
+            const parsedCourses = await rawCourses.json()
+            console.log(`~~~~~~`)
+            console.log(parsedCourses)
+            console.log(`~~~~~~`)
+            setCourses(parsedCourses)
+        } catch (err) {
+            console.log('Fetching Error:', err)
         }
-        apiCalls()
+    }
+
+    useEffect(() => {
+        fetchCourses()
     }, [])
     let myCourses
     // console.log(courses.length)
     if (courses.length > 0) {
         myCourses = courses.map((course, i) => {
-            console.log(course)
+            // console.log(course)
             return (
                 <tr key={i}>
                     <td>{course.title}</td>
@@ -50,23 +51,26 @@ export default function StudentDash() {
     }
     const handleCourseRemoval = async () => {
         let selectedCourses = document.getElementsByClassName('selectedCourse');
-        let removing = [];
+        let removedCourses = [];
         for (let i = 0; i < selectedCourses.length; i++){
             if (selectedCourses[i].checked){
-                removing.push(selectedCourses[i].value)
+                removedCourses.push(selectedCourses[i].value)
             }
         }
         try {
-            const rawCourses = await fetch('/api/dropCourse', {
+            const rawResponse = await fetch('/api/dropCourse', {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json",
-                    Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
                  },
-                body: JSON.stringify({removing})
+                body: JSON.stringify({removedCourses})
             })
+            if (rawResponse.status == 200) {
+                fetchCourses()
+            }
         }catch(err){
-
+            console.log('FETCHING ERROR:', err)
         }
 
     }

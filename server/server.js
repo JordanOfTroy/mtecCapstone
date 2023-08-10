@@ -65,9 +65,10 @@ app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 app.get('/api/user', auth, userCTRL.getUser)
 
 app.put('/api/courses', auth, courseCTRL.updateCourse)
-app.put('/api/user', auth, userCTRL.updateUser) //add auth
-app.put('/api/joinCourse/', registrationCTRL.joinCourse)
-app.put('/api/dropCourse', auth, registrationCTRL.handleCourseRemoval)
+app.post('/api/searchCourses', courseCTRL.searchAllCourses)
+app.put('/api/user', auth, userCTRL.updateUser) 
+app.put('/api/joinCourse', auth, registrationCTRL.joinCourse)
+app.put('/api/dropCourse', auth, registrationCTRL.dropCourse)
 
 app.post('/api/courses', auth, courseCTRL.addNewCourse)
 app.post('/api/newAdmin', userCTRL.addNewAdmin)
