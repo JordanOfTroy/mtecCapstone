@@ -50,7 +50,7 @@ module.exports = {
       let {is_admin} = req.auth
       if (is_admin) {
         pool.query(`
-          select (id, first_name, last_name, email) from users
+          select id, first_name, last_name, email from users
           where is_admin = 'false'
         `, (err, results) => {
           if (err) throw err
@@ -66,7 +66,7 @@ module.exports = {
       let {is_admin, id} = req.auth
       if (is_admin) {
         pool.query(`
-        select distinct users.first_name, users.last_name, users.id, users.email, courses.title, courses.course_code from users
+        select users.first_name, users.last_name, users.id, users.email, courses.title, courses.course_code from users
         join students_courses on users.id = students_courses.student_id
         join courses on students_courses.course_id = courses.id
         where courses.teacher_id = $1 
