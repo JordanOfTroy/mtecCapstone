@@ -116,6 +116,8 @@ export default function Courses() {
                 console.log(parsedResults)
                 navTo('/student')
             } else {
+                console.log('does anything happen before')
+                myFunction();
                 console.log('status: ',rawJoinResults.status)
                 console.log('Message: ',parsedResults.message)
                 console.log('Course:', parsedResults.courseId)
@@ -452,7 +454,7 @@ export default function Courses() {
                     <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
                 </div>
                 }
-                <div class="popup" onClick={() => myFunction()}>Click me to toggle the popup!
+                <div class="popup" onClick={() => myFunction()}>
                     <span class="popuptext" id="myPopup">
                         <p>It appears you have scheduling conflicts, please double check your currently enrolled courses, or select a different course to enroll in.</p>
                         <button>Okay</button>
