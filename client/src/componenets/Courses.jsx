@@ -116,11 +116,11 @@ export default function Courses() {
                 console.log(parsedResults)
                 navTo('/student')
             } else {
-                console.log('does anything happen before')
-                myFunction();
-                console.log('status: ',rawJoinResults.status)
-                console.log('Message: ',parsedResults.message)
-                console.log('Course:', parsedResults.courseId)
+                // console.log('does anything happen before')
+                conflictMessage();
+                // console.log('status: ',rawJoinResults.status)
+                // console.log('Message: ',parsedResults.message)
+                // console.log('Course:', parsedResults.courseId)
                 //do something to tell user they can't sign up
                 //or make the options unavailable if they are already enrolled??
             }
@@ -319,7 +319,7 @@ export default function Courses() {
 
         setSearchTimeout(newTimeout);
     };
-    function myFunction() {
+    function conflictMessage() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
       }
@@ -375,35 +375,35 @@ export default function Courses() {
                 </>
                 :
                 <div className="createCourse">
-                    <div>
-                        <label htmlFor="title"/>
+                    <div className="creation">
+                        <label htmlFor="title">Title</label>
                         <input type="text" name="title" id="title" placeholder='Title' />
                     </div>
-                    <div>
-                        <label htmlFor="description"/>
+                    <div className="creation">
+                        <label htmlFor="description">Description</label>
                         <input type="text" name="description" id="description" placeholder="Description" />
                     </div>
-                    <div>
-                        <label htmlFor="course_code"/>
+                    <div className="creation">
+                        <label htmlFor="course_code">Course Code</label>
                         <input type="text" name="course_code" id="course_code" placeholder="Course Code" />
                     </div>
-                    <div>
-                        <label htmlFor="credit_hours"/>
+                    <div className="creation">
+                        <label htmlFor="credit_hours">Credit Hours</label>
                         <input type="number" name="credit_hours" id="credit_hours" placeholder="Credit Hours"/>
                     </div>
-                    <div>
-                        <label htmlFor="tuition"/>
+                    <div className="creation">
+                        <label htmlFor="tuition">Tuition</label>
                         <input type="number" name="tuition" id="tuition" placeholder="Tuition"/>
                     </div>
-                    <div>
-                        <label htmlFor="capacity"/>
+                    <div className="creation">
+                        <label htmlFor="capacity">Max Capacity</label>
                         <input type="number" name="capacity" id="capacity" placeholder="Max Capacity" />
                     </div>
-                    <div>
-                        <label htmlFor="room_number"/>
+                    <div className="creation">
+                        <label htmlFor="room_number">Room Number</label>
                         <input type="text" name="room_number" id="room_number" placeholder="Room Number"/>
                     </div>
-                    <div>
+                    <div className="creation">
                         <label htmlFor="teacher_id">Instructor</label>
                         <select type="text" name="teacher_id" id="teacher_id" >
                             <option unselectable='Please select an instructor'>Please select an instructor</option>
@@ -411,28 +411,30 @@ export default function Courses() {
                         </select>
                     </div>
                     
-                    <div>
+                    <div className="creation">
                         <label htmlFor="start_time">Start Time</label>
                         <input type="time" name="start_time" id="start_time" min='00:00' max='24:00'/>
                     </div>
-                    <div>
+                    <div className="creation">
                         <label htmlFor="end_time">End Time</label>
                         <input type="time" name="end_time" id="end_time" min='00:00' max='24:00'/>
                     </div>
-                    <div>
-                        <p htmlFor="course">Days</p>
-                        <div>
-                            <input type="checkbox" className='selectedDays' name="monday" id="monday" value='M' />
-                            <label htmlFor="monday" >Monday</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" className='selectedDays' name="tuesday" id="tuesday" value='T'/>
-                            <label htmlFor="tuesday" >Tuesday</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" className='selectedDays' name="wednesday" id="wednesday" value='W'/>
-                            <label htmlFor="wednesday" >Wednesday</label>
-                        </div>
+                    <div className="daySelection1">
+                        {/* <p htmlFor="course">Days</p> */}
+                            <div>
+                                <input type="checkbox" className='selectedDays' name="monday" id="monday" value='M' />
+                                <label htmlFor="monday" >Monday</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" className='selectedDays' name="tuesday" id="tuesday" value='T'/>
+                                <label htmlFor="tuesday" >Tuesday</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" className='selectedDays' name="wednesday" id="wednesday" value='W'/>
+                                <label htmlFor="wednesday" >Wednesday</label>
+                            </div>
+                    </div>
+                    <div className="daySelection">
                         <div>
                             <input type="checkbox" className='selectedDays' name="thursday" id="thursday" value='R'/>
                             <label htmlFor="thursday" >Thursday</label>
@@ -445,6 +447,9 @@ export default function Courses() {
                             <input type="checkbox" className='selectedDays' name="saturday" id="saturday" value='S'/>
                             <label htmlFor="saturday" >Saturday</label>
                         </div>
+                        
+                    </div>
+                    <div className="daySelection">
                         <div>
                             <input type="checkbox" className='selectedDays' name="sunday" id="sunday" value='S'/>
                             <label htmlFor="sunday" >Sunday</label>
@@ -454,9 +459,9 @@ export default function Courses() {
                     <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
                 </div>
                 }
-                <div class="popup" onClick={() => myFunction()}>
-                    <span class="popuptext" id="myPopup">
-                        <p>It appears you have scheduling conflicts, please double check your currently enrolled courses, or select a different course to enroll in.</p>
+                <div class="popup" onClick={() => conflictMessage()}>
+                    <span class="popupText" id="myPopup">
+                        <p>It appears you have one or more scheduling conflicts, please double check your currently enrolled courses, or select a different course to enroll in.</p>
                         <button>Okay</button>
                     </span>
                     
