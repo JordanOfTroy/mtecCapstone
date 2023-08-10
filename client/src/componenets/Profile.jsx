@@ -118,6 +118,7 @@ export default function Profile() {
                                 onChange={(e) => handleUserInput(e)}
                             />
                             <div className="profileButton">
+                                <button className="button glow-button" onClick={() => setClicked(true)}>Cancel</button>
                                 <button onClick={()=>handleEdit()} className="button glow-button">Submit</button>
                             </div>
                         </div>
