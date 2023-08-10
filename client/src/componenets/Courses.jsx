@@ -455,8 +455,10 @@ export default function Courses() {
                             <label htmlFor="sunday" >Sunday</label>
                         </div>
                     </div>
-                    
-                    <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
+                    <div>
+                        <button className='submitButton'onClick={() => setAddingCourse(false)}>Cancel</button>
+                        <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
+                    </div>
                 </div>
                 }
                 <div class="popup" onClick={() => conflictMessage()}>
