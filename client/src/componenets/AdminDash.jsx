@@ -1,5 +1,6 @@
 import '../styles/admin.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './Header.jsx';
 import SideBar from './SideBar.jsx';
 
@@ -38,11 +39,11 @@ export default function AdminDash() {
             const parsedStudents = await rawStudents.json()
             const parsedCourses = await rawCourses.json()
             const parsedMyStudents = await rawMyStudents.json()
-            console.log(`~~~~~~~~`)
-            console.log(parsedStudents)
-            console.log(parsedCourses)
-            console.log(parsedMyStudents)
-            console.log(`~~~~~~~~`)
+            // console.log(`~~~~~~~~`)
+            // console.log(parsedStudents)
+            // console.log(parsedCourses)
+            // console.log(parsedMyStudents)
+            // console.log(`~~~~~~~~`)
             setStudents(parsedStudents)
             setCourses(parsedCourses)
             setMyStudents(parsedMyStudents)
@@ -65,6 +66,11 @@ export default function AdminDash() {
                 },
                 body: JSON.stringify(obj)
             })
+
+            if (rawResponse.status == 200) {
+                setIsAddingUser(false)
+            }
+
         } catch (err) {
             console.log('FETCHING ERROR:', err)
         }
@@ -80,6 +86,11 @@ export default function AdminDash() {
                 },
                 body: JSON.stringify(obj)
             })
+
+            if (rawResponse.status == 200) {
+                setIsAddingUser(false)
+            }
+
         } catch (err) {
             console.log('FETCHING ERROR:', err)
         }
@@ -140,7 +151,7 @@ export default function AdminDash() {
                     <td>{student.id}</td>
                     <td>{`${student.first_name} ${student.last_name}`}</td>
                     <td>{student.email}</td>
-                    <td><button>Details</button></td>
+                    <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
                 </tr>
             )
         })
@@ -154,7 +165,7 @@ export default function AdminDash() {
                      <td>{student.id}</td>
                     <td>{`${student.first_name} ${student.last_name}`}</td>
                     <td>{student.email}</td>
-                    <td><button>Details</button></td>
+                    <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
                 </tr>
             )
         })

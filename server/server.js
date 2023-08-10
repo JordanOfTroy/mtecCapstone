@@ -61,6 +61,7 @@ app.get('/api/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
 app.get('/api/admins', userCTRL.getAllAdmins)
 app.get('/api/admins/:id', userCTRL.getAdminById)
 app.get('/api/students', auth, userCTRL.getAllStudents)
+app.get('/api/student/:studentId', auth, userCTRL.getStudent)
 app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 app.get('/api/user', auth, userCTRL.getUser)
 
