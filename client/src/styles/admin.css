@@ -65,4 +65,8 @@ table {
   align-items: center;
   width: 460px;
   height: 68px;
+}
+
+.removeStudentCheckbox {
+  margin-left: -60px;
 }/*# sourceMappingURL=admin.css.map */
