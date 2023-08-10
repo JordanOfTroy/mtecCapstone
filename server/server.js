@@ -61,19 +61,20 @@ app.get('/api/courses/teacher/:id', courseCTRL.getCoursesByTeacher)
 app.get('/api/admins', userCTRL.getAllAdmins)
 app.get('/api/admins/:id', userCTRL.getAdminById)
 app.get('/api/students', auth, userCTRL.getAllStudents)
+app.get('/api/student/:studentId', auth, userCTRL.getStudent)
 app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 app.get('/api/user', auth, userCTRL.getUser)
 
 app.put('/api/courses', auth, courseCTRL.updateCourse)
-app.post('/api/searchCourses', courseCTRL.searchAllCourses)
 app.put('/api/user', auth, userCTRL.updateUser) 
 app.put('/api/joinCourse', auth, registrationCTRL.joinCourse)
 app.put('/api/dropCourse', auth, registrationCTRL.dropCourse)
 
 app.post('/api/courses', auth, courseCTRL.addNewCourse)
-app.post('/api/newAdmin', userCTRL.addNewAdmin)
-app.post('/api/newStudent', userCTRL.addNewStudent)//used when registering
+app.post('/api/newAdmin',auth, userCTRL.addNewAdmin)
+app.post('/api/newStudent',auth, userCTRL.addNewStudent)
 app.post('/api/login', loginCTRL.handleLogin)
+app.post('/api/searchCourses', courseCTRL.searchAllCourses)
 
 app.delete('/api/user/:id', userCTRL.removeUser) // add auth
 app.delete('/api/courses/:id', auth, courseCTRL.removeCourse)

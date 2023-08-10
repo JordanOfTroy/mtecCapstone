@@ -142,6 +142,37 @@ module.exports = {
       console.log(user)
       console.log(`-=-=-`)
       res.status(200).json(user.rows[0])
+    },
+
+    getStudent: async (req, res) => {
+      const {studentId} = req.params
+      const {is_admin} = req.auth
+      if (is_admin) {
+        try {
+          let user = await pool.query (
+            `
+            SELECT id, first_name, last_name, email, telephone, address
+            FROM users
+            WHERE id = $1
+            `,
+            [studentId]
+          )
+          let userCourses = await pool.query(
+            `
+            Select courses.* from courses
+            join students_courses on students_courses.course_id = courses.id
+            where students_courses.student_id = $1
+            `,
+            [studentId]
+          )
+          if (user.rows.length > 0 && userCourses.rows.length > 0) {
+            res.status(200).json({user: user.rows, courses: userCourses.rows})
+          }
+
+        } catch (err) {
+          console.log('BACKEND ERROR:', err)
+        }
+      }
     }
 
 }
