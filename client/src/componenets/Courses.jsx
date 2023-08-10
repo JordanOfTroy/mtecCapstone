@@ -317,11 +317,16 @@ export default function Courses() {
 
         setSearchTimeout(newTimeout);
     };
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+      }
 
     return (
         <div className="container">
             <SideBar/>
             <div className="coursesMain">
+            
                 <div className="coursesDashboard">
                     <Header title="Course Wizard"/>
                 </div>
@@ -343,7 +348,15 @@ export default function Courses() {
                                 <th>Capacity</th>
                                 <th>Days</th>
                                 <th>RoomNumber</th>
-                                <th></th>
+                                {window.localStorage.getItem('isAdmin') === 'true'
+                                    ?
+                                    <th>
+                                        Edit Course
+                                    </th> :
+                                    <th>
+                                        Enroll
+                                    </th>
+                                }
                             </tr>
                             {allCourses && allCourses.length>0 ? courses : <p>No courses</p>}
                             
@@ -439,8 +452,20 @@ export default function Courses() {
                     <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
                 </div>
                 }
-               
+                <div class="popup" onClick={() => myFunction()}>Click me to toggle the popup!
+                    <span class="popuptext" id="myPopup">
+                        <p>It appears you have scheduling conflicts, please double check your currently enrolled courses, or select a different course to enroll in.</p>
+                        <button>Okay</button>
+                    </span>
+                    
+                </div>
+               {/* <div className="popup" id="myPopup">
+                    <h2>Oh dear</h2>
+                    <span class="popuptext" id="myPopup"></span>
+                    <button type="button" onClick={() => myFunction()}>Okay</button>
+                </div> */}
             </div>
+            
             
         </div>
     )
