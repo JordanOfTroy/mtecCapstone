@@ -171,9 +171,17 @@ export default function Courses() {
                 {
                     !course.isEditing
                     ?
+                    
                     <tr key={i}>
                         <td>{course.title}</td>
-                        <td className="description">{course.description}</td>
+                        <td className="description">
+                            <button onClick={() => getCourseDescription()}>View</button>
+                                <div className="popup">
+                                    <span className="popupText" id="coursePopup">
+                                        <p>{`${course.description}`}</p>
+                                    </span>
+                                </div>
+                            </td>
                         <td>{course.course_code}</td>
                         <td>{`${course.start_time} - ${course.end_time}`}</td>
                         <td>{course.credit_hours}</td>
@@ -234,6 +242,12 @@ export default function Courses() {
                 }
                 </>
             )
+            function getCourseDescription() {
+                var popup = document.getElementById("coursePopup");
+                popup.classList.toggle("show");
+                // console.log(course.description)
+        
+            }
         })
     
     }
@@ -323,6 +337,7 @@ export default function Courses() {
         var popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
       }
+      
 
     return (
         <div className="container">
@@ -461,18 +476,13 @@ export default function Courses() {
                     </div>
                 </div>
                 }
-                <div class="popup" onClick={() => conflictMessage()}>
+                <div className="popup" onClick={() => conflictMessage()}>
                     <span class="popupText" id="myPopup">
                         <p>It appears you have one or more scheduling conflicts, please double check your currently enrolled courses, or select a different course to enroll in.</p>
                         <button>Okay</button>
                     </span>
                     
                 </div>
-               {/* <div className="popup" id="myPopup">
-                    <h2>Oh dear</h2>
-                    <span class="popuptext" id="myPopup"></span>
-                    <button type="button" onClick={() => myFunction()}>Okay</button>
-                </div> */}
             </div>
             
             
