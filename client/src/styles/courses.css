@@ -49,7 +49,7 @@ table {
   display: flex;
   margin-top: 3%;
   margin-left: 3%;
-  max-height: 500px;
+  max-height: 550px;
   max-width: 1100px;
   overflow-y: scroll;
   overflow-x: scroll;
@@ -109,12 +109,48 @@ table {
   background-color: #B0BB9B;
   color: #013832;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex-direction: column;
   margin: auto;
   margin-left: 60%;
   width: 400px;
-  padding: 20px 20px 20px 20px;
+  padding: 40px 20px 20px 20px;
+}
+
+.creation {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 2px 2px 2px;
+}
+.creation label {
+  margin-right: 5px;
+}
+.creation input {
+  margin-left: 7px;
+}
+
+.daySelection {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px;
+}
+.daySelection label {
+  margin-right: 5px;
+}
+.daySelection input {
+  margin-left: 7px;
+}
+
+.daySelection1 {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 3px 3px 3px;
+}
+.daySelection1 label {
+  margin-right: 5px;
+}
+.daySelection1 input {
+  margin-left: 7px;
 }
 
 .popup {
@@ -129,7 +165,7 @@ table {
 }
 
 /* The actual popup */
-.popup .popuptext {
+.popup .popupText {
   visibility: hidden;
   width: 160px;
   background-color: #353434;
@@ -145,7 +181,7 @@ table {
 }
 
 /* Popup arrow */
-.popup .popuptext::after {
+.popup .popupText::after {
   content: "";
   position: absolute;
   top: 100%;
