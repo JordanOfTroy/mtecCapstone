@@ -23,15 +23,16 @@ export default function StudentDetails () {
                 let results = await rawResults.json()
                 console.log(results)
                 setUserInfo(results.user[0])
-                setUserCourses(results.userCourses)
+                setUserCourses(results.courses)
+                console.log(userInfo)
+                console.log(userCourses)
             } catch (err) {
                 console.log('FETCHING ERROR:', err)
             }
     
         }
         initialApiCall()
-    }, [])
-
+    }, [studentId])
 
     return (
         <div className="container">
