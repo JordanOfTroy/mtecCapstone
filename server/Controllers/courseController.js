@@ -81,7 +81,7 @@ module.exports = {
     getCoursesImTeaching: async (req, res) => {
         let {id} = req.auth
         let courses = await pool.query(`
-        SELECT title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
+        SELECT courses.*
         FROM courses
         JOIN users ON courses.teacher_id = users.id
         WHERE users.id = $1;

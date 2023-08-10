@@ -10,113 +10,151 @@ export default function AdminDash() {
     const [myStudents, setMyStudents] = useState()
 
 
-    useEffect(() => {
-        let apiCalls = async () => {
-            try {
-                const rawStudents = await fetch('/api/students', {
-                    method: 'GET',
-                    headers: {
-                        "content-type": "application/json",
-                        Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
-                    }
-                })
-                const rawCourses = await fetch('/api/coursesImTeaching', {
-                    method: 'GET',
-                    headers: {
-                        "content-type": "application/json",
-                        Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
-                    }
-                })
-                const rawMyStudents = await fetch('/api/getMyStudents', {
-                    method: 'GET',
-                    headers: {
-                        'content-type': 'application/json',
-                        Authorization: `Bearer ${window.localStorage.getItem('token')}`
-                    }
-                })
+    let apiCalls = async () => {
+        try {
+            const rawStudents = await fetch('/api/students', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}` 
+                }
+            })
+            const rawCourses = await fetch('/api/coursesImTeaching', {
+                method: 'GET',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                }
+            })
+            const rawMyStudents = await fetch('/api/getMyStudents', {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}`
+                }
+            })
 
-                const parsedStudents = await rawStudents.json()
-                const parsedCourses = await rawCourses.json()
-                const parsedMyStudents = await rawMyStudents.json()
-                console.log(`~~~~~~~~`)
-                console.log(parsedStudents)
-                console.log(parsedCourses)
-                console.log(parsedMyStudents)
-                console.log(`~~~~~~~~`)
-                setStudents(parsedStudents)
-                setCourses(parsedCourses)
-                setMyStudents(parsedMyStudents)
-            } catch (err) {
-                console.log('Fetching Error:', err)
-            }
+            const parsedStudents = await rawStudents.json()
+            const parsedCourses = await rawCourses.json()
+            const parsedMyStudents = await rawMyStudents.json()
+            console.log(`~~~~~~~~`)
+            console.log(parsedStudents)
+            console.log(parsedCourses)
+            console.log(parsedMyStudents)
+            console.log(`~~~~~~~~`)
+            setStudents(parsedStudents)
+            setCourses(parsedCourses)
+            setMyStudents(parsedMyStudents)
+        } catch (err) {
+            console.log('Fetching Error:', err)
         }
+    }
+
+    useEffect(() => {
         apiCalls()
     }, [])
 
+    let myCourses
+    if (courses && courses.length > 0) {
+        myCourses = courses.map((course, i) => {
+            return (
+                <tr key={i}>
+                    <td>{course.title}</td>
+                    <td className="description">{course.description}</td>
+                    <td>{course.course_code}</td>
+                    <td>{`${course.start_time} - ${course.end_time}`}</td>
+                    <td>{course.credit_hours}</td>
+                    <td>{course.capacity}</td>
+                    <td>{course.days_of_week}</td>
+                    <td>{course.room_number}</td>
+                </tr>
+            )
+        })
+    }
+
+    let myStudentList
+    if (myStudents && myStudents.length > 0) {
+        myStudentList = myStudents.map((student, i) => {
+            console.log(student.id)
+            return (
+                <tr key={i}>
+                    <td>{student.id}</td>
+                    <td>{`${student.first_name} ${student.last_name}`}</td>
+                    <td>{student.email}</td>
+                    <td><button>Details</button></td>
+                </tr>
+            )
+        })
+    }
+
+    let allStudents
+    if (students && students.length > 0) {
+        allStudents = students.map((student, i) => {
+            return (
+                <tr key={i}>
+                     <td>{student.id}</td>
+                    <td>{`${student.first_name} ${student.last_name}`}</td>
+                    <td>{student.email}</td>
+                    <td><button>Details</button></td>
+                </tr>
+            )
+        })
+    }
+
     return (
-<>
-    <div className="container">
-        <SideBar/>
-        <div className="adminDashboard">
-            <Header title="Dashboard"/>
-        </div>
-        <div className="adminMain">
-
-            <h3>Students</h3>
-            <div className="adminTable">
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Remove Student?</th>
-                    </tr>
-                    <tr>
-                        <td>Bartimus</td>
-                        <td>Bartimus@bartybart.com</td>
-                        <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
-                    </tr>
-                    <tr>
-                        <td>Bartimus</td>
-                        <td>Bartimus@bartybart.com</td>
-                        <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
-
-                    </tr>
-                    <tr>
-                        <td>Bartimus</td>
-                        <td>Bartimus@bartybart.com</td>
-                        <td><input type='checkbox' className='removeStudentCheckbox' id='checkbox'/></td>
-                    </tr>
-                </table>
-                
+        <div className="container">
+            <SideBar/>
+            <div className="adminDashboard">
+                <Header title="Dashboard"/>
             </div>
-            <h3>Courses</h3>
-            <div className="adminTable">    
-                <table>
-                <tr>
-                        <th>Course Title</th>
-                        <th>Credit Hours</th>
-                        <th>Amount of Students</th>
-                        </tr>
-                    <tr>
-                        <td>Course</td>
-                        <td>Timey-Wimey</td>
-                        <td>Lotso</td>
-                    </tr>
-                    <tr>
-                        <td>Course</td>
-                        <td>Timey-Wimey</td>
-                        <td>Lotso</td>
-                    </tr>
-                    <tr>
-                        <td>Course</td>
-                        <td>Timey-Wimey</td>
-                        <td>Lotso</td>
-                    </tr>
-                </table>
+            <div className="adminMain">
+                <div>
+                    <h3>My Courses</h3>
+                    <div className="adminTable">    
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Course Code</th>
+                                <th>Time</th>
+                                <th>Credit Hours</th>
+                                <th>Capacity</th>
+                                <th>Days</th>
+                                <th>RoomNumber</th>
+                            </tr>
+                            {myCourses}
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h3>My Students</h3>
+                    <div className="adminTable">
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>email</th>
+                                <th>View Details</th>
+                            </tr>
+                            {myStudentList}
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h3>All Students</h3>
+                    <div className="adminTable">
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>email</th>
+                                <th>View Details</th>
+                            </tr>
+                            {allStudents}
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</>
-
     )
 };

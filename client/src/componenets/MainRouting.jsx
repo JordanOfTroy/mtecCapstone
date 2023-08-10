@@ -10,6 +10,7 @@ import Profile from './Profile.jsx';
 
 function MainRouting () {
     const isLoggedIn = window.localStorage.getItem('isLoggedIn')
+    const isAdmin = window.localStorage.getItem('isAdmin')
     return (
         <Routes>
             <Route path='/registration' element={<Registration/>}/>
@@ -24,7 +25,7 @@ function MainRouting () {
                 </ProtectedRoutes>
             } />
             <Route path='/admin' element={
-                <ProtectedRoutes user={isLoggedIn}>
+                <ProtectedRoutes user={isAdmin}>
                     <AdminDash/>
                 </ProtectedRoutes>
             } />
