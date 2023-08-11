@@ -13,8 +13,8 @@ export default function StudentDetails () {
     const {studentId} = useParams()
     const [isButtonClicked, setIsButtonClicked] = useState(true)
     const [isRemovingStudent, setIsRemovingStudent] = useState(false)
-    const [isUpdatingStudent, setIsUpdatingStudent] = useState(true)
-    const [isAddingCourse, setIsAddingCourse] = useState(false)
+    const [isUpdatingStudent, setIsUpdatingStudent] = useState(false)
+    const [isAddingCourse, setIsAddingCourse] = useState(true)
     const [isRemovingCourse, setIsRemovingCourse] = useState(false)
     const allOff = !isButtonClicked && !isRemovingStudent && !isUpdatingStudent && !isAddingCourse && !isRemovingCourse
 

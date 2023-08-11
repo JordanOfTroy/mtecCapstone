@@ -64,6 +64,7 @@ app.get('/api/students', auth, userCTRL.getAllStudents)
 app.get('/api/student/:studentId', auth, userCTRL.getStudent)
 app.get('/api/getMyStudents', auth, userCTRL.getMyStudents)
 app.get('/api/user', auth, userCTRL.getUser)
+app.get('/api/availableCourses/:studentId', courseCTRL.getAvailableCourses)
 
 app.put('/api/courses', auth, courseCTRL.updateCourse)
 app.put('/api/user', auth, userCTRL.updateUser) 

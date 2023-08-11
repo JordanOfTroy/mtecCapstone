@@ -172,7 +172,26 @@ module.exports = {
             }
         }
             
-    }
+    },
 
+    getAvailableCourses: async (req, res) => {
+        const {studentId} = req.params
+        try {
+            let availableCourses = await pool.query(
+                `
+                SELECT distinct courses.* 
+                FROM courses 
+                JOIN students_courses ON students_courses.course_id = courses.id 
+                WHERE students_courses.student_id != $1
+                ORDER BY title
+                `,
+                [studentId]
+            )
+            res.status(200).json(availableCourses.rows)
+        } catch (err) {
+            console.log('BACKEND ERROR:', err)
+            res.status(400).json(err)
+        }
+    }
 
 }
