@@ -2,7 +2,10 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import SideBar from "./SideBar"
 import Header from "./Header"
-
+import RemovingStudentView from "./RemovingStudentView"
+import UpdatingStudentView from "./UpdatingStudentView"
+import AddingCourseView from "./AddingCourseView"
+import RemovingCourseView from "./RemovingCourseView"
 
 export default function StudentDetails () {
     const [userInfo, setUserInfo] = useState({})
@@ -70,9 +73,6 @@ export default function StudentDetails () {
         setIsRemovingCourse(false);
     }
     
-
-    const cancelButton = (<button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>)
-
     const initialView = (
         <>
         <div className="userInfo">
@@ -117,45 +117,19 @@ export default function StudentDetails () {
                 </div>
         </>
     )
-    const removingStudentView = (
-        <>
-        <h1>Removing Student</h1>
-        {cancelButton}
-        </>
-    )
-
-    const updatingStudentView = (
-        <>
-        <h1>Updating Student</h1>
-        {cancelButton}
-        </>
-    )
-
-    const addingCourseView = (
-        <>
-        <h1>Adding Course</h1>
-        {cancelButton}
-        </>
-    )
-
-    const removingCourseView = (
-        <>
-        <h1>Removing Course</h1>
-        {cancelButton}
-        </>
-    )
+    
     
     let datHTML = () => {
         if (allOff) {
             return initialView
         } else if (isButtonClicked && isRemovingStudent) {
-            return removingStudentView
+            return <RemovingStudentView handleCancel={handleCancel}/>
         } else if (isButtonClicked && isUpdatingStudent) {
-            return updatingStudentView
+            return <UpdatingStudentView handleCancel={handleCancel}/>
         } else if (isButtonClicked && isAddingCourse) {
-            return addingCourseView
+            return <AddingCourseView handleCancel={handleCancel}/>
         } else if (isButtonClicked && isRemovingCourse) {
-            return removingStudentView
+            return <RemovingCourseView handleCancel={handleCancel}/>
         }
     }
 
