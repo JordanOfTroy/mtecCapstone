@@ -20,6 +20,7 @@ export default function StudentDetails () {
 
     useEffect(() => {
         const initialApiCall = async () => {
+            console.log(studentId)
             try {
                 let rawResults = await fetch(`/api/student/${studentId}`, {
                     method: 'GET',
@@ -30,7 +31,6 @@ export default function StudentDetails () {
                     
                 })
                 let results = await rawResults.json()
-                // console.log(results)
                 setUserInfo(results.user[0])
                 setUserCourses(results.courses)
             } catch (err) {
@@ -123,13 +123,25 @@ export default function StudentDetails () {
         if (allOff) {
             return initialView
         } else if (isButtonClicked && isRemovingStudent) {
-            return <RemovingStudentView handleCancel={handleCancel}/>
+            return <RemovingStudentView
+                    handleCancel={handleCancel}
+                    userInfo = {userInfo}
+                    />
         } else if (isButtonClicked && isUpdatingStudent) {
-            return <UpdatingStudentView handleCancel={handleCancel}/>
+            return <UpdatingStudentView
+                    handleCancel={handleCancel}
+                    userInfo = {userInfo}
+                    />
         } else if (isButtonClicked && isAddingCourse) {
-            return <AddingCourseView handleCancel={handleCancel}/>
+            return <AddingCourseView
+                    handleCancel={handleCancel}
+                    userInfo = {userInfo}
+                    />
         } else if (isButtonClicked && isRemovingCourse) {
-            return <RemovingCourseView handleCancel={handleCancel}/>
+            return <RemovingCourseView
+                    handleCancel={handleCancel}
+                    userInfo = {userInfo}
+                    />
         }
     }
 

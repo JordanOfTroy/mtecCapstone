@@ -54,7 +54,7 @@ module.exports = {
           where is_admin = 'false'
         `, (err, results) => {
           if (err) throw err
-          console.log(results.rows)
+          // console.log(results.rows)
           res.status(200).json(results.rows)
         })
       } else {
@@ -116,18 +116,34 @@ module.exports = {
       res.status(200).json(updatedUser.rows[0])
     },
 
-    removeUser: (req, res) => {
+    removeUser: async (req, res) => {
       let {id} = req.params
-      //check admin status from req.auth
-      pool.query(`
-      DELETE FROM users
-      WHERE id=$1
-      `,
-      [id],
-      (err, results) => {
-        if (err) throw err
-        res.status(200).send('user has been removed')
-      })
+      let {is_admin} = req.auth
+      if (is_admin) {
+        try {
+          let removedFromCourses = await pool.query(
+            `
+            DELETE FROM students_courses
+            WHERE student_id = $1
+            `,
+            [id]
+          )
+          let removedUser = await pool.query(
+            `
+            DELETE FROM users
+            WHERE id = $1
+            `,
+            [id]
+          )
+          if (removedUser.rows.length <= 0 && removedFromCourses.rows.length <= 0) {
+            res.status(200).json('User has been successfully removed.')
+          } else {
+            res.status(400).send('there was a problem removing this user')
+          }
+        } catch (err) {
+          console.log('BACKEND ERROR:', err)
+        }
+      }
     },
 
     getUser: async (req, res) =>{
@@ -147,6 +163,7 @@ module.exports = {
     getStudent: async (req, res) => {
       const {studentId} = req.params
       const {is_admin} = req.auth
+      
       if (is_admin) {
         try {
           let user = await pool.query (
@@ -165,7 +182,10 @@ module.exports = {
             `,
             [studentId]
           )
+       
           if (user.rows.length > 0 && userCourses.rows.length > 0) {
+            res.status(200).json({user: user.rows, courses: userCourses.rows})
+          } else if (user.rows.length > 0 && userCourses.rows.length <= 0) {
             res.status(200).json({user: user.rows, courses: userCourses.rows})
           }
 
