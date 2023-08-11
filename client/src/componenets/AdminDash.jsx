@@ -115,7 +115,7 @@ export default function AdminDash() {
 
         /**Yes. this can be done in a single call. But that ain't how I set things up
          * and I want to get it working before I refactor the backend.
-         * Fight me! RAWR!!!! 
+         * Fight me! RAWR!!!
          */
         if (is_admin) {
             createNewAdmin({firstName, lastName, email, password, telephone, address})
