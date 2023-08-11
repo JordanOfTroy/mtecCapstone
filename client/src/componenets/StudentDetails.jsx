@@ -13,7 +13,8 @@ export default function StudentDetails () {
     const [isUpdatingStudent, setIsUpdatingStudent] = useState(false)
     const [isAddingCourse, setIsAddingCourse] = useState(false)
     const [isRemovingCourse, setIsRemovingCourse] = useState(false)
-    
+    const allOff = !isButtonClicked && !isRemovingStudent && !isUpdatingStudent && !isAddingCourse && !isRemovingCourse
+
     useEffect(() => {
         const initialApiCall = async () => {
             try {
@@ -39,21 +40,38 @@ export default function StudentDetails () {
 
     const handleRemoveStudent = () => {
         console.log('removing student')
+        setIsButtonClicked(!isButtonClicked)
+        setIsRemovingStudent(!isRemovingStudent)
     }
 
     const handleUpdateStudent = () => {
         console.log('updating student')
+        setIsButtonClicked(!isButtonClicked)
+        setIsUpdatingStudent(!isUpdatingStudent)
     }
     
     const handleAddNewCourse = () => {
         console.log('adding course')
+        setIsButtonClicked(!isButtonClicked)
+        setIsAddingCourse(!isAddingCourse)
     }
     
     const handleRemoveCourse = () => {
         console.log('removing course')
+        setIsButtonClicked(!isButtonClicked)
+        setIsRemovingCourse(!isRemovingCourse)
     }
 
+    const handleCancel = () => {
+        setIsButtonClicked(false);
+        setIsRemovingStudent(false);
+        setIsUpdatingStudent(false);
+        setIsAddingCourse(false);
+        setIsRemovingCourse(false);
+    }
+    
 
+    const cancelButton = (<button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>)
 
     const initialView = (
         <>
@@ -99,17 +117,54 @@ export default function StudentDetails () {
                 </div>
         </>
     )
-    const allOff = !isButtonClicked && !isRemovingStudent && !isUpdatingStudent && !isAddingCourse && !isRemovingCourse
+    const removingStudentView = (
+        <>
+        <h1>Removing Student</h1>
+        {cancelButton}
+        </>
+    )
+
+    const updatingStudentView = (
+        <>
+        <h1>Updating Student</h1>
+        {cancelButton}
+        </>
+    )
+
+    const addingCourseView = (
+        <>
+        <h1>Adding Course</h1>
+        {cancelButton}
+        </>
+    )
+
+    const removingCourseView = (
+        <>
+        <h1>Removing Course</h1>
+        {cancelButton}
+        </>
+    )
+    
+    let datHTML = () => {
+        if (allOff) {
+            return initialView
+        } else if (isButtonClicked && isRemovingStudent) {
+            return removingStudentView
+        } else if (isButtonClicked && isUpdatingStudent) {
+            return updatingStudentView
+        } else if (isButtonClicked && isAddingCourse) {
+            return addingCourseView
+        } else if (isButtonClicked && isRemovingCourse) {
+            return removingStudentView
+        }
+    }
+
     return (
         <div className="container">
             <SideBar/>
             <div>
                 <Header title='Student Details' />
-                {
-                    allOff ? initialView : <p>fuck off</p>
-                }
-                {/* {initialView} */}
-                
+                {datHTML()}
             </div>
         </div>
     )
