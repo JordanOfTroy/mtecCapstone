@@ -11,9 +11,9 @@ export default function StudentDetails () {
     const [userInfo, setUserInfo] = useState({})
     const [userCourses,setUserCourses] = useState([])
     const {studentId} = useParams()
-    const [isButtonClicked, setIsButtonClicked] = useState(false)
+    const [isButtonClicked, setIsButtonClicked] = useState(true)
     const [isRemovingStudent, setIsRemovingStudent] = useState(false)
-    const [isUpdatingStudent, setIsUpdatingStudent] = useState(false)
+    const [isUpdatingStudent, setIsUpdatingStudent] = useState(true)
     const [isAddingCourse, setIsAddingCourse] = useState(false)
     const [isRemovingCourse, setIsRemovingCourse] = useState(false)
     const allOff = !isButtonClicked && !isRemovingStudent && !isUpdatingStudent && !isAddingCourse && !isRemovingCourse
@@ -31,6 +31,7 @@ export default function StudentDetails () {
                     
                 })
                 let results = await rawResults.json()
+                console.log(results.user)
                 setUserInfo(results.user[0])
                 setUserCourses(results.courses)
             } catch (err) {

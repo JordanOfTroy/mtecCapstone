@@ -1,8 +1,66 @@
-export default function UpdatingStudentView ({handleCancel}) {
+import { useNavigate } from "react-router";
+
+export default function UpdatingStudentView ({handleCancel, userInfo}) {
+    const navTo = useNavigate()
+    const {first_name, last_name, email, id, telephone, address} = userInfo
+
+    const handleSubmitChanges = async () => {
+        let firstName = document.getElementById('first_name').value;
+        let lastName = document.getElementById('last_name').value
+        let email = document.getElementById('email').value;
+        let telephone = document.getElementById('phone').value;
+        let address = document.getElementById('address').value;
+
+        try {
+            const rawUser = await fetch('/api/user', {
+                method: 'PUT',
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${window.localStorage.getItem('token')}` 
+                },
+                body: JSON.stringify({firstName, lastName, email, telephone, address, id} )
+            })
+            let parsedUser = await rawUser.json();
+            if (rawUser.status == 200) {
+                navTo('/admin')
+            } else {
+                console.log('server error:', rawUser.status)
+            }
+        } catch (err) {
+            console.log('FETCHING ERROR:', err)
+        }
+
+    }
+
     return (
         <>
             <h1>Updating Student</h1>
-            <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
+            <div>
+                <div className="inputGroup">
+                    <label>First name:</label>
+                    <input type="text" id='first_name' defaultValue={first_name}></input>
+                </div>
+                <div className="inputGroup">
+                    <label>last name:</label>
+                    <input type="text" id='last_name' defaultValue={last_name}></input>
+                </div>
+                <div className="inputGroup">
+                    <label>Email:</label>
+                    <input type="text" id='email' defaultValue={email}></input>
+                </div>
+                <div className="inputGroup">
+                    <label>Phone:</label>
+                    <input type="text" id='phone' defaultValue={telephone}></input>
+                </div>
+                <div className="inputGroup">
+                    <label>Address:</label>
+                    <input type="text" id='address' defaultValue={address}></input>
+                </div>
+            </div>
+            <div>
+                <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
+                <button className="button glow-button" onClick={() => handleSubmitChanges()}>Submit Changes</button>
+            </div>
         </>
     )
 }

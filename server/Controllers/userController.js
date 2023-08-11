@@ -105,15 +105,20 @@ module.exports = {
     updateUser: async (req, res) => {
       console.log('UPDATING USER')
       let {firstName, lastName, email, telephone, address} = req.body
-      let {id} = req.auth
-      let updatedUser = await pool.query(`
-          update users
-          set first_name=$2, last_name=$3, email=$4, telephone=$5, address=$6
-          where id = $1
-          returning users.*;
-      `, [id, firstName, lastName, email, telephone, address]
-      )
-      res.status(200).json(updatedUser.rows[0])
+      let id = req.auth.is_admin ? req.body.id : req.auth.id
+      try {
+        let updatedUser = await pool.query(`
+            update users
+            set first_name=$2, last_name=$3, email=$4, telephone=$5, address=$6
+            where id = $1
+            returning users.*;
+        `, [id, firstName, lastName, email, telephone, address]
+        )
+        res.status(200).json(updatedUser.rows[0])
+      } catch (err) {
+        console.log('BACKEND ERROR:', err)
+        res.status(400).json(err)
+      }
     },
 
     removeUser: async (req, res) => {
