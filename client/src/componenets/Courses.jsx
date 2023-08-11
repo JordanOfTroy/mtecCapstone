@@ -174,11 +174,12 @@ export default function Courses() {
                     
                     <tr key={i}>
                         <td>{course.title}</td>
-                        <td className="description">
-                            <button onClick={() => getCourseDescription()}>View</button>
+                        <td>
+                            <button className='viewButton' onClick={() => getCourseDescription()}>View</button>
                                 <div className="popup">
                                     <span className="popupText" id="coursePopup">
                                         <p>{`${course.description}`}</p>
+                                        <button>Okay</button>
                                     </span>
                                 </div>
                             </td>
