@@ -76,7 +76,7 @@ app.post('/api/newStudent',auth, userCTRL.addNewStudent)
 app.post('/api/login', loginCTRL.handleLogin)
 app.post('/api/searchCourses', courseCTRL.searchAllCourses)
 
-app.delete('/api/user/:id', userCTRL.removeUser) // add auth
+app.delete('/api/user/:id', auth, userCTRL.removeUser) // add auth
 app.delete('/api/courses/:id', auth, courseCTRL.removeCourse)
 
 
