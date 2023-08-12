@@ -6,6 +6,7 @@ import RemovingStudentView from "./RemovingStudentView"
 import UpdatingStudentView from "./UpdatingStudentView"
 import AddingCourseView from "./AddingCourseView"
 import RemovingCourseView from "./RemovingCourseView"
+import'../styles/studentDetails.scss';
 
 export default function StudentDetails () {
     const [userInfo, setUserInfo] = useState({})
@@ -85,10 +86,16 @@ export default function StudentDetails () {
                         <li>Phone: {userInfo.telephone}</li>
                         <li>Address: {userInfo.address}</li>
                     </ul>
+                    <div className="buttonsOfPower">
+                        <button className="button glow-button" onClick={() => handleRemoveStudent()}>Remove student</button>
+                        <button className="button glow-button" onClick={() => handleUpdateStudent()}>Update student</button>
+                        <button className="button glow-button" onClick={() => handleAddNewCourse()}>Add new course</button>
+                        <button className="button glow-button" onClick={() => handleRemoveCourse()}>Remove course</button>
+                    </div>
                 </div>
                 <div className="userCourses">
                     <h2>Student Courses</h2>
-                    <div>
+                    <div className="detailTable">
                         <table>
                             <tr>
                                 <th>Title</th>
@@ -100,7 +107,7 @@ export default function StudentDetails () {
                                         <tr key={i}>
                                             <td >{course.title}</td>
                                             <td>{course.course_code}</td>
-                                            <td>{course.description}</td>
+                                            <td className="detailDescription">{course.description}</td>
                                         </tr>
                                     ))
                                 ) : (
@@ -109,12 +116,6 @@ export default function StudentDetails () {
                             }
                         </table>
                     </div>
-                </div>
-                <div className="buttonsOfPower">
-                    <button className="button glow-button" onClick={() => handleRemoveStudent()}>Remove student</button>
-                    <button className="button glow-button" onClick={() => handleUpdateStudent()}>Update student</button>
-                    <button className="button glow-button" onClick={() => handleAddNewCourse()}>Add new course</button>
-                    <button className="button glow-button" onClick={() => handleRemoveCourse()}>Remove course</button>
                 </div>
         </>
     )
@@ -149,7 +150,7 @@ export default function StudentDetails () {
     return (
         <div className="container">
             <SideBar/>
-            <div>
+            <div className="studentDetailsMain">
                 <Header title='Student Details' />
                 {datHTML()}
             </div>
