@@ -14,55 +14,16 @@ const createScheduleDay = (obj) => {
 }
 
 module.exports = {
-    // joinCourse: async (req, res) => { 
-    //     // check for opening
-    //     // check if already enrolled
-    //     let {selectedCourses} = req.body
-    //     let {id} = req.auth 
-    //     console.log(`$$$$$$$$$$$$$$`)
-    //     console.log(selectedCourses)
-    //     console.log(`$$$$$$$$$$$$$$`)
-
-    //     for (let course in selectedCourses) {
-    //         let courseId = selectedCourses[course]
-    //         console.log(`*_*_*_*_*_*_*_*`)
-    //         console.log(courseId)
-    //         console.log(`*_*_*_*_*_*_*_*`)
-    //         let userCourses = await pool.query(`
-    //         SELECT * FROM students_courses
-    //         WHERE student_id = $1
-    //         AND course_id = $2
-    //         `,
-    //         [id, courseId])
-            
-    //         let courseEnrollment = await pool.query(`
-    //         SELECT * FROM students_courses
-    //         WHERE course_id = $1
-    //         `,
-    //         [courseId])
-           
-    //         if (userCourses.rows.length == 0 && courseEnrollment.rows.length == 0 ) {
-    //             pool.query(`
-    //             INSERT INTO students_courses (student_id, course_id)
-    //             VALUES ($1, $2)
-    //             `,
-    //             [userId, courseId],
-    //             (err, results) => {
-    //                 if (err) throw err
-    //                 res.status(200).json('enrolled')
-    //             })
-    //         } else {
-    //             res.status(200).json('unable to enroll')
-    //         }
-    //     }
-    // },
 
     joinCourse: async (req, res) => { 
         try {
             // check for opening
             // check if already enrolled
+            console.log(`~_~_~_~_~_~_~_~_~`)
+            console.log(req.body)
+            console.log(`~_~_~_~_~_~_~_~_~`)
             const { selectedCourses } = req.body;
-            const { id } = req.auth;
+            const id = req.auth.is_admin ? req.body.id : req.auth.id
             
             console.log("$$$$$$$$$$$$$$");
             console.log(selectedCourses);
@@ -123,7 +84,7 @@ module.exports = {
 
     dropCourse: async (req, res) => {
         let {removedCourses}= req.body
-        let {id} = req.auth
+        let id = req.auth.is_admin ? req.body.id : req.auth.id
         console.log(`-=-=-=-`)
         console.log(removedCourses)
         console.log(id)

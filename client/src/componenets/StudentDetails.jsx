@@ -31,6 +31,7 @@ export default function StudentDetails () {
                     
                 })
                 let results = await rawResults.json()
+                console.log(results.user)
                 setUserInfo(results.user[0])
                 setUserCourses(results.courses)
             } catch (err) {
