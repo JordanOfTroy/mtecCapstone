@@ -84,7 +84,7 @@ module.exports = {
 
     dropCourse: async (req, res) => {
         let {removedCourses}= req.body
-        let {id} = req.auth
+        let id = req.auth.is_admin ? req.body.id : req.auth.id
         console.log(`-=-=-=-`)
         console.log(removedCourses)
         console.log(id)

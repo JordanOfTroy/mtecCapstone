@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 
 export default function AddingCourseView ({handleCancel, userInfo}) {
+    const navTo = useNavigate()
     const {id} = userInfo
     const [availableCourses, setAvailableCourse] = useState([])
 
@@ -59,10 +60,12 @@ export default function AddingCourseView ({handleCancel, userInfo}) {
                 },
                 body: JSON.stringify({ selectedCourses, id })
             });
-    
-            console.log(rawResponse.status)
-            let parsedResponse = await rawResponse.json()
-            console.log(parsedResponse)
+            
+            if(rawResponse.status == 200) {
+                let parsedResponse = await rawResponse.json()
+                // console.log(parsedResponse)
+                navTo('/admin')
+            }
         } catch (err) {
             console.log('FETCHING ERROR:', err)
         }
