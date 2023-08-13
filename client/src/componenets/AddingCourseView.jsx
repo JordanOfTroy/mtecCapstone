@@ -65,6 +65,8 @@ export default function AddingCourseView ({handleCancel, userInfo}) {
                 let parsedResponse = await rawResponse.json()
                 // console.log(parsedResponse)
                 navTo('/admin')
+            } else {
+                console.log( await rawResponse.json() )
             }
         } catch (err) {
             console.log('FETCHING ERROR:', err)
