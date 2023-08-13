@@ -78,19 +78,25 @@ export default function StudentDetails () {
     const initialView = (
         <>
         <div className="userInfo">
-                    <h2>Student Info</h2>
-                    <ul>
-                        <li>Name: {userInfo.first_name} {userInfo.last_name}</li>
-                        <li>ID: {userInfo.id}</li>
-                        <li>Email: {userInfo.email}</li>
-                        <li>Phone: {userInfo.telephone}</li>
-                        <li>Address: {userInfo.address}</li>
-                    </ul>
-                    <div className="buttonsOfPower">
-                        <button className="button glow-button" onClick={() => handleRemoveStudent()}>Remove student</button>
-                        <button className="button glow-button" onClick={() => handleUpdateStudent()}>Update student</button>
-                        <button className="button glow-button" onClick={() => handleAddNewCourse()}>Add new course</button>
-                        <button className="button glow-button" onClick={() => handleRemoveCourse()}>Remove course</button>
+                <div className="studentInfo">
+                        <h2>Student Info</h2>
+                        <div className="details">
+                            <div className="detailsList">
+                                <ul>
+                                    <li>Name: {userInfo.first_name} {userInfo.last_name}</li>
+                                    <li>ID: {userInfo.id}</li>
+                                    <li>Email: {userInfo.email}</li>
+                                    <li>Phone: {userInfo.telephone}</li>
+                                    <li>Address: {userInfo.address}</li>
+                                </ul>
+                            </div>
+                            <div className="buttonsOfPower">
+                                <button className="action action-button" onClick={() => handleRemoveStudent()}>Remove student</button>
+                                <button className="action action-button" onClick={() => handleUpdateStudent()}>Update student</button>
+                                <button className="action action-button" onClick={() => handleAddNewCourse()}>Add new course</button>
+                                <button className="action action-button" onClick={() => handleRemoveCourse()}>Remove course</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="userCourses">

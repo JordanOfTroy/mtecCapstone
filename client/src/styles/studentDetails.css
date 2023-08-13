@@ -1,5 +1,17 @@
 .studentDetailsMain {
   color: #013832;
+  margin-left: 5%;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3%;
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
 }
 
 .detailTable {
@@ -8,9 +20,9 @@
   font-size: 14px;
   display: flex;
   margin-top: 3%;
-  margin-left: 20px;
+  margin-left: 30px;
   overflow: scroll;
-  width: 1100px;
+  width: 1000px;
   max-height: 400px;
 }
 .detailTable tr {
@@ -63,7 +75,90 @@
   flex-direction: row;
 }
 
-.userInfo {
+h2 {
+  margin-left: -2%;
+  margin-bottom: 2px;
+}
+
+.detailsList {
   display: flex;
-  justify-content: space-evenly;
+  margin-right: 2%;
+}
+
+.action {
+  background-color: #C56A19;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 20px 20px;
+  border-radius: 35px;
+  border: none;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  margin-right: 3%;
+}
+
+.action-button:hover {
+  color: #C56A19;
+  background-color: #013832;
+  box-shadow: 0 5px 15px #013832;
+  transition: all 0.3s ease-in-out;
+}
+
+.removeAlert {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 1000px;
+}
+.removeAlert h1 {
+  display: flex;
+  justify-content: center;
+}
+.removeAlert h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.removeStudent {
+  display: flex;
+  justify-content: center;
+}
+
+.updateStudent {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 50%;
+  margin-top: 25%;
+  background-color: #B0BB9B;
+}
+
+.updateButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminAddButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.adminRemoveCourse {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }/*# sourceMappingURL=studentDetails.css.map */

@@ -63,7 +63,7 @@ export default function RemovingCourseView ({handleCancel, userInfo}) {
                     <tr key={i}>
                         <td>{title}</td>
                         <td>{course_code}</td>
-                        <td>{description}</td>
+                        <td className="detailDescription">{description}</td>
                         <td><input type="checkbox" className="courseOption" value={id} /></td>
                     </tr>
                 )
@@ -74,7 +74,7 @@ export default function RemovingCourseView ({handleCancel, userInfo}) {
     return (
         <>
             <h1>Removing Course</h1>
-            <div>
+            <div className="detailTable">
                 <table>
                     <tr>
                         <td>Title</td>
@@ -85,9 +85,9 @@ export default function RemovingCourseView ({handleCancel, userInfo}) {
                     {enrolledCourses && enrolledCourses.length > 0 ? courseOptions() : <p>No course options</p>}
                 </table>
             </div>
-            <div>
-            <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
-            <button onClick={() => handleRemoveSelectedCourses()}>Remove selected courses</button>
+            <div className="adminRemoveCourse">
+                <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
+                <button className="button glow-button" onClick={() => handleRemoveSelectedCourses()}>Remove selected courses</button>
             </div>
         </>
     )

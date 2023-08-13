@@ -32,7 +32,7 @@ export default function AddingCourseView ({handleCancel, userInfo}) {
                     <tr key={i}>
                         <td>{title}</td>
                         <td>{course_code}</td>
-                        <td>{description}</td>
+                        <td className="detailDescription">{description}</td>
                         <td><input type="checkbox" className="courseOption" value={id}/></td>
                     </tr>
                 )
@@ -74,18 +74,18 @@ export default function AddingCourseView ({handleCancel, userInfo}) {
     return (
         <>
             <h1>Adding Course</h1>
-            <div>
+            <div className="detailTable">
                 <table>
                     <tr>
-                        <td>Title</td>
-                        <td>Course Code</td>
-                        <td>Description</td>
-                        <td>Enroll</td>
+                        <th>Title</th>
+                        <th>Course Code</th>
+                        <th>Description</th>
+                        <th>Enroll</th>
                     </tr>
                     {availableCourses && availableCourses.length > 0 ? courseOptions() : <p>No course options</p>}
                 </table>
             </div>
-            <div>
+            <div className="adminAddButton">
                 <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
                 <button className="button glow-button" onClick={() => handleAddNewCourses()}>Add new courses</button>
             </div>
