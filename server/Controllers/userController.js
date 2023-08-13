@@ -52,6 +52,7 @@ module.exports = {
         pool.query(`
           select id, first_name, last_name, email from users
           where is_admin = 'false'
+          order by last_name
         `, (err, results) => {
           if (err) throw err
           // console.log(results.rows)
@@ -70,7 +71,7 @@ module.exports = {
         join students_courses on users.id = students_courses.student_id
         join courses on students_courses.course_id = courses.id
         where courses.teacher_id = $1 
-        order by users.id
+        order by users.last_name
         `,
         [id],
         (err, results) => {

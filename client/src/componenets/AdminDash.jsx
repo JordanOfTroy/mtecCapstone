@@ -44,9 +44,27 @@ export default function AdminDash() {
             // console.log(parsedCourses)
             // console.log(parsedMyStudents)
             // console.log(`~~~~~~~~`)
+
+            const reducedMyStudents = parsedMyStudents.reduce((studentsArr, student) => {
+                const existingStudent = studentsArr.find(stuObj => stuObj.id === student.id)
+                if (existingStudent) {
+                    existingStudent.courses.push({title: student.title, course_code: student.course_code})
+                } else {
+                    studentsArr.push({
+                        first_name: student.first_name,
+                        last_name: student.last_name,
+                        id: student.id,
+                        email: student.email,
+                        courses: [{title: student.title, course_code: student.course_code}]
+                    })
+                }
+                return studentsArr
+            }, [])
+
             setStudents(parsedStudents)
             setCourses(parsedCourses)
-            setMyStudents(parsedMyStudents)
+            setMyStudents(reducedMyStudents)
+            console.log(reducedMyStudents)
         } catch (err) {
             console.log('Fetching Error:', err)
         }
@@ -149,8 +167,16 @@ export default function AdminDash() {
             return (
                 <tr key={i}>
                     <td>{student.id}</td>
-                    <td>{`${student.first_name} ${student.last_name}`}</td>
-                    <td>{student.email}</td>
+                    <td>{`${student.last_name}, ${student.first_name} `}</td>
+                    <td>
+                        <ul className='myStudentsCourses'>
+                        {
+                            student.courses.map((course, i) => {
+                                return <li>{course.title}</li>
+                            })
+                        }
+                        </ul>
+                    </td>
                     <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
                 </tr>
             )
@@ -163,7 +189,7 @@ export default function AdminDash() {
             return (
                 <tr key={i}>
                      <td>{student.id}</td>
-                    <td>{`${student.first_name} ${student.last_name}`}</td>
+                    <td>{`${student.last_name}, ${student.first_name}`}</td>
                     <td>{student.email}</td>
                     <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
                 </tr>
@@ -209,7 +235,7 @@ export default function AdminDash() {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>email</th>
+                                    <th>Courses</th>
                                     <th>View Details</th>
                                 </tr>
                                 {myStudentList}

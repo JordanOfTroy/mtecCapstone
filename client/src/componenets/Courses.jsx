@@ -176,9 +176,9 @@ export default function Courses() {
                         <td>{course.title}</td>
                         <td>
                             {/* <button className='viewButton' onClick={() => getCourseDescription()}>View</button> */}
-                            <div className="courseInfo" onClick={() => getCourseDescription()}>
+                            <div className="courseInfo" onClick={() => getCourseDescription(`coursePopup${i}`)}>
                                 <button className="viewButton">View</button>
-                                <span className="popupText" id="coursePopup">
+                                <span className="popupText" id={`coursePopup${i}`}>
                                     <p>{`${course.description}`}</p>
                                     <button>Okay</button>
                                 </span>
@@ -244,8 +244,8 @@ export default function Courses() {
                 }
                 </>
             )
-            function getCourseDescription() {
-                var popup = document.getElementById("coursePopup");
+            function getCourseDescription(eleId) {
+                var popup = document.getElementById(eleId);
                 popup.classList.toggle("show");
                 // console.log(course.description)
         
