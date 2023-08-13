@@ -6,42 +6,60 @@ import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 
 export default function StudentDash() {
-
+    const navTo = useNavigate()
     const [courses, setCourses] = useState([])
+    const [admins, setAdmins] = useState([])
 
-    let fetchCourses = async () => {
+    let fetchData = async () => {
         try {
-            const rawCourses = await fetch('/api/myCourses', {
+            const rawCourses = await fetch('/api/myCourses/null', {
                 method: 'GET',
                 headers: {
                     "content-type": "application/json",
                     Authorization: `Bearer ${window.localStorage.getItem('token')}` // added when using auth in end point we we can check req.auth
                  }
             })
+
+            const rawAdmins = await fetch('/api/admins', {
+                method:'GET',
+                headers: {
+                    "content-type": "application/json"
+                }
+            }) 
+
             const parsedCourses = await rawCourses.json()
-            console.log(`~~~~~~`)
-            console.log(parsedCourses)
-            console.log(`~~~~~~`)
+            const parsedAdmins = await rawAdmins.json()
+            // console.log(`~~~~~~`)
+            // console.log(parsedCourses)
+            // console.log(parsedAdmins)
+            // console.log(`~~~~~~`)
             setCourses(parsedCourses)
+            setAdmins(parsedAdmins)
         } catch (err) {
             console.log('Fetching Error:', err)
         }
     }
 
     useEffect(() => {
-        fetchCourses()
+        fetchData()
     }, [])
+
     let myCourses
-    // console.log(courses.length)
     if (courses.length > 0) {
+
+        const teacherMap = {};
+        admins.forEach(admin => {
+            teacherMap[admin.id] = `${admin.first_name} ${admin.last_name}`;
+        });
+        // console.log(teacherMap)
         myCourses = courses.map((course, i) => {
-            // console.log(course)
+            const teacherName = teacherMap[course.teacher_id] || 'No Assigned Teacher'
             return (
                 <tr key={i}>
                     <td>{course.title}</td>
                     <td className="description">{course.description}</td>
                     <td>{course.course_code}</td>
-                    <td>Teacher</td>
+                    <td>{teacherName}</td>
                     <td>
                         <input type="checkbox" value={`${course.id}`} className="selectedCourse" id='checkbox'></input>
                     </td>
@@ -68,7 +86,7 @@ export default function StudentDash() {
                 body: JSON.stringify({removedCourses})
             })
             if (rawResponse.status == 200) {
-                fetchCourses()
+                fetchData()
             }
         }catch(err){
             console.log('FETCHING ERROR:', err)
