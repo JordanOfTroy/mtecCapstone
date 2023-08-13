@@ -11,7 +11,7 @@ export default function StudentDash() {
 
     let fetchCourses = async () => {
         try {
-            const rawCourses = await fetch('/api/myCourses', {
+            const rawCourses = await fetch('/api/myCourses/null', {
                 method: 'GET',
                 headers: {
                     "content-type": "application/json",
