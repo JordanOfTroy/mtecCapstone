@@ -6,7 +6,7 @@ import {Link, useNavigate, useLocation} from 'react-router-dom';
 
 
 export default function StudentDash() {
-
+    const navTo = useNavigate()
     const [courses, setCourses] = useState([])
     const [admins, setAdmins] = useState([])
 
@@ -85,7 +85,7 @@ export default function StudentDash() {
                 body: JSON.stringify({removedCourses})
             })
             if (rawResponse.status == 200) {
-                fetchCourses()
+                fetchData()
             }
         }catch(err){
             console.log('FETCHING ERROR:', err)
