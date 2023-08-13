@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import '../styles/studentDetails.scss'
 
 export default function UpdatingStudentView ({handleCancel, userInfo}) {
     const navTo = useNavigate()
@@ -33,7 +34,7 @@ export default function UpdatingStudentView ({handleCancel, userInfo}) {
     }
 
     return (
-        <>
+        <div className="updateStudent">
             <h1>Updating Student</h1>
             <div>
                 <div className="inputGroup">
@@ -41,7 +42,7 @@ export default function UpdatingStudentView ({handleCancel, userInfo}) {
                     <input type="text" id='first_name' defaultValue={first_name}></input>
                 </div>
                 <div className="inputGroup">
-                    <label>last name:</label>
+                    <label>Last name:</label>
                     <input type="text" id='last_name' defaultValue={last_name}></input>
                 </div>
                 <div className="inputGroup">
@@ -57,10 +58,10 @@ export default function UpdatingStudentView ({handleCancel, userInfo}) {
                     <input type="text" id='address' defaultValue={address}></input>
                 </div>
             </div>
-            <div>
+            <div className="updateButton">
                 <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
                 <button className="button glow-button" onClick={() => handleSubmitChanges()}>Submit Changes</button>
             </div>
-        </>
+        </div>
     )
 }

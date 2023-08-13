@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router"
+import'../styles/studentDetails.scss';
 
 export default function RemovingStudentView ({handleCancel, userInfo}) {
     const navTo = useNavigate()
@@ -24,16 +25,16 @@ export default function RemovingStudentView ({handleCancel, userInfo}) {
     }
 
     return (
-        <>
-        <div>
-            <h1>Removing Student: {first_name} {last_name}</h1>
-            <h2>Are you sure you want to remove {first_name} {last_name}? This will remove them from all courses they are currently enrolled in as well as deleting thier student record. </h2>
-            <h2>This action can not be undone.</h2>
+        <div className="removeStudentBG">
+            <div className="removeAlert">
+                <h1>Removing Student: {first_name} {last_name}</h1>
+                <h2>Are you sure you want to remove {first_name} {last_name}? This will remove them from all courses they are currently enrolled in as well as deleting thier student record. </h2>
+                <h2>This action can not be undone.</h2>
+            </div>
+            <div className='removeStudent'>
+                <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
+                <button onClick={() => removeStudent()}>Remove {first_name} {last_name}</button>
+            </div>
         </div>
-        <div>
-            <button className="button glow-button" onClick={() => handleCancel()}>Cancel</button>
-            <button onClick={() => removeStudent()}>Remove {first_name} {last_name}</button>
-        </div>
-        </>
     )
 }
