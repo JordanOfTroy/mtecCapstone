@@ -1,0 +1,164 @@
+.studentDetailsMain {
+  color: #013832;
+  margin-left: 5%;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3%;
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
+}
+
+.detailTable {
+  color: #013832;
+  background-color: #013832;
+  font-size: 14px;
+  display: flex;
+  margin-top: 3%;
+  margin-left: 30px;
+  overflow: scroll;
+  width: 1000px;
+  max-height: 400px;
+}
+.detailTable tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: #013832 1px solid;
+  padding-top: 5px;
+}
+.detailTable tr:nth-child(odd) {
+  background-color: #B0BB9B;
+}
+.detailTable tr:nth-child(even) {
+  background-color: #DEDFDA;
+}
+.detailTable span {
+  border: #013832 1px inset;
+  display: flex;
+  flex-direction: row;
+}
+.detailTable th {
+  margin-right: 15px;
+  margin-left: 15px;
+  display: flex;
+}
+.detailTable td {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 35px;
+}
+.detailTable td:nth-child(2) {
+  padding-top: 8px;
+  font-size: 10px;
+}
+
+.detailDescription {
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+  overscroll-behavior: contain;
+}
+
+.buttonsOfPower {
+  display: flex;
+  flex-direction: row;
+}
+
+h2 {
+  margin-left: -2%;
+  margin-bottom: 2px;
+}
+
+.detailsList {
+  display: flex;
+  margin-right: 2%;
+}
+
+.action {
+  background-color: #C56A19;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 20px 20px;
+  border-radius: 35px;
+  border: none;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  margin-right: 3%;
+}
+
+.action-button:hover {
+  color: #C56A19;
+  background-color: #013832;
+  box-shadow: 0 5px 15px #013832;
+  transition: all 0.3s ease-in-out;
+}
+
+.removeAlert {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 1000px;
+}
+.removeAlert h1 {
+  display: flex;
+  justify-content: center;
+}
+.removeAlert h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.removeStudent {
+  display: flex;
+  justify-content: center;
+}
+
+.updateStudent {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 50%;
+  margin-top: 25%;
+  background-color: #B0BB9B;
+}
+
+.updateButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminAddButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.adminRemoveCourse {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}/*# sourceMappingURL=studentDetails.css.map */
