@@ -63,6 +63,7 @@ module.exports = {
 
     getCoursesByStudent: async (req, res) => {
         let id = req.auth.is_admin ? req.params.id : req.auth.id
+        console.log(id)
         let studentCourses = await pool.query(`
         SELECT courses.id, title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
         FROM courses
@@ -179,11 +180,12 @@ module.exports = {
         try {
             let availableCourses = await pool.query(
                 `
-                SELECT distinct courses.* 
-                FROM courses 
-                JOIN students_courses ON students_courses.course_id = courses.id 
-                WHERE students_courses.student_id != $1
-                ORDER BY id
+                SELECT DISTINCT courses.*
+                FROM courses
+                LEFT JOIN students_courses ON students_courses.course_id = courses.id
+                AND students_courses.student_id = $1
+                WHERE students_courses.student_id IS NULL
+                ORDER BY courses.id;
                 `,
                 [studentId]
             )
