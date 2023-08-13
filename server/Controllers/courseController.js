@@ -64,18 +64,20 @@ module.exports = {
     getCoursesByStudent: async (req, res) => {
         let id = req.auth.is_admin ? req.params.id : req.auth.id
         console.log(id)
-        let studentCourses = await pool.query(`
-        SELECT courses.id, title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
-        FROM courses
-        JOIN students_courses ON courses.id = students_courses.course_id
-        JOIN users ON students_courses.student_id = users.id
-        WHERE users.id = $1;
-        `,
-        [id],
-        (err, results) => {
-            if (err) throw err
-            res.status(200).json(results.rows)
-        })
+        try {
+            let studentCourses = await pool.query(`
+            SELECT courses.id, teacher_id, title, course_code, credit_hours, tuition, description, days_of_week, start_time, end_time, room_number
+            FROM courses
+            JOIN students_courses ON courses.id = students_courses.course_id
+            JOIN users ON students_courses.student_id = users.id
+            WHERE users.id = $1;
+            `,
+            [id])
+            res.status(200).json(studentCourses.rows)
+        } catch (err) {
+            console.log('BACKEND ERROR:', err)
+            res.status(400).json(err)
+        }
     },
 
     getCoursesImTeaching: async (req, res) => {
@@ -174,7 +176,6 @@ module.exports = {
             
     },
 
-    //bug with query - will pull courses that the student is enrolled in IF other students are enrolled in the same course. SMH
     getAvailableCourses: async (req, res) => {
         const {studentId} = req.params
         try {
