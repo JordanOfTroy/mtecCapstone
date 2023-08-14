@@ -113,7 +113,15 @@ export default function StudentDetails () {
                                         <tr key={i}>
                                             <td >{course.title}</td>
                                             <td>{course.course_code}</td>
-                                            <td className="detailDescription">{course.description}</td>
+                                            <td>
+                                                <div className="courseInfo" onClick={() => getCourseDescription(`coursePopup${i}`)}>
+                                                    <button className="studentDetailViewButton">View</button>
+                                                    <span className="popupText" id={`coursePopup${i}`}>
+                                                        <p>{`${course.description}`}</p>
+                                                        <button>Okay</button>
+                                                    </span>
+                                                </div>
+                                            </td>
                                         </tr>
                                     ))
                                 ) : (
@@ -125,7 +133,12 @@ export default function StudentDetails () {
                 </div>
         </>
     )
-    
+    function getCourseDescription(eleId) {
+        var popup = document.getElementById(eleId);
+        popup.classList.toggle("show");
+        // console.log(course.description)
+
+    }
     
     let datHTML = () => {
         if (allOff) {

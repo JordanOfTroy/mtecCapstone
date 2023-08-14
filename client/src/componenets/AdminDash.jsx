@@ -149,7 +149,15 @@ export default function AdminDash() {
             return (
                 <tr key={i}>
                     <td>{course.title}</td>
-                    <td className="description">{course.description}</td>
+                    <td>
+                        <div className="courseInfo" onClick={() => getCourseDescription(`coursePopup${i}`)}>
+                            <button className="viewButton">View</button>
+                            <span className="popupText" id={`coursePopup${i}`}>
+                                <p>{`${course.description}`}</p>
+                                <button>Okay</button>
+                            </span>
+                        </div>
+                    </td>
                     <td>{course.course_code}</td>
                     <td>{`${course.start_time} - ${course.end_time}`}</td>
                     <td>{course.credit_hours}</td>
@@ -160,7 +168,12 @@ export default function AdminDash() {
             )
         })
     }
+    function getCourseDescription(eleId) {
+        var popup = document.getElementById(eleId);
+        popup.classList.toggle("show");
+        // console.log(course.description)
 
+    }
     let myStudentList
     if (myStudents && myStudents.length > 0) {
         myStudentList = myStudents.map((student, i) => {
@@ -212,7 +225,7 @@ export default function AdminDash() {
                     </div>
                     <div>
                         <h3>My Courses</h3>
-                        <div className="adminTable">    
+                        <div className="adminPersonalCourses">    
                             <table>
                                 <tr>
                                     <th>Title</th>
