@@ -12,7 +12,7 @@
         border: none;
         margin-top: 5px;
         margin-bottom: 25px;
-        margin-left: 92%;
+        margin-left: 2%;
         max-width: 90px;
         display: flex;
         justify-content: center;
@@ -24,6 +24,27 @@
         box-shadow: 0 5px 15px #013832;
         transition: all 0.3s ease-in-out;
       }
+}
+.addButton {
+  background-color: #C56A19;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 20px 20px;
+  border-radius: 35px;
+  border: none;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  margin-left: 92%;
+  max-width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.addButton:hover {
+  color:#C56A19;
+  background-color:#013832;
+  box-shadow: 0 5px 15px #013832;
+  transition: all 0.3s ease-in-out;
 }
 .coursesDashboard{
     background-color: #B0BB9B;
@@ -123,6 +144,7 @@ table {
     margin-left: 60%;
     width: 400px;
     padding: 40px 20px 20px 20px;
+    border-radius: 30px;
 
 }
 .creation{
@@ -277,4 +299,14 @@ table {
     font-size: 11px;
     display: flex;
     justify-content: center;
+}
+.createCourseButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 400px;
+}
+.sunday{
+  display: flex;
+  justify-content: center;
 }

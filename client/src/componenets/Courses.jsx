@@ -385,9 +385,9 @@ export default function Courses() {
                     {
                     window.localStorage.getItem('isAdmin') === 'true'
                     ?
-                    <button className="submitButton" onClick={() => setAddingCourse(true)}>Add Course</button>
+                    <button className="addButton" onClick={() => setAddingCourse(true)}>Add Course</button>
                     :
-                    <button className="submitButton" onClick={() => handleJoinCourses()}>Join Courses</button>
+                    <button className="addButton" onClick={() => handleJoinCourses()}>Join Courses</button>
                     }
                 </>
                 :
@@ -467,12 +467,12 @@ export default function Courses() {
                         
                     </div>
                     <div className="daySelection">
-                        <div>
+                        <div className="sunday">
                             <input type="checkbox" className='selectedDays' name="sunday" id="sunday" value='S'/>
                             <label htmlFor="sunday" >Sunday</label>
                         </div>
                     </div>
-                    <div>
+                    <div className="createCourseButtons">
                         <button className='submitButton'onClick={() => setAddingCourse(false)}>Cancel</button>
                         <button className='submitButton' onClick={() => handleCourseSubmission()}>Submit</button>
                     </div>
