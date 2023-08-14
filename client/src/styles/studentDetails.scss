@@ -12,6 +12,7 @@ margin-left: 5%;
     align-items: center;
     width: 460px;
     height: 68px;
+    border-radius: 30px;
 }
 .userInfo{
     display: flex;
@@ -127,6 +128,7 @@ h2{
     padding-top: 5%;
     margin-left: 4%;
     width: 1000px;
+    
     h1{
         display: flex;
         justify-content: center; 
@@ -142,6 +144,8 @@ h2{
     background-color: #B0BB9B;
     width: 1070px;
     height: 500px;
+  border-radius: 30px;
+
 }
 .removeStudent{
     display: flex;
@@ -158,6 +162,8 @@ h2{
     margin-left: 50%;
     margin-top: 25%;
     background-color: #B0BB9B;
+  border-radius: 30px;
+
 }
 .updateButton{
     display: flex;

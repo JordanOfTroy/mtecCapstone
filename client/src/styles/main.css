@@ -113,6 +113,7 @@ body {
   color: #B0BB9B;
   width: 800px;
   height: 400px;
+  border-radius: 30px;
 }
 .login input {
   margin-bottom: 25px;
@@ -165,6 +166,8 @@ body {
   background-color: #387B5C;
   width: 550px;
   height: 550px;
+  border-radius: 30px;
+  padding: 20px;
 }
 
 .register {
@@ -172,6 +175,7 @@ body {
   height: 25px;
   width: 300px;
   color: #013832;
+  border-radius: 30px;
 }
 
 .message {
