@@ -3,6 +3,18 @@
   margin-left: 5%;
 }
 
+.studentDetails {
+  background-color: #B0BB9B;
+  color: #013832;
+  font-size: 20px;
+  margin: 30px 0px 0px 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 460px;
+  height: 68px;
+}
+
 .userInfo {
   display: flex;
   justify-content: space-evenly;
@@ -23,7 +35,7 @@
   margin-left: 30px;
   overflow: scroll;
   width: 1000px;
-  max-height: 400px;
+  max-height: 350px;
 }
 .detailTable tr {
   display: flex;
@@ -83,6 +95,7 @@ h2 {
 .detailsList {
   display: flex;
   margin-right: 2%;
+  font-weight: 500;
 }
 
 .action {
@@ -111,6 +124,10 @@ h2 {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
+  margin-top: 6%;
+  padding-top: 5%;
+  margin-left: 4%;
   width: 1000px;
 }
 .removeAlert h1 {
@@ -120,6 +137,13 @@ h2 {
 .removeAlert h2 {
   display: flex;
   justify-content: center;
+}
+
+.removeStudentBG {
+  margin-left: -2%;
+  background-color: #B0BB9B;
+  width: 1070px;
+  height: 500px;
 }
 
 .removeStudent {
