@@ -12,87 +12,101 @@ module.exports = {
       let { firstName, lastName, email, password, telephone, address} = req.body;
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
-  
-      let newSudent = await pool.query(
-        `INSERT INTO users 
-        (first_name, last_name, email, password, telephone, address) VALUES ($1, $2, $3, $4, $5, $6)
-        returning users.*
-        `,
-        [firstName, lastName, email, hash, telephone, address],
-        (err, results) => {
-          if (err) console.log(err)
-          if (err) throw err;
-          console.log(results.rows[0])
-          res.status(200).json(results.rows[0]);
-        }
-      );
+
+      try {
+        let newStudent = await pool.query(
+          `INSERT INTO users 
+          (first_name, last_name, email, password, telephone, address) VALUES ($1, $2, $3, $4, $5, $6)
+          returning users.*
+          `,
+          [firstName, lastName, email, hash, telephone, address]
+        )
+        res.status(200).send(newStudent.rows[0])
+
+      } catch(err) {
+        console.log('BACKEND ERROR:', err)
+        res.status(400).json(err)
+      }
     }, 
 
     addNewAdmin: async (req, res) => {
       let { firstName, lastName, email, password } = req.body;
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
+
+      try {
+        let newAdmin = await pool.query(
+          `INSERT INTO users 
+          (is_admin, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)
+          returning users.*
+          `,
+          ['true', firstName, lastName, email, hash]
+        )
+        res.status(200).json(newAdmin.rows[0])
+      } catch (err) {
+        console.log('BACKEND ERROR', err)
+        res.status(400).send(err)
+      }
   
-      let newAdmin = await pool.query(
-        `INSERT INTO users 
-        (is_admin, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)
-        returning users.*
-        `,
-        ['true', firstName, lastName, email, hash],
-        (err, results) => {
-          if (err) throw err;
-          res.status(200).json(results.rows);
-        }
-      );
     },
 
-    getAllStudents: (req, res) => {
+    getAllStudents: async (req, res) => {
       let {is_admin} = req.auth
       if (is_admin) {
-        pool.query(`
-          select id, first_name, last_name, email from users
-          where is_admin = 'false'
-          order by last_name
-        `, (err, results) => {
-          if (err) throw err
-          // console.log(results.rows)
-          res.status(200).json(results.rows)
-        })
+        try {
+          let allStudents = await pool.query(`
+            select id, first_name, last_name, email from users
+            where is_admin = 'false'
+            order by last_name
+          `)
+          res.status(200).json(allStudents.rows)
+        } catch (err) {
+          console.log('BACKEND ERROR:', err)
+          res.status(400).json(err)
+        }
       } else {
         res.status(404).send('not an admin')
       }
     }, 
 
-    getMyStudents: (req, res) => {
+    getMyStudents: async (req, res) => {
       let {is_admin, id} = req.auth
       if (is_admin) {
-        pool.query(`
-        select users.first_name, users.last_name, users.id, users.email, courses.title, courses.course_code from users
-        join students_courses on users.id = students_courses.student_id
-        join courses on students_courses.course_id = courses.id
-        where courses.teacher_id = $1 
-        order by users.last_name
-        `,
-        [id],
-        (err, results) => {
-          if (err) throw err
-          res.status(200).json(results.rows)
-        })
+        try {
+          let myStudents = await pool.query(
+          `
+          select users.first_name, users.last_name, users.id, users.email, courses.title, courses.course_code from users
+          join students_courses on users.id = students_courses.student_id
+          join courses on students_courses.course_id = courses.id
+          where courses.teacher_id = $1 
+          order by users.last_name
+          `,
+          [id]
+          )
+          res.status(200).json(myStudents.rows)
+        } catch (err) {
+          console.log('BACKEND ERROR:', err)
+          res.status(400).json(err)
+        }
+      } else {
+        res.status(404).send('not an admin')
       }
     },
 
 
-    getAllAdmins: (req, res) => {
-      pool.query(`
-        select id, first_name, last_name, email from users
-        where is_admin = 'true'
-      `, (err, results) => {
-        if (err) throw err
-        for (let row of results.rows) {
-          console.log(JSON.stringify(row))
+    getAllAdmins: async (req, res) => {
+      try {
+        let admins = await pool.query(
+        `
+          select id, first_name, last_name, email from users
+          where is_admin = 'true'
+        `
+        )
+        res.status(200).json(admins.rows)
+      } catch (err) {
+        console.log('BACKEND ERROR:', err)
+        res.status(400).json(err)
       }
-        res.status(200).json(results.rows)
-      })
     },
 
     getAdminById: (req, res) => {

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import '../styles/studentDetails.scss'
 
-export default function UpdatingStudentView ({handleCancel, userInfo}) {
+export default function UpdatingStudentView ({handleCancel, userInfo, setUpdatekey}) {
     const navTo = useNavigate()
     const {first_name, last_name, email, id, telephone, address} = userInfo
 
@@ -11,7 +11,7 @@ export default function UpdatingStudentView ({handleCancel, userInfo}) {
         let email = document.getElementById('email').value;
         let telephone = document.getElementById('phone').value;
         let address = document.getElementById('address').value;
-
+        
         try {
             const rawUser = await fetch('/api/user', {
                 method: 'PUT',
@@ -23,7 +23,9 @@ export default function UpdatingStudentView ({handleCancel, userInfo}) {
             })
             let parsedUser = await rawUser.json();
             if (rawUser.status == 200) {
-                navTo('/admin')
+                setUpdatekey(prevKey => prevKey + 1)
+                // navTo(`/studentDetails/${id}`)
+                // navTo('/admin')
             } else {
                 console.log('server error:', rawUser.status)
             }

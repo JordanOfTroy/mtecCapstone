@@ -17,8 +17,9 @@ export default function StudentDetails () {
     const [isUpdatingStudent, setIsUpdatingStudent] = useState(false)
     const [isAddingCourse, setIsAddingCourse] = useState(false)
     const [isRemovingCourse, setIsRemovingCourse] = useState(false)
+    const [updateKey, setUpdatekey] = useState(0)
     const allOff = !isButtonClicked && !isRemovingStudent && !isUpdatingStudent && !isAddingCourse && !isRemovingCourse
-
+    console.log('UPDATE KEY:', updateKey)
     useEffect(() => {
         const initialApiCall = async () => {
             console.log(studentId)
@@ -139,6 +140,7 @@ export default function StudentDetails () {
             return <UpdatingStudentView
                     handleCancel={handleCancel}
                     userInfo = {userInfo}
+                    setUpdatekey = {setUpdatekey}
                     />
         } else if (isButtonClicked && isAddingCourse) {
             return <AddingCourseView

@@ -73,7 +73,7 @@ app.put('/api/dropCourse', auth, registrationCTRL.dropCourse)
 
 app.post('/api/courses', auth, courseCTRL.addNewCourse)
 app.post('/api/newAdmin',auth, userCTRL.addNewAdmin)
-app.post('/api/newStudent',auth, userCTRL.addNewStudent)
+app.post('/api/newStudent', userCTRL.addNewStudent)
 app.post('/api/login', loginCTRL.handleLogin)
 app.post('/api/searchCourses', courseCTRL.searchAllCourses)
 
