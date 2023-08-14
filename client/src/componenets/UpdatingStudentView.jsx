@@ -39,23 +39,23 @@ export default function UpdatingStudentView ({handleCancel, userInfo}) {
             <div>
                 <div className="inputGroup">
                     <label>First name:</label>
-                    <input type="text" id='first_name' defaultValue={first_name}></input>
+                    <input className="inputUpdateStudent" type="text" id='first_name' defaultValue={first_name}></input>
                 </div>
                 <div className="inputGroup">
                     <label>Last name:</label>
-                    <input type="text" id='last_name' defaultValue={last_name}></input>
+                    <input className="inputUpdateStudent" type="text" id='last_name' defaultValue={last_name}></input>
                 </div>
                 <div className="inputGroup">
                     <label>Email:</label>
-                    <input type="text" id='email' defaultValue={email}></input>
+                    <input className="inputUpdateStudent" type="text" id='email' defaultValue={email}></input>
                 </div>
                 <div className="inputGroup">
                     <label>Phone:</label>
-                    <input type="text" id='phone' defaultValue={telephone}></input>
+                    <input className="inputUpdateStudent" type="text" id='phone' defaultValue={telephone}></input>
                 </div>
                 <div className="inputGroup">
                     <label>Address:</label>
-                    <input type="text" id='address' defaultValue={address}></input>
+                    <input className="inputUpdateStudent" type="text" id='address' defaultValue={address}></input>
                 </div>
             </div>
             <div className="updateButton">
