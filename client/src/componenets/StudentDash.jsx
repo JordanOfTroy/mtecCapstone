@@ -67,6 +67,7 @@ export default function StudentDash() {
             )
         })
     }
+    console.log(courses)
     const handleCourseRemoval = async () => {
         let selectedCourses = document.getElementsByClassName('selectedCourse');
         let removedCourses = [];

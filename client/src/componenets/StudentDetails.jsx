@@ -157,7 +157,9 @@ export default function StudentDetails () {
         <div className="container">
             <SideBar/>
             <div className="studentDetailsMain">
-                <Header title='Student Details' />
+                <div className="studentDetails">
+                    <Header title='Student Details' />
+                </div>
                 {datHTML()}
             </div>
         </div>

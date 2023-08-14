@@ -188,7 +188,7 @@ export default function AdminDash() {
         allStudents = students.map((student, i) => {
             return (
                 <tr key={i}>
-                     <td>{student.id}</td>
+                    <td>{student.id}</td>
                     <td>{`${student.last_name}, ${student.first_name}`}</td>
                     <td>{student.email}</td>
                     <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
@@ -207,7 +207,7 @@ export default function AdminDash() {
                 !isAddingUser
                 ?
                 <div className="adminMain">
-                    <div>
+                    <div className="adminNewUser">
                         <button className="button glow-button" onClick={() => setIsAddingUser(true)}>Add New User</button>
                     </div>
                     <div>
@@ -286,9 +286,9 @@ export default function AdminDash() {
                         </div>
                         <div>
                             <input className='register_radio' type="radio" name="user_type_radio" id="student_radio" value='student' ></input>
-                            <label htmlFor="address">Student</label>
+                            <label htmlFor="address" id="radioBold">Student</label>
                             <input className='register_radio' type="radio" name="user_type_radio" id="admin_radio" value='admin' ></input>
-                            <label htmlFor="address">Admin</label>
+                            <label htmlFor="address" id="radioBold">Admin</label>
                         </div>
                         
                         <div className="registerButton">

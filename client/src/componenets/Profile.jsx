@@ -81,13 +81,13 @@ export default function Profile() {
                     <div className="profileInfo">
                             <h4>Created date :</h4>
                             <label className="profileLabel" htmlFor="name">Name:</label>
-                            <p id="name">{`${user.first_name} ${user.last_name}`}</p>
+                            <p className="profileText" id="name">{`${user.first_name} ${user.last_name}`}</p>
                             <label className="profileLabel" htmlFor="email">Email:</label>
-                            <p id="email">{`${user.email}`}</p>
+                            <p className="profileText"  id="email">{`${user.email}`}</p>
                             <label className="profileLabel" htmlFor="telephone">Phone #:</label>
-                            <p id="phone">{`${user.telephone}`}</p>
+                            <p className="profileText" id="phone">{`${user.telephone}`}</p>
                             <label className="profileLabel" htmlFor="address">Address:</label>
-                            <p id="address">{`${user.address}`}</p>
+                            <p className="profileText"  id="address">{`${user.address}`}</p>
                             <button onClick={()=>setClicked(false)} className="button glow-button">Edit</button>
                         </div>
                         :
