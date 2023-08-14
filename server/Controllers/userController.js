@@ -109,12 +109,21 @@ module.exports = {
       }
     },
 
-    getAdminById: (req, res) => {
+    getAdminById: async (req, res) => {
       let {id} = req.params
-      pool.query(`select * from users where id = ${id}`, (err, results) => {
-          if (err) throw err
-          res.status(200).json(results.rows)
-      })
+      try {
+        let admin = await pool.query(
+          `
+          select * from users 
+          where id = $1
+          `,
+          [id]
+          )
+          res.status(200).json(admin.rows)
+      } catch (err) {
+        console.log('BACKEND ERROR:', err)
+        res.status(400).json(err)
+      }
     },
 
     updateUser: async (req, res) => {
@@ -169,15 +178,19 @@ module.exports = {
     getUser: async (req, res) =>{
       console.log('getting user')
       let {id} = req.auth
-      let user = await pool.query(`
-      SELECT first_name, last_name, is_admin, telephone, address, email from users
-      WHERE id = $1
-      `,
-      [id])
-      console.log(`-=-=-`)
-      console.log(user)
-      console.log(`-=-=-`)
-      res.status(200).json(user.rows[0])
+      try {
+        let user = await pool.query(
+        `
+        SELECT first_name, last_name, is_admin, telephone, address, email from users
+        WHERE id = $1
+        `,
+        [id]
+        )
+        res.status(200).json(user.rows[0])
+      } catch (err) {
+        console.log('BACKEND ERROR:', err)
+        res.status(400).json(err)
+      }
     },
 
     getStudent: async (req, res) => {
