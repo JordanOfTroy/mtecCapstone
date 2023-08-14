@@ -189,6 +189,7 @@ body{
   color: #B0BB9B;
   width: 800px;
   height: 400px;
+  border-radius: 30px;
   input {
     margin-bottom: 25px;
     margin-right: 10px;
@@ -232,12 +233,16 @@ body{
   background-color: #387B5C;
   width: 550px;
   height: 550px;
+  border-radius: 30px;
+  padding: 20px;
 }
 .register{
   margin-bottom: 10px;
   height: 25px;
   width: 300px;
   color: #013832;
+  border-radius: 30px;
+
 }
 
 .message {

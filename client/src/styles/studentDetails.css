@@ -13,6 +13,7 @@
   align-items: center;
   width: 460px;
   height: 68px;
+  border-radius: 30px;
 }
 
 .userInfo {
@@ -144,6 +145,7 @@ h2 {
   background-color: #B0BB9B;
   width: 1070px;
   height: 500px;
+  border-radius: 30px;
 }
 
 .removeStudent {
@@ -162,6 +164,7 @@ h2 {
   margin-left: 50%;
   margin-top: 25%;
   background-color: #B0BB9B;
+  border-radius: 30px;
 }
 
 .updateButton {
