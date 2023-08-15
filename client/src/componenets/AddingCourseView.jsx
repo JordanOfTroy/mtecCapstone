@@ -32,14 +32,28 @@ export default function AddingCourseView ({handleCancel, userInfo}) {
                     <tr key={i}>
                         <td>{title}</td>
                         <td>{course_code}</td>
-                        <td className="detailDescription">{description}</td>
+                        <td>
+                            <div className="courseInfo" onClick={() => getCourseDescription(`coursePopup${i}`)}>
+                                <button className="studentDetailViewButton">View</button>
+                                <span className="popupText" id={`coursePopup${i}`}>
+                                    <p>{`${course.description}`}</p>
+                                    <button>Okay</button>
+                                </span>
+                            </div>
+                        </td>
                         <td><input type="checkbox" className="courseOption" value={id}/></td>
                     </tr>
                 )
             })
         )
     }
+    function getCourseDescription(eleId) {
+        var popup = document.getElementById(eleId);
+        popup.classList.toggle("show");
+        // console.log(course.description)
 
+    }
+    
 
     const handleAddNewCourses = async () => {
         const courseOptions = document.getElementsByClassName('courseOption');
