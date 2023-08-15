@@ -149,7 +149,15 @@ export default function AdminDash() {
             return (
                 <tr key={i}>
                     <td>{course.title}</td>
-                    <td className="description">{course.description}</td>
+                    <td>
+                        <div className="courseInfo" onClick={() => getCourseDescription(`coursePopup${i}`)}>
+                            <button className="viewButton">View</button>
+                            <span className="popupText" id={`coursePopup${i}`}>
+                                <p>{`${course.description}`}</p>
+                                <button>Okay</button>
+                            </span>
+                        </div>
+                    </td>
                     <td>{course.course_code}</td>
                     <td>{`${course.start_time} - ${course.end_time}`}</td>
                     <td>{course.credit_hours}</td>
@@ -160,7 +168,12 @@ export default function AdminDash() {
             )
         })
     }
+    function getCourseDescription(eleId) {
+        var popup = document.getElementById(eleId);
+        popup.classList.toggle("show");
+        // console.log(course.description)
 
+    }
     let myStudentList
     if (myStudents && myStudents.length > 0) {
         myStudentList = myStudents.map((student, i) => {
@@ -188,7 +201,7 @@ export default function AdminDash() {
         allStudents = students.map((student, i) => {
             return (
                 <tr key={i}>
-                     <td>{student.id}</td>
+                    <td>{student.id}</td>
                     <td>{`${student.last_name}, ${student.first_name}`}</td>
                     <td>{student.email}</td>
                     <td><Link to={`/studentDetails/${student.id}`}>Details</Link></td>
@@ -207,12 +220,12 @@ export default function AdminDash() {
                 !isAddingUser
                 ?
                 <div className="adminMain">
-                    <div>
+                    <div className="adminNewUser">
                         <button className="button glow-button" onClick={() => setIsAddingUser(true)}>Add New User</button>
                     </div>
                     <div>
                         <h3>My Courses</h3>
-                        <div className="adminTable">    
+                        <div className="adminPersonalCourses">    
                             <table>
                                 <tr>
                                     <th>Title</th>
@@ -286,9 +299,9 @@ export default function AdminDash() {
                         </div>
                         <div>
                             <input className='register_radio' type="radio" name="user_type_radio" id="student_radio" value='student' ></input>
-                            <label htmlFor="address">Student</label>
+                            <label htmlFor="address" id="radioBold">Student</label>
                             <input className='register_radio' type="radio" name="user_type_radio" id="admin_radio" value='admin' ></input>
-                            <label htmlFor="address">Admin</label>
+                            <label htmlFor="address" id="radioBold">Admin</label>
                         </div>
                         
                         <div className="registerButton">

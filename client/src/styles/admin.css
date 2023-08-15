@@ -3,7 +3,7 @@
   flex-direction: column;
   position: absolute;
   margin-left: 12%;
-  margin-top: 8%;
+  margin-top: 3%;
 }
 .adminMain h3 {
   margin-top: 40px;
@@ -20,9 +20,9 @@ table {
   font-size: 14px;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 5px;
   overflow: scroll;
-  max-height: 200px;
+  max-height: 125px;
   max-width: 1000px;
 }
 .adminTable th {
@@ -37,6 +37,7 @@ table {
   justify-content: space-around;
   border-bottom: #013832 1px solid;
   padding-top: 5px;
+  align-items: center;
 }
 .adminTable td {
   display: flex;
@@ -55,6 +56,48 @@ table {
   flex-direction: row;
 }
 
+.adminPersonalCourses {
+  color: #013832;
+  background-color: #013832;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  overflow: scroll;
+  max-height: 125px;
+  max-width: 1000px;
+}
+.adminPersonalCourses th {
+  margin-right: 35px;
+  margin-left: 35px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.adminPersonalCourses tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: #013832 1px solid;
+  padding-top: 5px;
+  align-items: center;
+}
+.adminPersonalCourses td {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.adminPersonalCourses tr:nth-child(odd) {
+  background-color: #B0BB9B;
+}
+.adminPersonalCourses tr:nth-child(even) {
+  background-color: #DEDFDA;
+}
+.adminPersonalCourses span {
+  border: #013832 1px inset;
+  display: flex;
+  flex-direction: row;
+}
+
 .adminDashboard {
   background-color: #B0BB9B;
   color: #013832;
@@ -65,6 +108,7 @@ table {
   align-items: center;
   width: 460px;
   height: 68px;
+  border-radius: 30px;
 }
 
 .removeStudentCheckbox {
@@ -72,13 +116,24 @@ table {
 }
 
 .creatingNewUserForm {
+  color: #013832;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-left: 60%;
-  margin-top: 15%;
+  margin-left: 50%;
+  margin-top: 25%;
   width: 500px;
   height: 500px;
   background-color: #B0BB9B;
+  border-radius: 30px;
+}
+
+.adminNewUser {
+  display: flex;
+  margin-top: -25px;
+}
+
+#radioBold {
+  font-weight: 600;
 }/*# sourceMappingURL=admin.css.map */

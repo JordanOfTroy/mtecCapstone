@@ -57,7 +57,16 @@ export default function StudentDash() {
             return (
                 <tr key={i}>
                     <td>{course.title}</td>
-                    <td className="description">{course.description}</td>
+                    {/* <td className="description">{course.description}</td> */}
+                    <td>
+                        <div className="courseInfo" onClick={() => getCourseDescription(`coursePopup${i}`)}>
+                            <button className="viewButton">View</button>
+                            <span className="popupText" id={`coursePopup${i}`}>
+                                <p>{`${course.description}`}</p>
+                                <button>Okay</button>
+                            </span>
+                        </div>
+                    </td>
                     <td>{course.course_code}</td>
                     <td>{teacherName}</td>
                     <td>
@@ -67,6 +76,13 @@ export default function StudentDash() {
             )
         })
     }
+    function getCourseDescription(eleId) {
+        var popup = document.getElementById(eleId);
+        popup.classList.toggle("show");
+        // console.log(course.description)
+
+    }
+    console.log(courses)
     const handleCourseRemoval = async () => {
         let selectedCourses = document.getElementsByClassName('selectedCourse');
         let removedCourses = [];
