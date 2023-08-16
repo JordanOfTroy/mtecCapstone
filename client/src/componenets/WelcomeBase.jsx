@@ -5,6 +5,7 @@ import Welcome from './Welcome.jsx';
 import Info from './Info.jsx';
 import LargeInfo from './LargerInfo';
 import SideBar from './SideBar.jsx';
+import welcomeImage from '../styles/images/students.jpg'
 
 
 export default function WelcomeBase() {
@@ -26,7 +27,9 @@ export default function WelcomeBase() {
                 {/* Do we make this a scrolly scroll box or no? */}
         </div>
         <div className='photo'>
-            <img src='https://i.imgur.com/YBDH8YX.jpg' width='540' height='338'></img>
+            {/* <img src='../styles/images/defaultProfile1.png' width='540' height='338'></img> */}
+            {/* <img src='https://i.imgur.com/YBDH8YX.jpg' width='540' height='338'></img> */}
+            <img src={welcomeImage} width='540' height='338'></img>
         </div>
 
     </div>

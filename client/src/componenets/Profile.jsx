@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {Link, useNavigate, useLocation} from 'react-router-dom';
 import SideBar from './SideBar.jsx';
 import Header from './Header.jsx';
+import profileImage from '../styles/images/defaultProfile.png'
 
 
 
@@ -136,7 +137,7 @@ export default function Profile() {
                 </div>
                 <div className='editInfo'>
                     <div className="profileImage">
-                        <img className="rounded-circle shadow-4-strong" alt="avatar2" src='https://i.imgur.com/2uz4wi3.png' height='300' width='300' />
+                        <img className="rounded-circle shadow-4-strong" alt="avatar2" src={profileImage} height='300' width='300' />
                     </div>
                     {/* <EditInfo></EditInfo> */}
                     {EditInfo()}
