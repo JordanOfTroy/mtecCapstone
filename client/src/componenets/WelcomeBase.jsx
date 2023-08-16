@@ -26,7 +26,7 @@ export default function WelcomeBase() {
                 {/* Do we make this a scrolly scroll box or no? */}
         </div>
         <div className='photo'>
-            <img src='https://i.imgur.com/YBDH8YX.jpg' width='540' height='338'></img>
+            <img alt='image of students walking down a school hallway'src='https://i.imgur.com/YBDH8YX.jpg' width='540' height='338'></img>
         </div>
 
     </div>
