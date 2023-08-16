@@ -3,7 +3,6 @@ const {expressjwt} = require('express-jwt')
 const path = require('path')
 const morgan = require('morgan')
 const winston = require('winston')
-require('dotenv').config();
 // const helment = require('helmet')
 const PORT = process.env.PORT || 3001;
 const app = express();
