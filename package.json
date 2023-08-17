@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd server && npm i && cd ../client && npm i && npm run build",
-    "start": "node -r dotenv/config server/server.js"
+    "start": "node -r server/server.js"
   },
   "engines": {
     "node": "16.13.0"
